@@ -8,6 +8,10 @@ class UrlMappings {
 		}
 
 		"/"(view:"/index")
+		/**
+		 * TODO modifier l'accès automatique à la page d'admin ?
+		 */
+		//"/"(controller:"admin", action:"index")
 		"500"(view:'/error')
 	}
 }
