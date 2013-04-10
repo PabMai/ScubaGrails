@@ -45,7 +45,7 @@
 				<li class="fieldcontain">
 					<span id="dateNaissance-label" class="property-label"><g:message code="abonne.dateNaissance.label" default="Date Naissance" /></span>
 					
-						<span class="property-value" aria-labelledby="dateNaissance-label"><g:formatDate date="${abonneInstance?.dateNaissance}" /></span>
+						<span class="property-value" aria-labelledby="dateNaissance-label"><g:formatDate date="${abonneInstance?.dateNaissance}" format="dd/MM/yyyy" /></span>
 					
 				</li>
 				</g:if>
@@ -121,6 +121,15 @@
 					
 				</li>
 				</g:if>
+				<%-- Si pas de fixe indiqué	--%>
+				<g:else>
+					<li class="fieldcontain">
+					<span id="telephoneFixe-label" class="property-label"><g:message code="abonne.telephoneFixe.label" default="Telephone Fixe" /></span>
+					
+						<span class="property-value" aria-labelledby="telephoneFixe-label">N.C.</span>
+					
+				</li>
+				</g:else>
 			
 				<g:if test="${abonneInstance?.telephonePortable}">
 				<li class="fieldcontain">
@@ -130,6 +139,15 @@
 					
 				</li>
 				</g:if>
+				<%-- Si pas de portable indiqué	--%>
+				<g:else>
+					<li class="fieldcontain">
+					<span id="telephonePortable-label" class="property-label"><g:message code="abonne.telephonePortable.label" default="Telephone Portable" /></span>
+					
+						<span class="property-value" aria-labelledby="telephonePortable-label">N.C.</span>
+					
+				</li>
+				</g:else>
 			
 				<g:if test="${abonneInstance?.mail}">
 				<li class="fieldcontain">
@@ -153,7 +171,7 @@
 				<li class="fieldcontain">
 					<span id="dateCertificat-label" class="property-label"><g:message code="abonne.dateCertificat.label" default="Date Certificat" /></span>
 					
-						<span class="property-value" aria-labelledby="dateCertificat-label"><g:formatDate date="${abonneInstance?.dateCertificat}" /></span>
+						<span class="property-value" aria-labelledby="dateCertificat-label"><g:formatDate date="${abonneInstance?.dateCertificat}" format="dd/MM/yyyy"/></span>
 					
 				</li>
 				</g:if>
@@ -250,14 +268,24 @@
 			
 				<g:if test="${abonneInstance?.enregistrements}">
 				<li class="fieldcontain">
-					<span id="enregistrements-label" class="property-label"><g:message code="abonne.enregistrements.label" default="Enregistrements" /></span>
+					<span id="enregistrements-label" class="property-label"><g:message code="abonne.enregistrements.label" default="Inscrit pour les saisons" /></span>
 					
 						<g:each in="${abonneInstance.enregistrements}" var="e">
-						<span class="property-value" aria-labelledby="enregistrements-label"><g:link controller="enregistrement" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="enregistrements-label"><g:link controller="enregistrement" action="show" id="${e.id}">${e?.saison?.libelle?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
 				</g:if>
+				<g:else>
+				<li class="fieldcontain">
+					<span id="enregistrements-label" class="property-label"><g:message code="abonne.enregistrements.label" default="Inscrit pour les saisons" /></span>
+					
+						
+						<span class="property-value" aria-labelledby="enregistrements-label" style="color:red">Pas d'inscriptions</span>
+						
+					
+				</li>
+				</g:else>
 			
 				<g:if test="${abonneInstance?.niveau}">
 				<li class="fieldcontain">
@@ -275,7 +303,7 @@
 						<span class="property-value" aria-labelledby="typeMembre-label"><g:link controller="typeMembre" action="show" id="${abonneInstance?.typeMembre?.id}">${abonneInstance?.typeMembre?.encodeAsHTML()}</g:link></span>
 					
 				</li>
-				</g:if>
+				</g:if>		
 			
 			</ol>
 			<g:form>

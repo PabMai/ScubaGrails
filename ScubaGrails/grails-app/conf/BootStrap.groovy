@@ -127,7 +127,7 @@ class BootStrap {
 			 * ===============================================
 			 */
 
-				def saison20102011 = new Saison(libelle: "Saison 2010-2011",
+				def saison20102011 = new Saison(libelle: "2010-2011",
 				dateDebut: Date.parse("dd/MM/yyyy", "01/09/2010"),
 				dateFin: Date.parse("dd/MM/yyyy", "31/08/2011"))
 				saison20102011.save()
@@ -137,7 +137,7 @@ class BootStrap {
 					println "Saison 2010-2011 cree : OK !"
 				}
 
-				def saison20112012 = new Saison(libelle: "Saison 2011-2012",
+				def saison20112012 = new Saison(libelle: "2011-2012",
 				dateDebut: Date.parse("dd/MM/yyyy", "01/09/2011"),
 				dateFin: Date.parse("dd/MM/yyyy", "31/08/2012"))
 				saison20112012.save()
@@ -147,7 +147,7 @@ class BootStrap {
 					println "Saison 2011-2012 cree : OK !"
 				}
 
-				def saison20122013 = new Saison(libelle: "Saison 2012-2013",
+				def saison20122013 = new Saison(libelle: "2012-2013",
 				dateDebut: Date.parse("dd/MM/yyyy", "01/09/2012"),
 				dateFin: Date.parse("dd/MM/yyyy", "31/08/2013"))
 				saison20122013.save()

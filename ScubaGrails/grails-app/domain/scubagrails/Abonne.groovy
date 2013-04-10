@@ -77,9 +77,9 @@ class Abonne {
 		codePostal(blank:false, size:5..5)
 		ville(blank:false,maxSize:50)
 		
-		telephoneFixe(blank:true, matches: "0[1-7]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
+		telephoneFixe(blank:true, maxSize: 10, matches: "0[1-7]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
 			, validator : {val, obj -> return (!val.isEmpty() || !obj.telephonePortable.isEmpty())})
-		telephonePortable(blank:true, matches: "0[1-7]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
+		telephonePortable(blank:true, maxSize: 10,  matches: "0[1-7]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
 			, validator : {val, obj -> return (!val.isEmpty() || !obj.telephoneFixe.isEmpty())})
 		mail(blank:false, email:true)
 		
@@ -100,6 +100,6 @@ class Abonne {
 	
 	@Override
 	public String toString() {
-		prenom + " " + nom + "(" + dateNaissance + ")"
+		prenom + " " + nom + " (" + dateNaissance.format("dd/MM/yyyy") + ")"
 	}
 }

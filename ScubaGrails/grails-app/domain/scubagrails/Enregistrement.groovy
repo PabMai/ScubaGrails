@@ -10,5 +10,6 @@ class Enregistrement {
 	static belongsTo = [abonne:Abonne, saison:Saison]
 
     static constraints = {
+		abonne(unique: ['saison'])
     }
 }

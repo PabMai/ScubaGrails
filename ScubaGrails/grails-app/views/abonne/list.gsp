@@ -24,35 +24,38 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="nom" title="${message(code: 'abonne.nom.label', default: 'Nom')}" />
+						<g:sortableColumn property="numeroLicence" title="${message(code: 'abonne.numeroLicence.label', default: 'Numéro de licence')}" />						
 					
 						<g:sortableColumn property="prenom" title="${message(code: 'abonne.prenom.label', default: 'Prenom')}" />
+						
+						<g:sortableColumn property="nom" title="${message(code: 'abonne.nom.label', default: 'Nom')}" />
 					
 						<g:sortableColumn property="dateNaissance" title="${message(code: 'abonne.dateNaissance.label', default: 'Date Naissance')}" />
-					
-						<g:sortableColumn property="departementNaissance" title="${message(code: 'abonne.departementNaissance.label', default: 'Departement Naissance')}" />
-					
+										
 						<g:sortableColumn property="lieuNaissance" title="${message(code: 'abonne.lieuNaissance.label', default: 'Lieu Naissance')}" />
 					
 						<g:sortableColumn property="sexe" title="${message(code: 'abonne.sexe.label', default: 'Sexe')}" />
 					
+						<th> Action </th>
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${abonneInstanceList}" status="i" var="abonneInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${abonneInstance.id}">${fieldValue(bean: abonneInstance, field: "nom")}</g:link></td>
+						<td>${fieldValue(bean: abonneInstance, field: "numeroLicence")}</td>
 					
 						<td>${fieldValue(bean: abonneInstance, field: "prenom")}</td>
 					
-						<td><g:formatDate date="${abonneInstance.dateNaissance}" /></td>
+						<td>${fieldValue(bean: abonneInstance, field: "nom")}</td>						
 					
-						<td>${fieldValue(bean: abonneInstance, field: "departementNaissance")}</td>
+						<td><g:formatDate date="${abonneInstance.dateNaissance}" format="dd/MM/yyyy" /></td>
 					
 						<td>${fieldValue(bean: abonneInstance, field: "lieuNaissance")}</td>
 					
 						<td>${fieldValue(bean: abonneInstance, field: "sexe")}</td>
+						
+						<td> <g:link action="show" id="${abonneInstance.id}"> Modifier </g:link> </td>
 					
 					</tr>
 				</g:each>
