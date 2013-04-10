@@ -27,7 +27,7 @@ class User {
 		password = password.encodeAsMD5()
 	}
 	
-	// pour éviter de persister admin (isAdmin)
+	// pour Ã©viter de persister admin (isAdmin)
 	static transients = ['admin']
 
 	boolean isAdmin(){

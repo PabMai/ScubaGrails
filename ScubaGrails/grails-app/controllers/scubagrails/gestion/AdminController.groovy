@@ -1,4 +1,4 @@
-package scubagrails
+package scubagrails.gestion
 
 class AdminController {
 

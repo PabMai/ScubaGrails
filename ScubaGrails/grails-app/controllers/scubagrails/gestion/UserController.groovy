@@ -1,4 +1,6 @@
-package scubagrails
+package scubagrails.gestion
+
+import scubagrails.User;
 
 class UserController {
 	
@@ -13,7 +15,7 @@ class UserController {
 		]]
 
     def auth() {
-		// si il n'y a pas de session (pas authentifié)
+		// si il n'y a pas de session (pas authentifiÃ©)
 		if(!session.user) {
 			redirect(controller:"user", action:"login")
 			return false
