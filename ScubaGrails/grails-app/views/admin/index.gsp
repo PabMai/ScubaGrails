@@ -102,6 +102,7 @@
 				</g:each>
 			</ul>
 		</div>
+		<g:render template="/layouts/barreNavigation" />
 		<div id="page-body" role="main">
 			<h1>Bienvenue Scuba Grails</h1>
 

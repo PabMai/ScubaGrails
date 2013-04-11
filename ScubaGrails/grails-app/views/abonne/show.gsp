@@ -278,12 +278,8 @@
 				</g:if>
 				<g:else>
 				<li class="fieldcontain">
-					<span id="enregistrements-label" class="property-label"><g:message code="abonne.enregistrements.label" default="Inscrit pour les saisons" /></span>
-					
-						
+					<span id="enregistrements-label" class="property-label"><g:message code="abonne.enregistrements.label" default="Inscrit pour les saisons" /></span>						
 						<span class="property-value" aria-labelledby="enregistrements-label" style="color:red">Pas d'inscriptions</span>
-						
-					
 				</li>
 				</g:else>
 			

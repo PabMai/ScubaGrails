@@ -82,7 +82,7 @@
 	</head>
 	<body>		
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-
+		<g:render template="/layouts/barreNavigation" />
 		<div id="page-body" role="main">
 			<h1>Bienvenue Scuba Grails</h1>
 

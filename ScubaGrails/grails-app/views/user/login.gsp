@@ -7,6 +7,7 @@
 <title>Authentification Scuba Grails</title>
 </head>
 <body>
+	<g:render template="/layouts/barreNavigation" />
 	<div class="body">
 		<h1>Bienvenue, veuillez vous identifier :</h1>
 		<g:if test="${flash.message}">
