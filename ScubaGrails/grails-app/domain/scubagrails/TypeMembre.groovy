@@ -14,7 +14,7 @@ class TypeMembre {
 	static hasMany = [abonnes:Abonne]
 
     static constraints = {
-		nom(blank:false, maxSize:50)
+		nom(blank:false, maxSize:50, unique:true)
     }
 	
 	@Override

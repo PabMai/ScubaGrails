@@ -216,9 +216,9 @@ class BootStrap {
 				prixAssurance: 54.24,
 				secouriste: true,
 				numeroRue: "10",
-				nomRue: "Alcide de Gaspéri",
-				codePostal: "49240",
-				ville : "Avrillé"  )
+				nomRue: "Avenue du Général de Gaulle",
+				codePostal: "75100",
+				ville : "Paris"  )
 							
 				abonne1.setEcole(ecoleN1)
 				abonne1.setTypeMembre(typeMembreApnee)
@@ -319,7 +319,7 @@ class BootStrap {
 						println "Abonné 'Jean Dujardin' crée : OK !"
 					}
 					
-					def abonne5 = new Abonne(nom:"Laurent",
+					def abonne5 = new Abonne(nom:"Denis",
 						prenom: "Corentin",
 						dateNaissance: Date.parse("dd/MM/yyyy", "31/07/1986"),
 						departementNaissance: "69",
@@ -334,9 +334,9 @@ class BootStrap {
 						prixAbonnement: 885,
 						prixAssurance: 126.21,
 						numeroRue: "7",
-						nomRue: "Rue Etienne Dolet",
-						codePostal: "44000",
-						ville : "Nantes" )
+						nomRue: "Rue Etienne Mangenote",
+						codePostal: "92000",
+						ville : "Boulogne Billancourt" )
 						
 						abonne5.setEcole(ecoleN1)
 						abonne5.setTypeMembre(typeMembreApnee)
@@ -345,25 +345,25 @@ class BootStrap {
 						if(abonne5.hasErrors()){
 							println abonne5.errors
 						} else {
-							println "Abonné 'Corentin Laurent' crée : OK !"
+							println "Abonné 'Corentin Denis' crée : OK !"
 						}
 						
-						def abonne6 = new Abonne(nom:"Plessis",
+						def abonne6 = new Abonne(nom:"Partour",
 							prenom: "Aurélie",
-							dateNaissance: Date.parse("dd/MM/yyyy", "03/07/1983"),
+							dateNaissance: Date.parse("dd/MM/yyyy", "04/06/1987"),
 							departementNaissance: "53",
 							lieuNaissance: "Laval",
 							sexe: Sexe.FEMINIM,
 							dateCertificat: Date.parse("dd/MM/yyyy", "17/02/2013"),
 							telephoneFixe: "0240153698",
-							telephonePortable: "0689924401",
-							mail:"aplessis1@gmail.com",
+							telephonePortable: "0606858585",
+							mail:"aure.partour@gmail.com",
 							numeroLicence: "4589877",
 							//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
 							prixAbonnement: 17.25,
 							prixAssurance: 156,
-							numeroRue: "20",
-							nomRue: "Rue Haute Roche",
+							numeroRue: "25",
+							nomRue: "Rue Haute Goulaine",
 							codePostal: "44000",
 							ville : "Nantes" )
 							
@@ -374,7 +374,7 @@ class BootStrap {
 							if(abonne6.hasErrors()){
 								println abonne6.errors
 							} else {
-								println "Abonné 'Aurélie Plessis' crée : OK !"
+								println "Abonné 'Aurélie Partour' crée : OK !"
 							}
 				
 				println """

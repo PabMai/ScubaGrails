@@ -8,7 +8,7 @@ class Niveau {
 	static hasMany = [abonnes:Abonne]
 
     static constraints = {
-		niveau(blank:false, maxSize:50)
+		niveau(blank:false, maxSize:50, unique:true)
     }
 	
 	@Override

@@ -80,7 +80,7 @@ class Abonne {
 			, validator : {val, obj -> return (!val.isEmpty() || !obj.telephoneFixe.isEmpty())})
 		mail(blank:false, email:true)
 		
-		numeroLicence(blank:false, maxSize: 20)
+		numeroLicence(blank:false, maxSize: 20, unique:true)
 		// la date du certificat inséré ne doit pas être inférieur de 1 an
 		// a partir de la date d'insertion
 		dateCertificat(validator: {return (it > (new Date() - 365))})

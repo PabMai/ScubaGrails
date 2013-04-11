@@ -10,7 +10,7 @@ class Saison {
 	static hasMany = [enregistrements:Enregistrement]
 
     static constraints = {
-		libelle(blank:false, maxSize:60)
+		libelle(blank:false, maxSize:60, unique:true)
 		dateDebut(blank:false)
 		dateFin(blank:false, validator: {val, obj ->
 			// val --> champ courant

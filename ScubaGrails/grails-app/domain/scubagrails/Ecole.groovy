@@ -8,7 +8,7 @@ class Ecole {
 	static hasMany = [abonnes:Abonne]
 
     static constraints = {
-		nom(blank:false, maxSize:30)
+		nom(blank:false, maxSize:30, unique:true)
     }
 	
 	@Override
