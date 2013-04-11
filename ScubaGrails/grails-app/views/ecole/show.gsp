@@ -26,11 +26,11 @@
 			<ol class="property-list ecole">
 				
 				
-				<!--  Ajout GMO -->
+			<!--  Ajout GMO -->
 		
 			<g:if test="${listeAbonnes}">
 			<div id="list-abonne" class="content scaffold-list" role="main" style="width:400px;margin-left:260px">
-			<h1 style="margin-left:0px">Liste des abonnées inscrits : </h1>			
+			<h1 style="margin-left:0px"><g:message code="ecole.label.liste.abonne"/></h1>			
 			<table>
 				<thead>
 					<tr>						

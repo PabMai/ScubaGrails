@@ -17,31 +17,46 @@
 			</ul>
 		</div>
 		<div id="show-niveau" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+			<h1>Niveau <g:fieldValue bean="${niveauInstance}" field="niveau"/></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list niveau">
-			
-				<g:if test="${niveauInstance?.niveau}">
-				<li class="fieldcontain">
-					<span id="niveau-label" class="property-label"><g:message code="niveau.niveau.label" default="Niveau" /></span>
+			<ol class="property-list niveau">			
+				
+			<g:if test="${listeAbonnes}">
+			<div id="list-abonne" class="content scaffold-list" role="main" style="width:400px;margin-left:260px">
+			<h1 style="margin-left:0px"><g:message code="niveau.label.liste.abonne"/></h1>			
+			<table>
+				<thead>
+					<tr>						
+						<g:sortableColumn property="prenom" title="${message(code: 'abonne.prenom.label', default: 'Prenom')}" />
+						
+						<g:sortableColumn property="nom" title="${message(code: 'abonne.nom.label', default: 'Nom')}" />
+
+					</tr>
+				</thead>
+				<tbody>
+				<g:each in="${listeAbonnes}" status="i" var="abonneInstance">
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<span class="property-value" aria-labelledby="niveau-label"><g:fieldValue bean="${niveauInstance}" field="niveau"/></span>
 					
-				</li>
-				</g:if>
-			
-				<g:if test="${niveauInstance?.abonnes}">
-				<li class="fieldcontain">
-					<span id="abonnes-label" class="property-label"><g:message code="niveau.abonnes.label" default="Abonnes" /></span>
+						<td>${fieldValue(bean: abonneInstance, field: "prenom")}</td>
 					
-						<g:each in="${niveauInstance.abonnes}" var="a">
-						<span class="property-value" aria-labelledby="abonnes-label"><g:link controller="abonne" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+						<td>${fieldValue(bean: abonneInstance, field: "nom")}</td>
+						
+					</tr>
+				</g:each>
+				</tbody>
+			</table>
+			<div class="pagination">
+				<g:paginate total="${abonneInstanceTotal}" id="${niveauInstance?.id}" />
+			</div>
+		</div>
+		</g:if>
+		<g:else>
+			<g:message code="niveau.not.found.abonne" />
+		</g:else>
+
 			
 			</ol>
 			<g:form>

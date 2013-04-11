@@ -2,6 +2,8 @@ package scubagrails
 
 import org.springframework.dao.DataIntegrityViolationException
 
+import scubagrails.utils.PaginateableList;
+
 class NiveauController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -26,25 +28,41 @@ class NiveauController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'niveau.label', default: 'Niveau'), niveauInstance.id])
+        flash.message = message(code: 'niveau.created.message', args: [niveauInstance.niveau])
         redirect(action: "show", id: niveauInstance.id)
     }
 
     def show(Long id) {
         def niveauInstance = Niveau.get(id)
+		params.max = Math.min(params.max ? params.int('max') : 5,100)
         if (!niveauInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'niveau.label', default: 'Niveau'), id])
+            flash.message = message(code: 'niveau.not.found.message', args: [message(code: 'niveau.label', default: 'Niveau'), id])
             redirect(action: "list")
             return
         }
-
-        [niveauInstance: niveauInstance]
+		
+		List<Abonne> listeOrigine = (List) niveauInstance.abonnes.toArray()
+		if (params.sort) {
+				if (params?.order == "asc") {
+					listeOrigine.sort{it.(params.sort)}
+				} else if (params?.order == "desc") {
+					listeOrigine.sort{a,b -> b.(params.sort) <=> a.(params.sort)}
+				}
+		} else {
+				listeOrigine.sort{it.nom}
+		}
+		List<Abonne> listePaginee = []
+		use(PaginateableList) {
+			listePaginee = listeOrigine.paginate(5,(params.offset ?: 0))
+		}
+		
+		[niveauInstance: niveauInstance, listeAbonnes:listePaginee , abonneInstanceTotal:listeOrigine.size()]
     }
 
     def edit(Long id) {
         def niveauInstance = Niveau.get(id)
         if (!niveauInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'niveau.label', default: 'Niveau'), id])
+            flash.message = message(code: 'niveau.not.found.message', args: [message(code: 'niveau.label', default: 'Niveau'), id])
             redirect(action: "list")
             return
         }
@@ -55,7 +73,7 @@ class NiveauController {
     def update(Long id, Long version) {
         def niveauInstance = Niveau.get(id)
         if (!niveauInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'niveau.label', default: 'Niveau'), id])
+            flash.message = message(code: 'niveau.not.found.message', args: [message(code: 'niveau.label', default: 'Niveau'), id])
             redirect(action: "list")
             return
         }
@@ -77,25 +95,25 @@ class NiveauController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'niveau.label', default: 'Niveau'), niveauInstance.id])
+        flash.message = message(code: 'niveau.updated.message', args: [niveauInstance.niveau])
         redirect(action: "show", id: niveauInstance.id)
     }
 
     def delete(Long id) {
         def niveauInstance = Niveau.get(id)
         if (!niveauInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'niveau.label', default: 'Niveau'), id])
+            flash.message = message(code: 'niveau.not.found.message')
             redirect(action: "list")
             return
         }
 
         try {
             niveauInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'niveau.label', default: 'Niveau'), id])
+            flash.message = message(code: 'niveau.deleted.message', args: [niveauInstance.niveau])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'niveau.label', default: 'Niveau'), id])
+            flash.message = message(code: 'niveau.not.deleted.message', args: [niveauInstance.niveau])
             redirect(action: "show", id: id)
         }
     }
