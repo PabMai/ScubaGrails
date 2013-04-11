@@ -120,6 +120,7 @@
 				<ul>
 					<g:if test="${session?.user?.admin}">
 						<li class="controller"> <g:link controller="user"> Gérer les utilisateurs </g:link> </li>
+						<li class="controller"> <g:link controller="ecole"> Gérer les écoles </g:link> </li>
 					</g:if>
 					
 				</ul>

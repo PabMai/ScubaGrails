@@ -26,14 +26,11 @@ class Abonne {
 	String nomRue
 	String numeroRue
 	String codePostal
-	String ville	
+	String ville
 	
-	// Un abonné appartient à une seule école
-	// Un abonné possède un seul niveau actuel
-	static belongsTo = [
-		ecole:Ecole,
-		typeMembre:TypeMembre,
-		niveau:Niveau]	
+	Ecole ecole	
+	TypeMembre typeMembre
+	Niveau niveau
 	
 	// Un abonné peut être enregistré dans une ou plusieurs saisons
 	static hasMany = [enregistrements:Enregistrement]
@@ -87,6 +84,9 @@ class Abonne {
 		// la date du certificat inséré ne doit pas être inférieur de 1 an
 		// a partir de la date d'insertion
 		dateCertificat(validator: {return (it > (new Date() - 365))})
+		ecole(blank:true, nullable:true)
+		typeMembre(blank:true,nullable:true) 
+		niveau(black:true, nullable:true)
 		encadrant(blank:true)
 		technicien(blank:true)
 		secouriste(blank:true)

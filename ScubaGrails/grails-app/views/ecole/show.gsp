@@ -17,31 +17,52 @@
 			</ul>
 		</div>
 		<div id="show-ecole" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+			<g:if test="${ecoleInstance?.nom}">
+			<h1>Ecole ${ecoleInstance?.nom}</h1>
+			</g:if>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list ecole">
-			
-				<g:if test="${ecoleInstance?.nom}">
-				<li class="fieldcontain">
-					<span id="nom-label" class="property-label"><g:message code="ecole.nom.label" default="Nom" /></span>
+				
+				
+				<!--  Ajout GMO -->
+		
+			<g:if test="${listeAbonnes}">
+			<div id="list-abonne" class="content scaffold-list" role="main" style="width:400px;margin-left:260px">
+			<h1 style="margin-left:0px">Liste des abonnées inscrits : </h1>			
+			<table>
+				<thead>
+					<tr>						
+						<g:sortableColumn property="prenom" title="${message(code: 'abonne.prenom.label', default: 'Prenom')}" />
+						
+						<g:sortableColumn property="nom" title="${message(code: 'abonne.nom.label', default: 'Nom')}" />
+
+					</tr>
+				</thead>
+				<tbody>
+				<g:each in="${listeAbonnes}" status="i" var="abonneInstance">
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<span class="property-value" aria-labelledby="nom-label"><g:fieldValue bean="${ecoleInstance}" field="nom"/></span>
 					
-				</li>
-				</g:if>
-			
-				<g:if test="${ecoleInstance?.abonnes}">
-				<li class="fieldcontain">
-					<span id="abonnes-label" class="property-label"><g:message code="ecole.abonnes.label" default="Abonnes" /></span>
+						<td>${fieldValue(bean: abonneInstance, field: "prenom")}</td>
 					
-						<g:each in="${ecoleInstance.abonnes}" var="a">
-						<span class="property-value" aria-labelledby="abonnes-label"><g:link controller="abonne" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+						<td>${fieldValue(bean: abonneInstance, field: "nom")}</td>
+						
+					</tr>
+				</g:each>
+				</tbody>
+			</table>
+			<div class="pagination">
+				<g:paginate total="${abonneInstanceTotal}" id="${ecoleInstance?.id}" />
+			</div>
+		</div>
+		</g:if>
+		<g:else>
+			<g:message code="ecole.not.found.abonne" />
+		</g:else>		
+				
+				<!-- FIN AJOUT -->
 			
 			</ol>
 			<g:form>

@@ -251,7 +251,7 @@ class BootStrap {
 				codePostal: "44000",
 				ville : "Nantes"
 				)							
-				abonne2.setEcole(ecoleN2)
+				abonne2.setEcole(ecoleN1)
 				abonne2.setTypeMembre(typeMembreNormal)
 				abonne2.setNiveau(niveauN2)
 				abonne2.save()
@@ -280,7 +280,7 @@ class BootStrap {
 				codePostal: "49000",
 				ville : "Angers" )
 				
-				abonne3.setEcole(ecoleMF1)
+				abonne3.setEcole(ecoleN1)
 				abonne3.setTypeMembre(typeMembreLicence)
 				abonne3.setNiveau(niveauBees1)
 				abonne3.save()
@@ -289,6 +289,93 @@ class BootStrap {
 				} else {
 					println "Abonné 'Christine Dupont' crée : OK !"
 				}
+				
+				def abonne4 = new Abonne(nom:"Dujardin",
+					prenom: "Jean",
+					dateNaissance: Date.parse("dd/MM/yyyy", "14/01/1972"),
+					departementNaissance: "44",
+					lieuNaissance: "Nantes",
+					sexe: Sexe.FEMINIM,
+					dateCertificat: Date.parse("dd/MM/yyyy", "13/09/2012"),
+					telephoneFixe: "0152658744",
+					telephonePortable: "0652415263",
+					mail:"j.dujardin@gmail.com",
+					numeroLicence: "5548855",
+					//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
+					prixAbonnement: 100.25,
+					prixAssurance: 1,
+					numeroRue: "11",
+					nomRue: "Rue des Tomates",
+					codePostal: "37000",
+					ville : "Tours" )
+					
+					abonne4.setEcole(ecoleN1)
+					abonne4.setTypeMembre(typeMembreLicence)
+					abonne4.setNiveau(niveauBees1)
+					abonne4.save()
+					if(abonne4.hasErrors()){
+						println abonne4.errors
+					} else {
+						println "Abonné 'Jean Dujardin' crée : OK !"
+					}
+					
+					def abonne5 = new Abonne(nom:"Laurent",
+						prenom: "Corentin",
+						dateNaissance: Date.parse("dd/MM/yyyy", "31/07/1986"),
+						departementNaissance: "69",
+						lieuNaissance: "Lyon",
+						sexe: Sexe.FEMINIM,
+						dateCertificat: Date.parse("dd/MM/yyyy", "14/01/2013"),
+						telephoneFixe: "0240156354",
+						telephonePortable: "0679854612",
+						mail:"cocal@gmail.com",
+						numeroLicence: "4448812",
+						//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
+						prixAbonnement: 885,
+						prixAssurance: 126.21,
+						numeroRue: "7",
+						nomRue: "Rue Etienne Dolet",
+						codePostal: "44000",
+						ville : "Nantes" )
+						
+						abonne5.setEcole(ecoleN1)
+						abonne5.setTypeMembre(typeMembreApnee)
+						abonne5.setNiveau(niveauN1)
+						abonne5.save()
+						if(abonne5.hasErrors()){
+							println abonne5.errors
+						} else {
+							println "Abonné 'Corentin Laurent' crée : OK !"
+						}
+						
+						def abonne6 = new Abonne(nom:"Plessis",
+							prenom: "Aurélie",
+							dateNaissance: Date.parse("dd/MM/yyyy", "03/07/1983"),
+							departementNaissance: "53",
+							lieuNaissance: "Laval",
+							sexe: Sexe.FEMINIM,
+							dateCertificat: Date.parse("dd/MM/yyyy", "17/02/2013"),
+							telephoneFixe: "0240153698",
+							telephonePortable: "0689924401",
+							mail:"aplessis1@gmail.com",
+							numeroLicence: "4589877",
+							//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
+							prixAbonnement: 17.25,
+							prixAssurance: 156,
+							numeroRue: "20",
+							nomRue: "Rue Haute Roche",
+							codePostal: "44000",
+							ville : "Nantes" )
+							
+							abonne6.setEcole(ecoleN1)
+							abonne6.setTypeMembre(typeMembreLicence)
+							abonne6.setNiveau(niveauBees1)
+							abonne6.save()
+							if(abonne6.hasErrors()){
+								println abonne6.errors
+							} else {
+								println "Abonné 'Aurélie Plessis' crée : OK !"
+							}
 				
 				println """
 				=====================================
