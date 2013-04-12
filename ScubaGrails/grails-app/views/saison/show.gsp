@@ -17,26 +17,17 @@
 			</ul>
 		</div>
 		<div id="show-saison" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+			<h1>Saison ${saisonInstance?.libelle}</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list saison">
-			
-				<g:if test="${saisonInstance?.libelle}">
-				<li class="fieldcontain">
-					<span id="libelle-label" class="property-label"><g:message code="saison.libelle.label" default="Libelle" /></span>
-					
-						<span class="property-value" aria-labelledby="libelle-label"><g:fieldValue bean="${saisonInstance}" field="libelle"/></span>
-					
-				</li>
-				</g:if>
-			
+										
 				<g:if test="${saisonInstance?.dateDebut}">
 				<li class="fieldcontain">
 					<span id="dateDebut-label" class="property-label"><g:message code="saison.dateDebut.label" default="Date Debut" /></span>
 					
-						<span class="property-value" aria-labelledby="dateDebut-label"><g:formatDate date="${saisonInstance?.dateDebut}" /></span>
+						<span class="property-value" aria-labelledby="dateDebut-label"><g:formatDate date="${saisonInstance?.dateDebut}" format="dd/MM/yyyy" /></span>
 					
 				</li>
 				</g:if>
@@ -45,21 +36,54 @@
 				<li class="fieldcontain">
 					<span id="dateFin-label" class="property-label"><g:message code="saison.dateFin.label" default="Date Fin" /></span>
 					
-						<span class="property-value" aria-labelledby="dateFin-label"><g:formatDate date="${saisonInstance?.dateFin}" /></span>
+						<span class="property-value" aria-labelledby="dateFin-label"><g:formatDate date="${saisonInstance?.dateFin}" format="dd/MM/yyyy" /></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${saisonInstance?.enregistrements}">
-				<li class="fieldcontain">
-					<span id="enregistrements-label" class="property-label"><g:message code="saison.enregistrements.label" default="Enregistrements" /></span>
+<%--				<g:if test="${saisonInstance?.enregistrements}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="enregistrements-label" class="property-label"><g:message code="saison.enregistrements.label" default="Enregistrements" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${saisonInstance.enregistrements}" var="e">--%>
+<%--						<span class="property-value" aria-labelledby="enregistrements-label"><g:link controller="enregistrement" action="show" id="${e.id}">${e.abonne?.nom?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
+		<g:if test="${listeEnregistrement}">
+			<div id="list-abonne" class="content scaffold-list" role="main" style="width:400px;margin-left:260px">
+			<h1 style="margin-left:0px"><g:message code="saison.label.liste.abonne"/></h1>			
+			<table>
+				<thead>
+					<tr>						
+						<g:sortableColumn property="prenom" title="${message(code: 'abonne.prenom.label', default: 'Prenom')}" />
+						
+						<g:sortableColumn property="nom" title="${message(code: 'abonne.nom.label', default: 'Nom')}" />
+
+					</tr>
+				</thead>
+				<tbody>
+				<g:each in="${listeEnregistrement}" status="i" var="enregistrementInstance">
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+
+						<td>${fieldValue(bean: enregistrementInstance.abonne, field: "prenom")}</td>
 					
-						<g:each in="${saisonInstance.enregistrements}" var="e">
-						<span class="property-value" aria-labelledby="enregistrements-label"><g:link controller="enregistrement" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+						<td>${fieldValue(bean: enregistrementInstance.abonne, field: "nom")}</td>
+						
+					</tr>
+				</g:each>
+				</tbody>
+			</table>
+			<div class="pagination">
+				<g:paginate total="${abonneInstanceTotal}" id="${saisonInstance?.id}" />
+			</div>
+		</div>
+		</g:if>
+		<g:else>
+			<g:message code="saison.not.found.abonne" />
+		</g:else>
+
 			
 			</ol>
 			<g:form>

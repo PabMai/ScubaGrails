@@ -12,6 +12,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<li><g:link controller="admin" action="index" class="adminHome"><g:message code="scubaGrails.nav.homeAdmin.label"/></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -26,9 +27,11 @@
 					
 						<g:sortableColumn property="libelle" title="${message(code: 'saison.libelle.label', default: 'Libelle')}" />
 					
-						<g:sortableColumn property="dateDebut" title="${message(code: 'saison.dateDebut.label', default: 'Date Debut')}" />
+						<g:sortableColumn property="dateDebut" title="${message(code: 'saison.dateDebut.label', default: 'Date de début')}" />
 					
-						<g:sortableColumn property="dateFin" title="${message(code: 'saison.dateFin.label', default: 'Date Fin')}" />
+						<g:sortableColumn property="dateFin" title="${message(code: 'saison.dateFin.label', default: 'Date de fin')}" />
+						
+						<th>${message(code: 'saison.nbAbonne.label', default: 'Nombre d\'abonnés')}</th> 
 					
 					</tr>
 				</thead>
@@ -38,9 +41,11 @@
 					
 						<td><g:link action="show" id="${saisonInstance.id}">${fieldValue(bean: saisonInstance, field: "libelle")}</g:link></td>
 					
-						<td><g:formatDate date="${saisonInstance.dateDebut}" /></td>
+						<td><g:formatDate date="${saisonInstance.dateDebut}" format="dd/MM/yyyy" /></td>
 					
-						<td><g:formatDate date="${saisonInstance.dateFin}" /></td>
+						<td><g:formatDate date="${saisonInstance.dateFin}" format="dd/MM/yyyy" /></td>
+						
+						<td>${saisonInstance.enregistrements?.count?.size}</td>
 					
 					</tr>
 				</g:each>

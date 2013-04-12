@@ -122,6 +122,8 @@
 						<li class="controller"> <g:link controller="user"> Gérer les utilisateurs </g:link> </li>
 						<li class="controller"> <g:link controller="ecole"> Gérer les écoles </g:link> </li>
 						<li class="controller"> <g:link controller="niveau"> Gérer les niveaux </g:link> </li>
+						<li class="controller"> <g:link controller="typeMembre"> Gérer les types de membre </g:link> </li>
+						<li class="controller"> <g:link controller="saison"> Gérer les saisons </g:link> </li>
 					</g:if>
 					
 				</ul>

@@ -1,6 +1,7 @@
 import grails.util.Environment;
 import scubagrails.Abonne
 import scubagrails.Ecole
+import scubagrails.Enregistrement
 import scubagrails.Niveau
 import scubagrails.Saison
 import scubagrails.TypeMembre
@@ -14,12 +15,12 @@ class BootStrap {
 		switch(Environment.getCurrent()){
 			/* Environnement de développement */
 			case Environment.DEVELOPMENT:
-			
-			println """ 
+
+				println """ 
 				=====================================
 					  DUMP développement - start
 				====================================== """
-			
+
 			/**
 			 * ===============================================
 			 * 				CREATION UTILISATEURS
@@ -209,9 +210,9 @@ class BootStrap {
 				sexe: Sexe.MASCULIN,
 				dateCertificat: Date.parse("dd/MM/yyyy", "15/07/2012"),
 				telephoneFixe: "0241552233",
-				telephonePortable: "0674885566",  
+				telephonePortable: "0674885566",
 				mail:"guillaume.problo@gmail.com",
-				numeroLicence: "3556484",				
+				numeroLicence: "3556484",
 				prixAbonnement: 450,
 				prixAssurance: 54.24,
 				secouriste: true,
@@ -219,7 +220,7 @@ class BootStrap {
 				nomRue: "Avenue du Général de Gaulle",
 				codePostal: "75100",
 				ville : "Paris"  )
-							
+
 				abonne1.setEcole(ecoleN1)
 				abonne1.setTypeMembre(typeMembreApnee)
 				abonne1.setNiveau(niveauN1)
@@ -242,7 +243,7 @@ class BootStrap {
 				telephonePortable: "0755889966",
 				mail:"marc.duroux@gmail.com",
 				prixAbonnement: 122,
-				prixAssurance: 17.66,				
+				prixAssurance: 17.66,
 				secouriste: true,
 				encadrant: true,
 				allergique: true,
@@ -250,7 +251,7 @@ class BootStrap {
 				nomRue: "Rue de la Paix",
 				codePostal: "44000",
 				ville : "Nantes"
-				)							
+				)
 				abonne2.setEcole(ecoleN1)
 				abonne2.setTypeMembre(typeMembreNormal)
 				abonne2.setNiveau(niveauN2)
@@ -271,15 +272,15 @@ class BootStrap {
 				telephoneFixe: "0155887744",
 				telephonePortable: "0652321425",
 				mail:"christine.dupont@gmail.com",
-				numeroLicence: "55488",				
+				numeroLicence: "55488",
 				//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
 				prixAbonnement: 772.52,
-				prixAssurance: 101, 
+				prixAssurance: 101,
 				numeroRue: "12Bis",
 				nomRue: "Rue des Pèrdrie",
 				codePostal: "49000",
 				ville : "Angers" )
-				
+
 				abonne3.setEcole(ecoleN1)
 				abonne3.setTypeMembre(typeMembreLicence)
 				abonne3.setNiveau(niveauBees1)
@@ -289,94 +290,140 @@ class BootStrap {
 				} else {
 					println "Abonné 'Christine Dupont' crée : OK !"
 				}
-				
+
 				def abonne4 = new Abonne(nom:"Dujardin",
-					prenom: "Jean",
-					dateNaissance: Date.parse("dd/MM/yyyy", "14/01/1972"),
-					departementNaissance: "44",
-					lieuNaissance: "Nantes",
-					sexe: Sexe.FEMINIM,
-					dateCertificat: Date.parse("dd/MM/yyyy", "13/09/2012"),
-					telephoneFixe: "0152658744",
-					telephonePortable: "0652415263",
-					mail:"j.dujardin@gmail.com",
-					numeroLicence: "5548855",
-					//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
-					prixAbonnement: 100.25,
-					prixAssurance: 1,
-					numeroRue: "11",
-					nomRue: "Rue des Tomates",
-					codePostal: "37000",
-					ville : "Tours" )
-					
-					abonne4.setEcole(ecoleN1)
-					abonne4.setTypeMembre(typeMembreLicence)
-					abonne4.setNiveau(niveauBees1)
-					abonne4.save()
-					if(abonne4.hasErrors()){
-						println abonne4.errors
-					} else {
-						println "Abonné 'Jean Dujardin' crée : OK !"
-					}
-					
-					def abonne5 = new Abonne(nom:"Denis",
-						prenom: "Corentin",
-						dateNaissance: Date.parse("dd/MM/yyyy", "31/07/1986"),
-						departementNaissance: "69",
-						lieuNaissance: "Lyon",
-						sexe: Sexe.FEMINIM,
-						dateCertificat: Date.parse("dd/MM/yyyy", "14/01/2013"),
-						telephoneFixe: "0240156354",
-						telephonePortable: "0679854612",
-						mail:"cocal@gmail.com",
-						numeroLicence: "4448812",
-						//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
-						prixAbonnement: 885,
-						prixAssurance: 126.21,
-						numeroRue: "7",
-						nomRue: "Rue Etienne Mangenote",
-						codePostal: "92000",
-						ville : "Boulogne Billancourt" )
-						
-						abonne5.setEcole(ecoleN1)
-						abonne5.setTypeMembre(typeMembreApnee)
-						abonne5.setNiveau(niveauN1)
-						abonne5.save()
-						if(abonne5.hasErrors()){
-							println abonne5.errors
-						} else {
-							println "Abonné 'Corentin Denis' crée : OK !"
-						}
-						
-						def abonne6 = new Abonne(nom:"Partour",
-							prenom: "Aurélie",
-							dateNaissance: Date.parse("dd/MM/yyyy", "04/06/1987"),
-							departementNaissance: "53",
-							lieuNaissance: "Laval",
-							sexe: Sexe.FEMINIM,
-							dateCertificat: Date.parse("dd/MM/yyyy", "17/02/2013"),
-							telephoneFixe: "0240153698",
-							telephonePortable: "0606858585",
-							mail:"aure.partour@gmail.com",
-							numeroLicence: "4589877",
-							//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
-							prixAbonnement: 17.25,
-							prixAssurance: 156,
-							numeroRue: "25",
-							nomRue: "Rue Haute Goulaine",
-							codePostal: "44000",
-							ville : "Nantes" )
-							
-							abonne6.setEcole(ecoleN1)
-							abonne6.setTypeMembre(typeMembreLicence)
-							abonne6.setNiveau(niveauBees1)
-							abonne6.save()
-							if(abonne6.hasErrors()){
-								println abonne6.errors
-							} else {
-								println "Abonné 'Aurélie Partour' crée : OK !"
-							}
+				prenom: "Jean",
+				dateNaissance: Date.parse("dd/MM/yyyy", "14/01/1972"),
+				departementNaissance: "44",
+				lieuNaissance: "Nantes",
+				sexe: Sexe.FEMINIM,
+				dateCertificat: Date.parse("dd/MM/yyyy", "13/09/2012"),
+				telephoneFixe: "0152658744",
+				telephonePortable: "0652415263",
+				mail:"j.dujardin@gmail.com",
+				numeroLicence: "5548855",
+				//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
+				prixAbonnement: 100.25,
+				prixAssurance: 1,
+				numeroRue: "11",
+				nomRue: "Rue des Tomates",
+				codePostal: "37000",
+				ville : "Tours" )
+
+				abonne4.setEcole(ecoleN1)
+				abonne4.setTypeMembre(typeMembreLicence)
+				abonne4.setNiveau(niveauBees1)
+				abonne4.save()
+				if(abonne4.hasErrors()){
+					println abonne4.errors
+				} else {
+					println "Abonné 'Jean Dujardin' crée : OK !"
+				}
+
+				def abonne5 = new Abonne(nom:"Denis",
+				prenom: "Corentin",
+				dateNaissance: Date.parse("dd/MM/yyyy", "31/07/1986"),
+				departementNaissance: "69",
+				lieuNaissance: "Lyon",
+				sexe: Sexe.FEMINIM,
+				dateCertificat: Date.parse("dd/MM/yyyy", "14/01/2013"),
+				telephoneFixe: "0240156354",
+				telephonePortable: "0679854612",
+				mail:"cocal@gmail.com",
+				numeroLicence: "4448812",
+				//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
+				prixAbonnement: 885,
+				prixAssurance: 126.21,
+				numeroRue: "7",
+				nomRue: "Rue Etienne Mangenote",
+				codePostal: "92000",
+				ville : "Boulogne Billancourt" )
+
+				abonne5.setEcole(ecoleN1)
+				abonne5.setTypeMembre(typeMembreApnee)
+				abonne5.setNiveau(niveauN1)
+				abonne5.save()
+				if(abonne5.hasErrors()){
+					println abonne5.errors
+				} else {
+					println "Abonné 'Corentin Denis' crée : OK !"
+				}
+
+				def abonne6 = new Abonne(nom:"Partour",
+				prenom: "Aurélie",
+				dateNaissance: Date.parse("dd/MM/yyyy", "04/06/1987"),
+				departementNaissance: "53",
+				lieuNaissance: "Laval",
+				sexe: Sexe.FEMINIM,
+				dateCertificat: Date.parse("dd/MM/yyyy", "17/02/2013"),
+				telephoneFixe: "0240153698",
+				telephonePortable: "0606858585",
+				mail:"aure.partour@gmail.com",
+				numeroLicence: "4589877",
+				//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
+				prixAbonnement: 17.25,
+				prixAssurance: 156,
+				numeroRue: "25",
+				nomRue: "Rue Haute Goulaine",
+				codePostal: "44000",
+				ville : "Nantes" )
+
+				abonne6.setEcole(ecoleN1)
+				abonne6.setTypeMembre(typeMembreLicence)
+				abonne6.setNiveau(niveauBees1)
+				abonne6.save()
+				if(abonne6.hasErrors()){
+					println abonne6.errors
+				} else {
+					println "Abonné 'Aurélie Partour' crée : OK !"
+				}
+
+			/**
+			 * ===============================================
+			 * 				CREATION ENREGISTREMENTS
+			 * ===============================================
+			 */
 				
+				def enreg1 = new Enregistrement(abonne: abonne1, saison: saison20102011)
+				enreg1.save()
+				if(enreg1.hasErrors()){
+					println enreg1.errors
+				} else {
+					println "Enregistrement de Guillaume Problo pour la saison 2010-2011"
+				}
+				
+				def enreg2 = new Enregistrement(abonne: abonne1, saison: saison20112012)
+				enreg2.save()
+				if(enreg2.hasErrors()){
+					println enreg2.errors
+				} else {
+					println "Enregistrement de Guillaume Problo pour la saison 2011-2012"
+				}
+				
+				def enreg3 = new Enregistrement(abonne: abonne2, saison: saison20112012)
+				enreg3.save()
+				if(enreg3.hasErrors()){
+					println enreg3.errors
+				} else {
+					println "Enregistrement de Marc Duroux pour la saison 2011-2012"
+				}
+				
+				def enreg4 = new Enregistrement(abonne: abonne2, saison: saison20122013)
+				enreg4.save()
+				if(enreg4.hasErrors()){
+					println enreg4.errors
+				} else {
+					println "Enregistrement de Marc Duroux pour la saison 2012-2013"
+				}
+				
+				def enreg5 = new Enregistrement(abonne: abonne6, saison: saison20102011)
+				enreg5.save()
+				if(enreg5.hasErrors()){
+					println enreg5.errors
+				} else {
+					println "Enregistrement de Aurélie Partour pour la saison 2010-2011"
+				}
+
 				println """
 				=====================================
 					  DUMP développement - stop

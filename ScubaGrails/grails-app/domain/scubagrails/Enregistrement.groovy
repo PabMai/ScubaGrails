@@ -7,7 +7,8 @@ class Enregistrement {
 	Date lastUpdated	
 
 	// Un enregistrement appartient à une unique saison pour un unique abonné
-	static belongsTo = [abonne:Abonne, saison:Saison]
+	Abonne abonne
+	Saison saison
 
     static constraints = {
 		abonne(unique: ['saison'])
