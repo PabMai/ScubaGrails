@@ -4,7 +4,7 @@ class AdminFilters {
 
     def filters = {
         // filtre pour les admins
-        adminOnly(controller:'ecole|enregistrement|niveau|saison|typeMembre', action:'*') {
+        adminOnly(controller:'ecole|enregistrement|niveau|saison|typeMembre|abonne', action:'*') {
 			before = {
 				// pas admin ?
 				if(!session?.user?.admin){

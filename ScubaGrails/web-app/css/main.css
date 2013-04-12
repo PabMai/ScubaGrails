@@ -79,6 +79,13 @@ h1 {
 	margin: 0.8em 0 0.3em 0;
 }
 
+h2 {
+	color: #48802c;
+	font-weight: normal;
+	font-size: 1.25em;
+	margin: 0.8em 0 0.3em 0;
+}
+
 ul {
 	padding: 0;
 }
@@ -99,6 +106,12 @@ img {
 
 .content h1 {
 	border-bottom: 1px solid #CCCCCC;
+	margin: 0.8em 1em 0.3em;
+	padding: 0 0.25em;
+}
+
+.content h2 {
+	/*border-bottom: 1px solid #CCCCCC;*/
 	margin: 0.8em 1em 0.3em;
 	padding: 0 0.25em;
 }
@@ -622,5 +635,29 @@ color: #fff;
 } 
 #loginHeader a{ 
 color: #fff; 
+}
+
+/* Affichage photo abonné */
+.presentationAbonne {
+	float:right;
+	width:150px;
+	border:1px;
+	border-color:#0000FF;
+	height:200px;
+	margin-right:250px;
+	margin-top:50px;
+	border-style:solid;
+}
+
+.property-label-abonne {
+	color: #666666;
+	text-align: left;
+	width: 150px;	
+	float: left;
+}
+
+.property-value-abonne {
+	display: inline;
+	margin-left: 5%;
 }
 

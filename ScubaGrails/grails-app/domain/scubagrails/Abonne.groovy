@@ -46,8 +46,8 @@ class Abonne {
 	boolean aideFamille
 	boolean autorisationParentale
 	
-	double prixAbonnement
-	double prixAssurance
+	Double prixAbonnement
+	Double prixAssurance
 	
 	//TODO Blob photo
 	
@@ -57,6 +57,7 @@ class Abonne {
 	
 
     static constraints = {
+		numeroLicence(blank:false, maxSize: 20, unique:true)
 		nom(blank:false, maxSize:50)
 		prenom(blank:false, maxSize:50)
 		// validator --> custom validator :
@@ -80,7 +81,7 @@ class Abonne {
 			, validator : {val, obj -> return (!val.isEmpty() || !obj.telephoneFixe.isEmpty())})
 		mail(blank:false, email:true)
 		
-		numeroLicence(blank:false, maxSize: 20, unique:true)
+		
 		// la date du certificat inséré ne doit pas être inférieur de 1 an
 		// a partir de la date d'insertion
 		dateCertificat(validator: {return (it > (new Date() - 365))})
@@ -94,8 +95,8 @@ class Abonne {
 		comiteDirecteur(blank:true)
 		aideFamille(blank:true)
 		autorisationParentale(blank:true)
-		prixAbonnement(min: Double.valueOf("0"), max: Double.valueOf("1000"))
-		prixAssurance(min: Double.valueOf("0"), max: Double.valueOf("1000"))
+		prixAbonnement(min: Double.valueOf("0"), max: Double.valueOf("1000"), blank:false)
+		prixAssurance(min: Double.valueOf("0"), max: Double.valueOf("1000"), blank:false)
     }
 	
 	@Override
