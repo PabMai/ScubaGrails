@@ -69,7 +69,6 @@ class AbonneController {
                 return
             }
         }
-
         abonneInstance.properties = params
 
         if (!abonneInstance.save(flush: true)) {
@@ -99,4 +98,62 @@ class AbonneController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def ajouterAvatarAbonne = {
+		def abonneInstance = Abonne.get(params.idAbonne)
+		if (!abonneInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'abonne.label', default: 'Abonne'), id])
+			redirect(action: "list")
+			return
+		}		
+		
+		/** File Upload **/
+		def file = request.getFile('avatar')
+		if (file.size != 0) {
+		if (file.size <= 16384) {
+		
+		def okcontents = ['image/png', 'image/jpeg', 'image/gif']
+		if (! okcontents.contains(file.getContentType())) {
+		  flash.message = "Avatar must be one of: ${okcontents}"
+		  render(view:'show', model:[abonneInstance: abonneInstance])
+		  return;
+		}
+		abonneInstance.avatar = file.getBytes()
+		abonneInstance.mimeType = file.getContentType()
+		log.info("File uploaded: " + abonneInstance.mimeType)
+		} else {
+			// on ne fait rien, trop gros
+			flash.message = "Image trop volumineuse (maxi : 16Ko) !"
+			render(view:'show', model:[abonneInstance: abonneInstance])
+		return
+		}
+		} else {
+			// on ne fait rien
+			flash.message = "Vous n'avez pas choisi de photo !"
+			render(view:'show', model:[abonneInstance: abonneInstance])
+			return
+		}
+		/** File upload **/
+				
+		if (!abonneInstance.save(flush: true)) {
+			render(view: "show", model: [abonneInstance: abonneInstance])
+			return
+		}
+
+		flash.message = message(code: 'default.updated.message', args: [message(code: 'abonne.label', default: 'Abonne'), abonneInstance.id])
+		redirect(action: "show", id: abonneInstance.id)
+	}
+	
+	def getAvatarAbonne = {
+		def abonneInstance = Abonne.get(params.id)
+		if (!abonneInstance || !abonneInstance.avatar || !abonneInstance.mimeType) {
+		  response.sendError(404)
+		  return;
+		}
+		response.setContentType(abonneInstance.mimeType)
+		response.setContentLength(abonneInstance.avatar.size())
+		OutputStream out = response.getOutputStream();
+		out.write(abonneInstance.avatar);
+		out.close();
+	  }
 }

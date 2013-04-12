@@ -51,6 +51,9 @@ class Abonne {
 	
 	//TODO Blob photo
 	
+	byte[] avatar
+	String mimeType
+	
 	// filename ?
 	// mimeType ?
 	// last update date (photo) ?
@@ -97,6 +100,8 @@ class Abonne {
 		autorisationParentale(blank:true)
 		prixAbonnement(min: Double.valueOf("0"), max: Double.valueOf("1000"), blank:false)
 		prixAssurance(min: Double.valueOf("0"), max: Double.valueOf("1000"), blank:false)
+		avatar(nullable:true, maxSize: 16384) /* 16K */
+		mimeType(nullable:true)
     }
 	
 	@Override

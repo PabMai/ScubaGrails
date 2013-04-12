@@ -642,11 +642,18 @@ color: #fff;
 	float:right;
 	width:150px;
 	border:1px;
-	border-color:#0000FF;
+	/*border-color:#0000FF;*/
 	height:200px;
 	margin-right:250px;
 	margin-top:50px;
 	border-style:solid;
+}
+
+.ajouterPhoto {
+	float:right;
+	width:150px;
+	margin-right:250px;
+	margin-top:50px;
 }
 
 .property-label-abonne {
@@ -660,4 +667,11 @@ color: #fff;
 	display: inline;
 	margin-left: 5%;
 }
+
+img.avatar {
+  width: 9.4em;
+  height: 12.5em;
+}
+
+
 

@@ -27,12 +27,12 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form method="post" >
+			<g:form method="post" enctype="multipart/form-data">
 				<g:hiddenField name="id" value="${abonneInstance?.id}" />
 				<g:hiddenField name="version" value="${abonneInstance?.version}" />
 				<fieldset class="form">
 					<g:render template="form"/>
-				</fieldset>
+			</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />

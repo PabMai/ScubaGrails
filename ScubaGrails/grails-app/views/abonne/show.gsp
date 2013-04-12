@@ -34,9 +34,25 @@
 			</div>
 		</g:if>
 
-		<div class="presentationAbonne">Insérer photo ici</div>
+		
+			<g:if test="${abonneInstance?.avatar}">
+			<div class="presentationAbonne">
+	  			<img class="avatar" src="${createLink(controller:'abonne', action:'getAvatarAbonne', id:abonneInstance?.id)}" />
+			</div>
+			</g:if>
+			<g:else>
+			<div class="ajouterPhoto">
+			<g:form controller="abonne" action="ajouterAvatarAbonne" method="post" enctype="multipart/form-data">				
+					<input type="hidden" name="idAbonne" value="${abonneInstance?.id}" />
+					<label for="avatar">Ajouter une photo : </label>
+					<input type="file" name="avatar" id="avatar" />
+					<input type="submit" class="buttons" value="Upload"/>
+			</g:form>
+			</div>
+			</g:else>
+		
 
-		<ol class="property-list abonne" style="margin-left: 50px">
+		<ol class="property-list abonne" style="margin-left: 50px;width:300px;" >
 			<li class="fieldcontain">
 				${abonneInstance?.prenom} ${abonneInstance?.nom} (${abonneInstance?.numeroLicence})
 			</li>
