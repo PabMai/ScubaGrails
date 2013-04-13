@@ -88,7 +88,7 @@
 
 			
 			
-			<img src="${resource(dir: 'images/scuba', file: 'tortue.jpg')}" alt="Tortue" width="400px"/>
+			<img src="${resource(dir: 'images/scuba', file: 'tortue.jpg')}" alt="Tortue"/>
 					
 			
 
