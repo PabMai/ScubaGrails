@@ -108,6 +108,12 @@ class EcoleController {
             redirect(action: "list")
             return
         }
+		
+		if (!ecoleInstance.abonnes.isEmpty()) {
+			flash.message = message(code: 'ecole.not.deleted.message', args: [ecoleInstance.nom])
+			redirect(action: "show", id: id)
+			return
+		}
 
         try {
             ecoleInstance.delete(flush: true)

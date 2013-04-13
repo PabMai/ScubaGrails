@@ -106,6 +106,12 @@ class SaisonController {
             redirect(action: "list")
             return
         }
+		
+		if (!saisonInstance.enregistrements.isEmpty()) {
+			flash.message = message(code: 'saison.not.deleted.message', args: [saisonInstance.libelle])
+			redirect(action: "show", id: id)
+			return
+		}
 
         try {
             saisonInstance.delete(flush: true)

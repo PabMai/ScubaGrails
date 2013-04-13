@@ -106,6 +106,12 @@ class NiveauController {
             redirect(action: "list")
             return
         }
+		
+		if (!niveauInstance.abonnes.isEmpty()) {
+			flash.message = message(code: 'niveau.not.deleted.message', args: [niveauInstance.niveau])
+			redirect(action: "show", id: id)
+			return
+		}
 
         try {
             niveauInstance.delete(flush: true)

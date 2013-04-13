@@ -106,6 +106,12 @@ class TypeMembreController {
             redirect(action: "list")
             return
         }
+		
+		if (!typeMembreInstance.abonnes.isEmpty()) {
+			flash.message = message(code: 'typeMembre.not.deleted.message', args: [typeMembreInstance.nom])
+			redirect(action: "show", id: id)
+			return
+		}
 
         try {
             typeMembreInstance.delete(flush: true)
