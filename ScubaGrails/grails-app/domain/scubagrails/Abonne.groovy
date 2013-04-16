@@ -1,6 +1,8 @@
 package scubagrails
 
 import java.sql.Blob;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import org.grails.datastore.gorm.finders.MethodExpression.InList;
 
@@ -36,6 +38,12 @@ class Abonne {
 	
 	// Un abonné peut être enregistré dans une ou plusieurs saisons
 	static hasMany = [enregistrements:Enregistrement]
+	
+	// Afin de supprimer les enregistrements liés à un abonné
+	// si celui-ci est supprimé
+	static mapping = {
+		enregistrements cascade: 'all-delete-orphan'
+	}
 
 	Date dateCertificat
 	String numeroLicence
@@ -86,7 +94,17 @@ class Abonne {
 		
 		// la date du certificat inséré ne doit pas être inférieur de 1 an
 		// a partir de la date d'insertion
-		dateCertificat(validator: {return (it > (new Date() - 365))})
+		dateCertificat(validator: {
+			Date now  = new Date()
+			Date anneePrecedente = new Date() - 365
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy")			
+			if ((it < anneePrecedente) || (it > now)) {				
+				return ['abonne.dateCertificat.validator.invalid', format.format(anneePrecedente), format.format(now)]
+			} else {
+				return true
+			}	
+			//return ((it > (new Date() - 365)) && (it < new Date()))
+		})
 		ecole(blank:true, nullable:true)
 		typeMembre(blank:true,nullable:true) 
 		niveau(black:true, nullable:true)

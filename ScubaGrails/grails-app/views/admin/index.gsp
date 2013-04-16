@@ -114,8 +114,8 @@
 		</div>
 		<g:render template="/layouts/barreNavigation" />
 		<div id="page-body" role="main">
-			<h1>Bienvenue Scuba Grails</h1>
-
+			<h1>Bienvenue sur l'interface de gestion du club</h1>
+			<p>Afin de gérer les différentes fonctionnalit&eacute;s du club, veuillez cliquer sur les actions suivantes : </p>
 <%--			<div id="controller-list" role="navigation">--%>
 <%--				<h2>Available Controllers:</h2>--%>
 <%--				<ul>--%>
