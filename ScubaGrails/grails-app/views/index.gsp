@@ -24,7 +24,7 @@
 						<div id="main">
 <!-- header -->
 							<div id="header">
-								<h1><a>ScubaGrails</a><span>ASCSB Plong&eacute;e</span></h1>
+								<!--<h1><a>ScubaGrails</a> <span>ASCSB Plong&eacute;e</span></h1> -->
 								<ul class="top-links">
 									<li><a><img alt="home" src="images/scuba/design/icon-home.gif" /></a></li>
 									<li><a href="contact.html"><img alt="mail" src="images/scuba/design/icon-mail.gif" /></a></li>

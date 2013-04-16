@@ -13,7 +13,7 @@ p {margin-bottom:15px}
 /* GLOBAL */
 #main {width:910px;margin:0 auto;height:auto !important;height:100%;min-height:100%;position:relative}
 #header, #content, #footer {font-size:0.75em}
-.top-bg {background:url(../images/scuba/design/bg-top.jpg) no-repeat center top;position:relative;min-height:100%;height:auto !important;height:100%}
+.top-bg {background:url(../images/scuba/design/bg-topScubaGrailsIndex.jpg) no-repeat center top;position:relative;min-height:100%;height:auto !important;height:100%}
 .bot-bg {background:url(../images/scuba/design/bg-bottom.jpg) no-repeat center bottom;position:relative;min-height:100%;height:auto !important;height:100%}
 .tail-top {background:url(../images/scuba/design/tail-top.gif) left top repeat-x #028ecc;min-height:100%;height:auto !important;height:100%}
 .tail-bottom {background:url(../images/scuba/design/tail-bottom.gif) left bottom repeat-x;position:relative;min-height:100%;height:auto !important;height:100%}
@@ -25,7 +25,7 @@ p {margin-bottom:15px}
 a {color:#abe3fd;outline:none}
 a:hover{text-decoration:none}
 h1 {padding:28px 0 0 10px;font-size:3em;line-height:1em;float:left}
-h1 a {display:block;/*background:url(../images/scuba/design/logo.jpg) no-repeat left top*/;width:237px;height:40px;text-indent:-9999px}
+h1 a {display:block;background:url(../images/scuba/logoScuba.png) no-repeat left top;width:237px;height:40px;text-indent:-9999px}
 h1 span {background:/*url(../images/scuba/design/slogan.jpg) no-repeat left top*/;text-indent:-9999px;display:block;height:22px;width:437px}
 h2 {font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;font-size:2.08em;line-height:1.1em;text-transform:uppercase;font-weight:normal;margin-bottom:23px}
 h3 {font-size:1em;padding:2px 0 0 0;margin-bottom:10px}
@@ -92,7 +92,7 @@ img {border:0;vertical-align:top;text-align:left}
 .designScuba {
 background-color: #eee;
 border: 0.1em solid #fff;
-margin: 2em 9em 1em;
+margin: 2em 8em 1em;
 padding: 1em;
 width: 60em;
 
