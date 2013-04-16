@@ -80,9 +80,9 @@ class TypeMembreController {
 
         if (version != null) {
             if (typeMembreInstance.version > version) {
-                typeMembreInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                typeMembreInstance.errors.rejectValue("version", "typemembre.optimistic.locking.failure",
                           [message(code: 'typeMembre.label', default: 'TypeMembre')] as Object[],
-                          "Un autre utilisateur à mis à jour ce type de membre pendant que vous l'éditiez")
+                          "Un autre utilisateur à mis à jour ce type de membre pendant que vous l''éditiez")
                 render(view: "edit", model: [typeMembreInstance: typeMembreInstance])
                 return
             }

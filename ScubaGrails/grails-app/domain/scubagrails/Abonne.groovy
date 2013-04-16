@@ -15,6 +15,8 @@ class Abonne {
 	
 	String nom
 	String prenom
+	String login
+	String password
 	Date dateNaissance
 	String departementNaissance
 	String lieuNaissance
@@ -49,19 +51,16 @@ class Abonne {
 	Double prixAbonnement
 	Double prixAssurance
 	
-	//TODO Blob photo
-	
 	byte[] avatar
 	String mimeType
 	
-	// filename ?
-	// mimeType ?
-	// last update date (photo) ?
-	
+	int nbJourPerimeCM	
 
-    static constraints = {
+    static constraints = {		
+		login(blank:true, nullable:true)		
+		password(blank:false, password:true, minSize:4)
 		numeroLicence(blank:false, maxSize: 20, unique:true)
-		nom(blank:false, maxSize:50)
+		nom(blank:false, maxSize:50, unique: ['prenom', 'dateNaissance'])
 		prenom(blank:false, maxSize:50)
 		// validator --> custom validator :
 		// ici : empeche la saisie d'une date dans le futur
@@ -104,8 +103,31 @@ class Abonne {
 		mimeType(nullable:true)
     }
 	
+	def beforeInsert = {
+		password = password.encodeAsMD5()
+		login = prenom.toLowerCase().substring(0, 1) + "." + nom.toLowerCase()
+	}
+	
 	@Override
 	public String toString() {
 		prenom + " " + nom + " (" + dateNaissance.format("dd/MM/yyyy") + ")"
+	}
+	
+	// pour éviter de persister age (getAge)
+	static transients = ['age','nbJourPerimeCM']
+	
+	public getAge(){
+		def now = new GregorianCalendar()
+		
+		Integer birthMonth = dateNaissance.getAt(Calendar.MONTH) + 1
+		Integer birthYear = dateNaissance.getAt(Calendar.YEAR)
+		Integer birthDate = dateNaissance.getAt(Calendar.DATE)
+		Integer yearNow = now.get(Calendar.YEAR)
+		
+		def offset = new GregorianCalendar(
+				   yearNow,
+				   birthMonth-1,
+				   birthDate)
+		return (yearNow - birthYear - (offset > now ? 1 : 0))
 	}
 }

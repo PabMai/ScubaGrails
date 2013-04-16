@@ -11,8 +11,18 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<g:if test="${session?.user?.admin}">
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				</g:if>
+				<!--  SI ABONNE -->
+				<g:if test="${session?.abonne}">
+				<li>
+					<g:link class="abonneProfil" action="show/${session?.abonne?.id}">
+						<g:message code="scubaGrails.abonne.moncompte.label"/>
+					</g:link>
+				</li>
+				</g:if>
 			</ul>
 		</div>
 		<div id="edit-abonne" class="content scaffold-edit" role="main">
@@ -27,7 +37,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form method="post" enctype="multipart/form-data">
+			<g:form method="post">
 				<g:hiddenField name="id" value="${abonneInstance?.id}" />
 				<g:hiddenField name="version" value="${abonneInstance?.version}" />
 				<fieldset class="form">
@@ -35,7 +45,9 @@
 			</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:if test="${session?.user?.admin}">
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					</g:if>
 				</fieldset>
 			</g:form>
 		</div>

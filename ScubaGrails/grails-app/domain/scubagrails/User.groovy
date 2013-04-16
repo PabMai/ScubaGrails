@@ -7,7 +7,7 @@ class User {
 	String email
 	String nom
 	String prenom
-	String role = "utilisateur"
+	String role = "administrateur"
 	
 
 	static constraints = {
@@ -16,7 +16,7 @@ class User {
 		login(blank:false, nullable:false, unique:true)
 		password(blank:false, password:true, minSize:4)
 		email(blank:false, email:true)
-		role(blank:false, inList:["administrateur", "utilisateur"])
+		role(blank:false, inList:["administrateur", "autre..."])
 	}
 
 	String toString(){

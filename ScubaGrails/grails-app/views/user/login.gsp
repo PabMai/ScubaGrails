@@ -9,7 +9,7 @@
 <body>
 	<g:render template="/layouts/barreNavigation" />
 	<div class="body">
-		<h1>Bienvenue, veuillez vous identifier :</h1>
+		<h1>&nbsp;&nbsp;&nbsp;Bienvenue, veuillez vous identifier :</h1>
 		<g:if test="${flash.message}">
 			<div class="message">
 				${flash.message}

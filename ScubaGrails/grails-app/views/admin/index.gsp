@@ -83,42 +83,53 @@
 	<body>		
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="status" role="complementary">
-			<h1>Application Status</h1>
-			<ul>
-				<li>App version: <g:meta name="app.version"/></li>
-				<li>Grails version: <g:meta name="app.grails.version"/></li>
-				<li>Groovy version: ${GroovySystem.getVersion()}</li>
-				<li>JVM version: ${System.getProperty('java.version')}</li>
-				<li>Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</li>
-				<li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
-				<li>Domains: ${grailsApplication.domainClasses.size()}</li>
-				<li>Services: ${grailsApplication.serviceClasses.size()}</li>
-				<li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
+			<h1>Indicateurs</h1>
+			<ul>				
+				<li>Nombre d'abonnés : ${nbAbonne}</li>
+				<li>Nombre d'administrateurs : ${nbUtilisateur}</li>
+				<li>Nombre d'écoles : ${nbEcole}</li>
+				<li>Nombre de saisons : ${nbSaison}</li>
+				<li>Nombre de niveaux : ${nbNiveau}</li>								
+				
+				<g:if test="${session?.listeAbonneCMPerime?.size() > 0}">
+				<li><span style="color: red">Certificat périmé : </span>
+				<g:link controller="abonne" action="showAbonneCMPerime"> ${session?.listeAbonneCMPerime?.size()}</g:link>
+				</li>
+				</g:if>
+				<g:else>
+				<li>Certificat périmé : 
+				0
+				</li>
+				</g:else>
+				
 			</ul>
-			<h1>Installed Plugins</h1>
+			<h1>Info</h1>
 			<ul>
-				<g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-					<li>${plugin.name} - ${plugin.version}</li>
-				</g:each>
+				<li>Version actuelle : <g:meta name="app.version"/></li>				
 			</ul>
+			<br />
+			<br />
+			<br />
+			<br />
 		</div>
 		<g:render template="/layouts/barreNavigation" />
 		<div id="page-body" role="main">
 			<h1>Bienvenue Scuba Grails</h1>
 
-			<div id="controller-list" role="navigation">
-				<h2>Available Controllers:</h2>
-				<ul>
-					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-					</g:each>
-				</ul>
-			</div>
+<%--			<div id="controller-list" role="navigation">--%>
+<%--				<h2>Available Controllers:</h2>--%>
+<%--				<ul>--%>
+<%--					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">--%>
+<%--						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>--%>
+<%--					</g:each>--%>
+<%--				</ul>--%>
+<%--			</div>--%>
 			
 			<div id="controller-list" role="navigation">
 				<h2>Choix :</h2>
 				<ul>
 					<g:if test="${session?.user?.admin}">
+						<li class="controller"> <g:link controller="abonne"> Gérer les abonnés </g:link> </li>
 						<li class="controller"> <g:link controller="user"> Gérer les utilisateurs </g:link> </li>
 						<li class="controller"> <g:link controller="ecole"> Gérer les écoles </g:link> </li>
 						<li class="controller"> <g:link controller="niveau"> Gérer les niveaux </g:link> </li>

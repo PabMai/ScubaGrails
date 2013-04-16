@@ -47,7 +47,7 @@ class BootStrap {
 				email:"moi@test.com",
 				nom: "moiNom",
 				prenom: "moiPrenom",
-				role: "utilisateur")
+				role: "autre...")
 				moi.save()
 				if(moi.hasErrors()){
 					println moi.errors
@@ -219,7 +219,8 @@ class BootStrap {
 				numeroRue: "10",
 				nomRue: "Avenue du Général de Gaulle",
 				codePostal: "75100",
-				ville : "Paris"  )
+				ville : "Paris",				
+				password: "test" )
 
 				abonne1.setEcole(ecoleN1)
 				abonne1.setTypeMembre(typeMembreApnee)
@@ -250,7 +251,8 @@ class BootStrap {
 				numeroRue: "75",
 				nomRue: "Rue de la Paix",
 				codePostal: "44000",
-				ville : "Nantes"
+				ville : "Nantes",				
+				password: "test"
 				)
 				abonne2.setEcole(ecoleN1)
 				abonne2.setTypeMembre(typeMembreNormal)
@@ -267,7 +269,7 @@ class BootStrap {
 				dateNaissance: Date.parse("dd/MM/yyyy", "19/05/1975"),
 				departementNaissance: "44",
 				lieuNaissance: "Nantes",
-				sexe: Sexe.FEMINIM,
+				sexe: Sexe.FEMININ,
 				dateCertificat: Date.parse("dd/MM/yyyy", "12/08/2012"),
 				telephoneFixe: "0155887744",
 				telephonePortable: "0652321425",
@@ -279,7 +281,8 @@ class BootStrap {
 				numeroRue: "12Bis",
 				nomRue: "Rue des Pèrdrie",
 				codePostal: "49000",
-				ville : "Angers" )
+				ville : "Angers",				
+				password: "test" )
 
 				abonne3.setEcole(ecoleN1)
 				abonne3.setTypeMembre(typeMembreLicence)
@@ -296,7 +299,7 @@ class BootStrap {
 				dateNaissance: Date.parse("dd/MM/yyyy", "14/01/1972"),
 				departementNaissance: "44",
 				lieuNaissance: "Nantes",
-				sexe: Sexe.FEMINIM,
+				sexe: Sexe.FEMININ,
 				dateCertificat: Date.parse("dd/MM/yyyy", "13/09/2012"),
 				telephoneFixe: "0152658744",
 				telephonePortable: "0652415263",
@@ -308,7 +311,8 @@ class BootStrap {
 				numeroRue: "11",
 				nomRue: "Rue des Tomates",
 				codePostal: "37000",
-				ville : "Tours" )
+				ville : "Tours",				
+				password: "test" )
 
 				abonne4.setEcole(ecoleN1)
 				abonne4.setTypeMembre(typeMembreLicence)
@@ -325,7 +329,7 @@ class BootStrap {
 				dateNaissance: Date.parse("dd/MM/yyyy", "31/07/1986"),
 				departementNaissance: "69",
 				lieuNaissance: "Lyon",
-				sexe: Sexe.FEMINIM,
+				sexe: Sexe.FEMININ,
 				dateCertificat: Date.parse("dd/MM/yyyy", "14/01/2013"),
 				telephoneFixe: "0240156354",
 				telephonePortable: "0679854612",
@@ -337,7 +341,8 @@ class BootStrap {
 				numeroRue: "7",
 				nomRue: "Rue Etienne Mangenote",
 				codePostal: "92000",
-				ville : "Boulogne Billancourt" )
+				ville : "Boulogne Billancourt",				
+				password: "test" )
 
 				abonne5.setEcole(ecoleN1)
 				abonne5.setTypeMembre(typeMembreApnee)
@@ -354,7 +359,7 @@ class BootStrap {
 				dateNaissance: Date.parse("dd/MM/yyyy", "04/06/1987"),
 				departementNaissance: "53",
 				lieuNaissance: "Laval",
-				sexe: Sexe.FEMINIM,
+				sexe: Sexe.FEMININ,
 				dateCertificat: Date.parse("dd/MM/yyyy", "17/02/2013"),
 				telephoneFixe: "0240153698",
 				telephonePortable: "0606858585",
@@ -366,7 +371,8 @@ class BootStrap {
 				numeroRue: "25",
 				nomRue: "Rue Haute Goulaine",
 				codePostal: "44000",
-				ville : "Nantes" )
+				ville : "Nantes",				
+				password: "test" )
 
 				abonne6.setEcole(ecoleN1)
 				abonne6.setTypeMembre(typeMembreLicence)

@@ -15,12 +15,21 @@
 		<ul>
 			<li><a class="home" href="${createLink(uri: '/')}"><g:message
 						code="default.home.label" /></a></li>
+			<!--  SI ADMIN -->
+			<g:if test="${session?.user?.admin}">
 			<li><g:link class="list" action="list">
 					<g:message code="default.list.label" args="[entityName]" />
 				</g:link></li>
 			<li><g:link class="create" action="create">
 					<g:message code="default.new.label" args="[entityName]" />
 				</g:link></li>
+			</g:if>
+			<!--  SI ABONNE -->
+			<g:if test="${session?.abonne}">
+			<li><g:link class="abonneProfil" action="show/${session?.abonne?.id}">
+					<g:message code="scubaGrails.abonne.moncompte.label"/>
+				</g:link></li>
+			</g:if>
 		</ul>
 	</div>
 	<div id="show-abonne" class="content scaffold-show" role="main">
@@ -57,7 +66,7 @@
 				${abonneInstance?.prenom} ${abonneInstance?.nom} (${abonneInstance?.numeroLicence})
 			</li>
 			<li class="fieldcontain">Né le <g:formatDate
-					date="${abonneInstance?.dateNaissance}" format="dd/MM/yyyy" />, ${abonneInstance?.sexe.value}</li>
+					date="${abonneInstance?.dateNaissance}" format="dd/MM/yyyy" /> (${abonneInstance?.getAge()} ans), ${abonneInstance?.sexe.value}</li>
 			<li class="fieldcontain">
 				${abonneInstance?.numeroRue}, ${abonneInstance?.nomRue}
 			</li>
@@ -288,9 +297,11 @@
 				<g:link class="edit" action="edit" id="${abonneInstance?.id}">
 					<g:message code="default.button.edit.label" default="Edit" />
 				</g:link>
+				<g:if test="${session?.user?.admin}">
 				<g:actionSubmit class="delete" action="delete"
 					value="${message(code: 'default.button.delete.label', default: 'Delete')}"
 					onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+				</g:if>
 			</fieldset>
 		</g:form>
 	</div>

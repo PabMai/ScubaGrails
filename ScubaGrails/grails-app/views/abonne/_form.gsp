@@ -46,7 +46,7 @@
 	<label for="sexe">
 		<g:message code="abonne.sexe.label" default="Sexe" />
 		<span class="required-indicator">*</span>
-	</label>
+	</label>	
 	<g:select name="sexe" from="${scubagrails.type.Sexe?.values()}" keys="${scubagrails.type.Sexe.values()*.name()}" required="" value="${abonneInstance?.sexe?.name()}"/>
 </div>
 
@@ -106,6 +106,10 @@
 	<g:field type="email" name="mail" required="" value="${abonneInstance?.mail}"/>
 </div>
 
+<%-- ================================  --%>
+<%-- ========= SI ADMIN =============  --%>
+<%-- ================================  --%>
+<g:if test="${session?.user?.admin}">
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'numeroLicence', 'error')} required">
 	<label for="numeroLicence">
 		<g:message code="abonne.numeroLicence.label" default="Numero Licence" />
@@ -234,4 +238,5 @@
 	</label>
 	<g:select id="typeMembre" name="typeMembre.id" from="${scubagrails.TypeMembre.list()}" optionKey="id" required="" value="${abonneInstance?.typeMembre?.id}" class="many-to-one"/>
 </div>
+</g:if>
 

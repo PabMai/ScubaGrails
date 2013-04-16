@@ -73,7 +73,9 @@ a:hover, a:active {
 }
 
 h1 {
-	color: #48802c;
+	/*color: #48802c;*/
+	color: rgb(14,185,224);
+	color: rgb(8,110,133);
 	font-weight: normal;
 	font-size: 1.25em;
 	margin: 0.8em 0 0.3em 0;
@@ -121,7 +123,8 @@ img {
 }
 
 .footer {
-	background: #abbf78;
+	/* background: #abbf78; */
+	background: url(../images/scuba/design/tail-rightScubaGrails.jpg) repeat-x;
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
@@ -197,14 +200,14 @@ img {
 	text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create, a.adminHome {
+.nav a.home, .nav a.list, .nav a.create, a.adminHome, a.abonneProfil {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
 }
 
 .nav a.home {
-	background-image: url(../images/skin/house.png);
+	background-image: url(../images/skin/house.png);	
 }
 
 .nav a.list {
@@ -217,6 +220,10 @@ img {
 
 .nav a.adminHome {
 	background-image: url(../images/scuba/admin_icon.png);
+}
+
+.nav a.abonneProfil {
+	background-image: url(../images/scuba/monProfil.png);
 }
 
 /* CREATE/EDIT FORMS AND SHOW PAGES */
@@ -614,8 +621,10 @@ a.skip {
 
 /* ===== Customisation Scuba Grails */
 #header { 
-background: #48802c; 
-padding: 2em 1em 2em 1em; 
+/*background: #48802c;*/
+background: url(../images/scuba/design/bg-topScubaGrails.jpg) no-repeat center top;
+/*background: #abe3fd; */
+padding: 5em 1em 2em 1em; 
 margin-bottom: 1em; 
 } 
 a.header-main:link, a.header-main:visited { 
