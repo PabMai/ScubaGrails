@@ -23,9 +23,10 @@
 			<div class="message" role="status">${flash.message}</div>
 	</g:if>
 
-		<ol class="property-list ecole">
+		
 
 			<g:if test="${listePagineAbonneCMPerime}">
+			<ol class="property-list ecole">
 				<div id="list-abonne" class="content scaffold-list" role="main"
 					style="width: 600px; margin: auto">
 					<h1 style="margin-left: 0px">
@@ -82,26 +83,21 @@
 						<g:paginate total="${abonneInstanceTotal}" />
 					</div>
 				</div>
-			</g:if>
-			<g:else>
+			</ol>
+			<!--  Envoi groupé  -->
+			<div style="float: right; width: 165px; margin-right: 198px">
+				<fieldset class="buttons">
+					<g:mailToAll>
+						<g:each in="${listeComplete}" status="i" var="abonneInstance">
+							${abonneInstance?.mail},
+			</g:each>
+					</g:mailToAll>
+				</fieldset>
+			</div>
+		</g:if>
+			<g:else>			
 				<g:message code="abonnePerime.not.found.abonne" />
 			</g:else>
-			
-			
-
-			<!-- FIN AJOUT -->
-
-		</ol>
-		<div style="float:right;width:165px;margin-right:198px">
-		<fieldset class="buttons">
-		<g:mailToAll>	
-			<g:each in="${listeComplete}" status="i" var="abonneInstance">
-				${abonneInstance?.mail},
-			</g:each>
-		</g:mailToAll>
-		</fieldset>
-		</div>
-
 	</div>
 </body>
 </html>
