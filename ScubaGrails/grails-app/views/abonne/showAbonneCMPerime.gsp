@@ -27,7 +27,7 @@
 
 			<g:if test="${listePagineAbonneCMPerime}">
 				<div id="list-abonne" class="content scaffold-list" role="main"
-					style="width: 400px; margin-left: 260px">
+					style="width: 600px; margin: auto">
 					<h1 style="margin-left: 0px">
 						
 					</h1>
@@ -42,29 +42,37 @@
 									
 								<th> Certificat du </th>							
 								
-								<th> Périmé de </th>									
+								<th> Périmé de </th>	
+								
+								<th > Action </th>								
 							</tr>
 						</thead>
 						<tbody>
 							<g:each in="${listePagineAbonneCMPerime}" status="i" var="abonneInstance">
-								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-
-
-									<td>
+								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}" align="center">
+									<td style="vertical-align:middle;line-height: 0.8em;">
 										<g:link action="show" id="${abonneInstance?.id}">${fieldValue(bean: abonneInstance, field: "prenom")}</g:link>
 									</td>
 
-									<td>
+									<td style="vertical-align:middle;line-height: 0.8em;">
 										${fieldValue(bean: abonneInstance, field: "nom")}
 									</td>
 									
-									<td>
+									<td style="vertical-align:middle;line-height: 0.8em;">
 										<g:formatDate date="${abonneInstance?.dateCertificat}"
 											format="dd/MM/yyyy" />										
 									</td>
 																			
-									<td>										
+									<td style="vertical-align:middle;line-height: 0.8em;">										
 										${abonneInstance?.nbJourPerimeCM} jours
+									</td>
+									
+									<td style="vertical-align:middle;line-height: 0.8em;">	
+									<fieldset class="buttons">									
+										<g:link class="edit" controller="abonne" action="edit" id="${abonneInstance?.id}">Editer</g:link>
+										<br />
+										<g:mailTo mail="${abonneInstance?.mail}" prenom="${abonneInstance?.prenom}" nbJourPerime="${abonneInstance?.nbJourPerimeCM}"/>
+									</fieldset>
 									</td>
 								</tr>
 							</g:each>
@@ -78,10 +86,21 @@
 			<g:else>
 				<g:message code="abonnePerime.not.found.abonne" />
 			</g:else>
+			
+			
 
 			<!-- FIN AJOUT -->
 
 		</ol>
+		<div style="float:right;width:165px;margin-right:198px">
+		<fieldset class="buttons">
+		<g:mailToAll>	
+			<g:each in="${listeComplete}" status="i" var="abonneInstance">
+				${abonneInstance?.mail},
+			</g:each>
+		</g:mailToAll>
+		</fieldset>
+		</div>
 
 	</div>
 </body>

@@ -52,7 +52,7 @@
 <%--				</li>--%>
 <%--				</g:if>--%>
 		<g:if test="${listeEnregistrement}">
-			<div id="list-abonne" class="content scaffold-list" role="main" style="width:400px;margin-left:260px">
+			<div id="list-abonne" class="content scaffold-list" role="main" style="width:400px;margin: auto">
 			<h1 style="margin-left:0px"><g:message code="saison.label.liste.abonne"/></h1>			
 			<table>
 				<thead>

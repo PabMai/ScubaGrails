@@ -24,7 +24,7 @@
 			<ol class="property-list niveau">			
 				
 			<g:if test="${listeAbonnes}">
-			<div id="list-abonne" class="content scaffold-list" role="main" style="width:400px;margin-left:260px">
+			<div id="list-abonne" class="content scaffold-list" role="main" style="width:400px;margin: auto">
 			<h1 style="margin-left:0px"><g:message code="niveau.label.liste.abonne"/></h1>			
 			<table>
 				<thead>

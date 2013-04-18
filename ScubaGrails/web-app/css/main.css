@@ -607,7 +607,7 @@ th:hover, tr:hover {
 	text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save, .buttons .editMDP {
+.buttons .delete, .buttons .edit, .buttons .save, .buttons .editMDP, .buttons .alertMail {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -632,6 +632,10 @@ th:hover, tr:hover {
 
 .buttons .editMDP {
 	background-image: url(../images/skin/changePassword.png);
+}
+
+.buttons .alertMail {
+	background-image: url(../images/scuba/mail_alerte.png);
 }
 
 a.skip {

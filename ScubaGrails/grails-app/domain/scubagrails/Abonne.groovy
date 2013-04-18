@@ -135,6 +135,10 @@ class Abonne {
 		prenom + " " + nom + " (" + dateNaissance.format("dd/MM/yyyy") + ")"
 	}
 	
+	public String toMail() {
+		mail
+	}
+	
 	// pour éviter de persister age (getAge)
 	static transients = ['age','nbJourPerimeCM']
 	

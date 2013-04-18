@@ -271,7 +271,7 @@ class AbonneController {
 			Abonne abonne -> abonne.nbJourPerimeCM = abonneService.getNbJourPeremptionCM(abonne.getDateCertificat())
 		}
 
-		[listePagineAbonneCMPerime : listePaginee, abonneInstanceTotal:listeAbonneCMPerime.size()]
+		[listePagineAbonneCMPerime : listePaginee, abonneInstanceTotal:listeAbonneCMPerime.size(), listeComplete : listeAbonneCMPerime]
 	}
 	
 	def editMotDePasse(Long id) {
