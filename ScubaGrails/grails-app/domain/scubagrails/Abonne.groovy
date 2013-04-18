@@ -66,7 +66,7 @@ class Abonne {
 
     static constraints = {		
 		login(blank:true, nullable:true)		
-		password(blank:false, password:true, minSize:4)
+		password(blank:true,nullable:true, password:true, minSize:4)
 		numeroLicence(blank:false, maxSize: 20, unique:true)
 		nom(blank:false, maxSize:50, unique: ['prenom', 'dateNaissance'])
 		prenom(blank:false, maxSize:50)
@@ -125,6 +125,10 @@ class Abonne {
 		password = password.encodeAsMD5()
 		login = prenom.toLowerCase().substring(0, 1) + "." + nom.toLowerCase()
 	}
+	
+//	def beforeUpdate = {		
+//		password = password.encodeAsMD5()
+//	}
 	
 	@Override
 	public String toString() {

@@ -28,8 +28,17 @@
 			</g:hasErrors>
 			<g:form action="save" >
 				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
+				<div
+					class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'password', 'error')} required">
+					<label for="password"> <g:message
+							code="abonne.password.label" default="Mot de passe" /> <span
+						class="required-indicator">*</span>
+					</label>
+					<g:passwordField name="password" maxlength="50" required=""
+						value="" />
+				</div>
+					<g:render template="form"/>				
+			</fieldset>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 				</fieldset>

@@ -47,7 +47,7 @@ class AdminFilters {
 			}
 		}
 		
-		gestionAbonneShow(controller:'abonne', action:'show|edit') {
+		gestionAbonneShow(controller:'abonne', action:'show|edit|edit|editMotDePasse') {
 			before = {
 				// admin ? --> ok
 				if(session?.user?.admin){

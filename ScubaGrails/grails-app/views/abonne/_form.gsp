@@ -1,7 +1,5 @@
 <%@ page import="scubagrails.Abonne" %>
 
-
-
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'nom', 'error')} required">
 	<label for="nom">
 		<g:message code="abonne.nom.label" default="Nom" />
@@ -12,7 +10,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'prenom', 'error')} required">
 	<label for="prenom">
-		<g:message code="abonne.prenom.label" default="Prenom" />
+		<g:message code="abonne.prenom.label" default="Prénom" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="prenom" maxlength="50" required="" value="${abonneInstance?.prenom}"/>
@@ -20,7 +18,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'dateNaissance', 'error')} required">
 	<label for="dateNaissance">
-		<g:message code="abonne.dateNaissance.label" default="Date Naissance" />
+		<g:message code="abonne.dateNaissance.label" default="Date de naissance" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:datePicker name="dateNaissance" precision="day"  value="${abonneInstance?.dateNaissance}"  />
@@ -28,7 +26,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'departementNaissance', 'error')} required">
 	<label for="departementNaissance">
-		<g:message code="abonne.departementNaissance.label" default="Departement Naissance" />
+		<g:message code="abonne.departementNaissance.label" default="Departement de naissance" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="departementNaissance" maxlength="30" required="" value="${abonneInstance?.departementNaissance}"/>
@@ -36,7 +34,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'lieuNaissance', 'error')} required">
 	<label for="lieuNaissance">
-		<g:message code="abonne.lieuNaissance.label" default="Lieu Naissance" />
+		<g:message code="abonne.lieuNaissance.label" default="Lieu de naissance" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="lieuNaissance" maxlength="50" required="" value="${abonneInstance?.lieuNaissance}"/>
@@ -50,9 +48,11 @@
 	<g:select name="sexe" from="${scubagrails.type.Sexe?.values()}" keys="${scubagrails.type.Sexe.values()*.name()}" required="" value="${abonneInstance?.sexe?.name()}"/>
 </div>
 
+<h1> Coordonnées </h1>
+
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'numeroRue', 'error')} required">
 	<label for="numeroRue">
-		<g:message code="abonne.numeroRue.label" default="Numero Rue" />
+		<g:message code="abonne.numeroRue.label" default="N°" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="numeroRue" maxlength="8" required="" value="${abonneInstance?.numeroRue}"/>
@@ -60,7 +60,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'nomRue', 'error')} required">
 	<label for="nomRue">
-		<g:message code="abonne.nomRue.label" default="Nom Rue" />
+		<g:message code="abonne.nomRue.label" default="Nom de la rue" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="nomRue" maxlength="100" required="" value="${abonneInstance?.nomRue}"/>
@@ -68,7 +68,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'codePostal', 'error')} required">
 	<label for="codePostal">
-		<g:message code="abonne.codePostal.label" default="Code Postal" />
+		<g:message code="abonne.codePostal.label" default="Code postal" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="codePostal" maxlength="5" required="" value="${abonneInstance?.codePostal}"/>
@@ -84,7 +84,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'telephoneFixe', 'error')} ">
 	<label for="telephoneFixe">
-		<g:message code="abonne.telephoneFixe.label" default="Telephone Fixe" />
+		<g:message code="abonne.telephoneFixe.label" default="Telephone fixe" />
 		
 	</label>
 	<g:textField name="telephoneFixe" pattern="${abonneInstance.constraints.telephoneFixe.matches}" value="${abonneInstance?.telephoneFixe}"/>
@@ -92,7 +92,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'telephonePortable', 'error')} ">
 	<label for="telephonePortable">
-		<g:message code="abonne.telephonePortable.label" default="Telephone Portable" />
+		<g:message code="abonne.telephonePortable.label" default="Telephone portable" />
 		
 	</label>
 	<g:textField name="telephonePortable" pattern="${abonneInstance.constraints.telephonePortable.matches}" value="${abonneInstance?.telephonePortable}"/>
@@ -106,13 +106,17 @@
 	<g:field type="email" name="mail" required="" value="${abonneInstance?.mail}"/>
 </div>
 
+
 <%-- ================================  --%>
 <%-- ========= SI ADMIN =============  --%>
 <%-- ================================  --%>
 <g:if test="${session?.user?.admin}">
+
+<h1>Informations pour l'association</h1>
+
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'numeroLicence', 'error')} required">
 	<label for="numeroLicence">
-		<g:message code="abonne.numeroLicence.label" default="Numero Licence" />
+		<g:message code="abonne.numeroLicence.label" default="Numero de licence" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="numeroLicence" maxlength="20" required="" value="${abonneInstance?.numeroLicence}"/>
@@ -120,7 +124,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'dateCertificat', 'error')} required">
 	<label for="dateCertificat">
-		<g:message code="abonne.dateCertificat.label" default="Date Certificat" />
+		<g:message code="abonne.dateCertificat.label" default="Date du certificat médical" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:datePicker name="dateCertificat" precision="day"  value="${abonneInstance?.dateCertificat}"  />
@@ -184,7 +188,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'prixAbonnement', 'error')} required">
 	<label for="prixAbonnement">
-		<g:message code="abonne.prixAbonnement.label" default="Prix Abonnement" />
+		<g:message code="abonne.prixAbonnement.label" default="Prix de l'abonnement" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="prixAbonnement" value="${fieldValue(bean: abonneInstance, field: 'prixAbonnement')}" required=""/>
@@ -192,7 +196,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'prixAssurance', 'error')} required">
 	<label for="prixAssurance">
-		<g:message code="abonne.prixAssurance.label" default="Prix Assurance" />
+		<g:message code="abonne.prixAssurance.label" default="Prix de l'assurance" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="prixAssurance" value="${fieldValue(bean: abonneInstance, field: 'prixAssurance')}" required=""/>
@@ -206,24 +210,21 @@
 	<g:select id="ecole" name="ecole.id" from="${scubagrails.Ecole.list()}" optionKey="id" required="" value="${abonneInstance?.ecole?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'enregistrements', 'error')} ">
-	<label for="enregistrements">
-		<g:message code="abonne.enregistrements.label" default="Enregistrements" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${abonneInstance?.enregistrements?}" var="e">
-    <li><g:link controller="enregistrement" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="enregistrement" action="create" params="['abonne.id': abonneInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'enregistrement.label', default: 'Enregistrement')])}</g:link>
-</li>
-</ul>
+<div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'lesSaisonsSelection', 'error')} ">
+		<label for="lesSaisonsSelection"> <g:message
+				code="abonne.enregistrements.label"
+				default="Sélectionner la ou les saisons auxquels l'abonné est inscrit (utiliser la touche CTRL de votre clavier)" />
 
+		</label>
+		<g:select name="lesSaisonsSelection" optionKey="id"
+			from="${listeDesSaisons}" size="5" multiple="yes"
+			value="${abonneInstance?.enregistrements*.saison?.id}" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'niveau', 'error')} required">
+
+
+
+	<div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'niveau', 'error')} required">
 	<label for="niveau">
 		<g:message code="abonne.niveau.label" default="Niveau" />
 		<span class="required-indicator">*</span>
@@ -233,7 +234,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'typeMembre', 'error')} required">
 	<label for="typeMembre">
-		<g:message code="abonne.typeMembre.label" default="Type Membre" />
+		<g:message code="abonne.typeMembre.label" default="Type de membre" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="typeMembre" name="typeMembre.id" from="${scubagrails.TypeMembre.list()}" optionKey="id" required="" value="${abonneInstance?.typeMembre?.id}" class="many-to-one"/>

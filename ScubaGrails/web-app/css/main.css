@@ -22,6 +22,7 @@ html {
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
+	background: url(../../images/scuba/design/body-bg.gif) center top repeat-y;
 }
 
 html.no-cssgradients {
@@ -45,6 +46,18 @@ body {
 	   -moz-box-shadow: 0 0 0.3em #255b17;
 	-webkit-box-shadow: 0 0 0.3em #255b17;
 	        box-shadow: 0 0 0.3em #255b17;
+	        
+/*background-color: #eee;*/
+border: 0.1em solid #fff;
+margin: 2em auto;
+padding: 1em;
+width: 60em;
+-moz-box-shadow: 0px 0px 1.25em #ccc;
+-webkit-box-shadow: 0px 0px 1.25em #ccc;
+box-shadow: 0px 0px 1.25em #ccc;
+-moz-border-radius: 0.6em;
+-webkit-border-radius: 0.6em;
+border-radius: 0.6em;        
 }
 
 #grailsLogo {
@@ -124,7 +137,7 @@ img {
 
 .footer {
 	/* background: #abbf78; */
-	background: url(../images/scuba/design/tail-rightScubaGrails.jpg) repeat-x;
+	/*background: url(../images/scuba/design/tail-rightScubaGrails.jpg) repeat-x;*/
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
@@ -500,7 +513,10 @@ th.desc a {
 }
 
 th:hover, tr:hover {
-	background: #E1F2B6;
+	/* background: #E1F2B6; */
+	/* pas mal : F5FAFA */
+	
+	background: #BDD6E0;
 }
 
 /* PAGINATION */
@@ -591,7 +607,7 @@ th:hover, tr:hover {
 	text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save {
+.buttons .delete, .buttons .edit, .buttons .save, .buttons .editMDP {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -612,6 +628,10 @@ th:hover, tr:hover {
 
 .buttons .save {
 	background-image: url(../images/skin/database_save.png);
+}
+
+.buttons .editMDP {
+	background-image: url(../images/skin/changePassword.png);
 }
 
 a.skip {

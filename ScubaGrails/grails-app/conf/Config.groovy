@@ -89,3 +89,10 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// Pour SendGrid : envoie de mail 
+sendgrid {
+	username = "test@test.fr"
+	password = "test"
+}
+

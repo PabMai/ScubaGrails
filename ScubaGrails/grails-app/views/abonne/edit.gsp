@@ -25,8 +25,7 @@
 				</g:if>
 			</ul>
 		</div>
-		<div id="edit-abonne" class="content scaffold-edit" role="main">
-			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+		<div id="edit-abonne" class="content scaffold-edit" role="main">			
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -41,6 +40,7 @@
 				<g:hiddenField name="id" value="${abonneInstance?.id}" />
 				<g:hiddenField name="version" value="${abonneInstance?.version}" />
 				<fieldset class="form">
+				<h1>Informations personnelles</h1>
 					<g:render template="form"/>
 			</fieldset>
 				<fieldset class="buttons">

@@ -54,7 +54,7 @@
 					
 						<td>${fieldValue(bean: abonneInstance, field: "lieuNaissance")}</td>
 					
-						<td>${fieldValue(bean: abonneInstance, field: "sexe")}</td>
+						<td>${fieldValue(bean: abonneInstance, field: "sexe.value")}</td>
 						
 						<td> <g:link action="show" id="${abonneInstance.id}"> Visualiser </g:link> </td>
 					

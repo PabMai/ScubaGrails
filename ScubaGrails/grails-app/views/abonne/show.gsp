@@ -245,12 +245,25 @@
 						</g:link></span></li>
 			</g:if>
 
-			<g:if test="${abonneInstance?.enregistrements}">
+<%--			<g:if test="${abonneInstance?.enregistrements}">--%>
+<%--				<li class="fieldcontain"><span id="enregistrements-label"--%>
+<%--					class="property-label-abonne"><g:message--%>
+<%--							code="abonne.enregistrements.label"--%>
+<%--							default="Inscrit pour les saisons" /></span> <g:each--%>
+<%--						in="${abonneInstance.enregistrements}" var="e">--%>
+<%--						<span class="property-value-abonne"--%>
+<%--							aria-labelledby="enregistrements-label"><g:link--%>
+<%--								controller="enregistrement" action="show" id="${e.id}">--%>
+<%--								${e?.saison?.libelle?.encodeAsHTML()}--%>
+<%--							</g:link></span>--%>
+<%--					</g:each></li>--%>
+<%--			</g:if>--%>
+			<g:if test="${listeEnregistrement}">
 				<li class="fieldcontain"><span id="enregistrements-label"
 					class="property-label-abonne"><g:message
 							code="abonne.enregistrements.label"
-							default="Inscrit pour les saisons" /></span> <g:each
-						in="${abonneInstance.enregistrements}" var="e">
+							default="Trois dernières saisons" /></span> <g:each
+						in="${listeEnregistrement}" var="e">
 						<span class="property-value-abonne"
 							aria-labelledby="enregistrements-label"><g:link
 								controller="enregistrement" action="show" id="${e.id}">
@@ -258,6 +271,7 @@
 							</g:link></span>
 					</g:each></li>
 			</g:if>
+
 			<g:else>
 				<li class="fieldcontain"><span id="enregistrements-label"
 					class="property-label-abonne"><g:message
@@ -295,7 +309,10 @@
 			<fieldset class="buttons">
 				<g:hiddenField name="id" value="${abonneInstance?.id}" />
 				<g:link class="edit" action="edit" id="${abonneInstance?.id}">
-					<g:message code="default.button.edit.label" default="Edit" />
+					<g:message code="default.button.edit.label" default="Editer" />
+				</g:link>
+				<g:link class="editMDP" action="editMotDePasse" id="${abonneInstance?.id}">
+					<g:message code="abonne.button.editMDP.label" default="Changer le mot de passe" />
 				</g:link>
 				<g:if test="${session?.user?.admin}">
 				<g:actionSubmit class="delete" action="delete"

@@ -13,4 +13,9 @@ class Enregistrement {
     static constraints = {
 		abonne(unique: ['saison'])
     }
+	
+	@Override
+	public String toString() {
+		id
+	}
 }
