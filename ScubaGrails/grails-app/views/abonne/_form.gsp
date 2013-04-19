@@ -29,7 +29,9 @@
 		<g:message code="abonne.departementNaissance.label" default="Departement de naissance" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="departementNaissance" maxlength="30" required="" value="${abonneInstance?.departementNaissance}"/>
+	<g:select name="departementNaissance" from="${abonneInstance.constraints.departementNaissance.inList}" required="" value="${abonneInstance?.departementNaissance}" valueMessagePrefix="abonne.departementNaissance"/>
+<%--	<g:textField name="departementNaissance" maxlength="30" required="" value="${abonneInstance?.departementNaissance}"/>--%>
+<%--	(ex : 49)--%>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'lieuNaissance', 'error')} required">
@@ -55,7 +57,7 @@
 		<g:message code="abonne.numeroRue.label" default="N°" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="numeroRue" maxlength="8" required="" value="${abonneInstance?.numeroRue}"/>
+	<g:textField name="numeroRue" size="4" maxlength="8" required="" value="${abonneInstance?.numeroRue}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'nomRue', 'error')} required">
@@ -63,7 +65,7 @@
 		<g:message code="abonne.nomRue.label" default="Nom de la rue" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="nomRue" maxlength="100" required="" value="${abonneInstance?.nomRue}"/>
+	<g:textField name="nomRue" size="50" maxlength="100" required="" value="${abonneInstance?.nomRue}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'codePostal', 'error')} required">
@@ -71,7 +73,8 @@
 		<g:message code="abonne.codePostal.label" default="Code postal" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="codePostal" maxlength="5" required="" value="${abonneInstance?.codePostal}"/>
+	<g:textField name="codePostal" maxlength="5" size="5" pattern="${abonneInstance.constraints.codePostal.matches}" required="" value="${abonneInstance?.codePostal}"/>
+	(ex : 49000)
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'ville', 'error')} required">
@@ -87,7 +90,7 @@
 		<g:message code="abonne.telephoneFixe.label" default="Telephone fixe" />
 		
 	</label>
-	<g:textField name="telephoneFixe" pattern="${abonneInstance.constraints.telephoneFixe.matches}" value="${abonneInstance?.telephoneFixe}"/>
+	<g:textField name="telephoneFixe" size="10" pattern="${abonneInstance.constraints.telephoneFixe.matches}" value="${abonneInstance?.telephoneFixe}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'telephonePortable', 'error')} ">
@@ -95,7 +98,7 @@
 		<g:message code="abonne.telephonePortable.label" default="Telephone portable" />
 		
 	</label>
-	<g:textField name="telephonePortable" pattern="${abonneInstance.constraints.telephonePortable.matches}" value="${abonneInstance?.telephonePortable}"/>
+	<g:textField name="telephonePortable" size="10" pattern="${abonneInstance.constraints.telephonePortable.matches}" value="${abonneInstance?.telephonePortable}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'mail', 'error')} required">
@@ -103,7 +106,7 @@
 		<g:message code="abonne.mail.label" default="Mail" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="email" name="mail" required="" value="${abonneInstance?.mail}"/>
+	<g:field type="email" name="mail" size="30" required="" value="${abonneInstance?.mail}"/>
 </div>
 
 
@@ -191,7 +194,7 @@
 		<g:message code="abonne.prixAbonnement.label" default="Prix de l'abonnement" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="prixAbonnement" value="${fieldValue(bean: abonneInstance, field: 'prixAbonnement')}" required=""/>
+	<g:field name="prixAbonnement" size="5" value="${fieldValue(bean: abonneInstance, field: 'prixAbonnement')}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'prixAssurance', 'error')} required">
@@ -199,7 +202,7 @@
 		<g:message code="abonne.prixAssurance.label" default="Prix de l'assurance" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="prixAssurance" value="${fieldValue(bean: abonneInstance, field: 'prixAssurance')}" required=""/>
+	<g:field name="prixAssurance" size="5" value="${fieldValue(bean: abonneInstance, field: 'prixAssurance')}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'ecole', 'error')} required">

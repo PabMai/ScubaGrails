@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Welcome to Grails</title>
+		<title>Console d'Administration - Scuba Grails</title>
 		<style type="text/css" media="screen">
 			#status {
 				background-color: #eee;
@@ -50,10 +50,10 @@
 				font-size: 1em;
 			}
 
-			p {
-				line-height: 1.5;
-				margin: 0.25em 0;
-			}
+<%--			p {--%>
+<%--				line-height: 1.5;--%>
+<%--				margin: 0.25em 0;--%>
+<%--			}--%>
 
 			#controller-list ul {
 				list-style-position: inside;

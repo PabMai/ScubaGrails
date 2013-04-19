@@ -10,4 +10,4 @@
 				<li><g:link class="abonneProfil" controller="abonne" action="show/${session?.abonne?.id}"><g:message code="scubaGrails.abonne.moncompte.label"/></g:link></li>
 				</g:if>
 			</ul>
-		</div>
+</div>

@@ -76,13 +76,22 @@ class Abonne {
 		// validator est évalué à chaque fois qu'il est invoqué !
 		dateNaissance(validator: {return (it < new Date())})
 		
-		departementNaissance(blank:false, maxSize:30)
+		departementNaissance(blank:false, inList:["01", "02", "03", "04", 
+			"05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15","16","17","18", "19",
+			"2A", "2B", "21", "22", "23", "24", "25","26","27","28", "29",
+			"30", "31", "32", "33", "34", "35","36","37","38", "39",
+			"40", "41", "42", "43", "44", "45","46","47","48", "49",
+			"50", "51", "52", "53", "54", "55","56","57","58", "59",
+			"60", "61", "62", "63", "64", "55","66","67","68", "69",
+			"70", "71", "72", "73", "74", "75","76","77","78", "79",
+			"80", "81", "82", "83", "84", "85","86","87","88", "89",
+			"90", "91", "92", "93", "94", "95"])
 		lieuNaissance(blank:false, maxSize:50)
 		sexe(nullable : false)
 		
 		numeroRue(blank:false, maxSize:8)
 		nomRue(blank:false,maxSize:100)
-		codePostal(blank:false, size:5..5)
+		codePostal(blank:false, size:5..5, matches: "[0-9]+")
 		ville(blank:false,maxSize:50)
 		
 		telephoneFixe(blank:true, maxSize: 10, matches: "0[1-7]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
@@ -115,8 +124,8 @@ class Abonne {
 		comiteDirecteur(blank:true)
 		aideFamille(blank:true)
 		autorisationParentale(blank:true)
-		prixAbonnement(min: Double.valueOf("0"), max: Double.valueOf("1000"), blank:false)
-		prixAssurance(min: Double.valueOf("0"), max: Double.valueOf("1000"), blank:false)
+		prixAbonnement(min: Double.valueOf("0"), max: Double.valueOf("1000"), blank:false, scale: 2)
+		prixAssurance(min: Double.valueOf("0"), max: Double.valueOf("1000"), blank:false, scale: 2)
 		avatar(nullable:true, maxSize: 16384) /* 16K */
 		mimeType(nullable:true)
     }
