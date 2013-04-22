@@ -94,9 +94,9 @@ class Abonne {
 		codePostal(blank:false, size:5..5, matches: "[0-9]+")
 		ville(blank:false,maxSize:50)
 		
-		telephoneFixe(blank:true, maxSize: 10, matches: "0[1-7]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
+		telephoneFixe(blank:true, maxSize: 10, matches: "0[1-9]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
 			, validator : {val, obj -> return (!val.isEmpty() || !obj.telephonePortable.isEmpty())})
-		telephonePortable(blank:true, maxSize: 10,  matches: "0[1-7]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
+		telephonePortable(blank:true, maxSize: 10,  matches: "0[6-7]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
 			, validator : {val, obj -> return (!val.isEmpty() || !obj.telephoneFixe.isEmpty())})
 		mail(blank:false, email:true)
 		

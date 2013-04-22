@@ -17,12 +17,18 @@
 						code="default.home.label" /></a></li>
 			<!--  SI ADMIN -->
 			<g:if test="${session?.user?.admin}">
+			<li><g:link controller="admin" action="index" class="adminHome">
+						<g:message code="scubaGrails.nav.homeAdmin.label" />
+					</g:link>
+			</li>
 			<li><g:link class="list" action="list">
 					<g:message code="default.list.label" args="[entityName]" />
-				</g:link></li>
-			<li><g:link class="create" action="create">
+				</g:link>
+			</li>				
+				<li><g:link class="create" action="create">
 					<g:message code="default.new.label" args="[entityName]" />
-				</g:link></li>
+				</g:link>
+			</li>
 			</g:if>
 			<!--  SI ABONNE -->
 			<g:if test="${session?.abonne}">

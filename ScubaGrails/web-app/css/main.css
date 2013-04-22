@@ -706,5 +706,26 @@ img.avatar {
   height: 12.5em;
 }
 
+#interfaceAdmin {
+	width:95%;
+	border-top: none;	
+}
+
+#interfaceAdmin td{
+	text-align : center;	
+	width : 33%;
+}
+
+#interfaceAdmin tr:hover {	
+	background: none;
+}
+
+#trInterfaceAdmin > td {
+	padding-bottom: 0em;
+}
+
+
+
+
 
 

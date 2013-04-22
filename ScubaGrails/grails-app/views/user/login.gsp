@@ -35,8 +35,8 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="buttons">
-				<span class="button"> <input type="submit" value="Login" />
+			<div class="buttons" style="width:126px;margin:auto;">
+				<span class="button"> <input type="submit" value="Se connecter" />
 				</span>
 			</div>
 		</g:form>

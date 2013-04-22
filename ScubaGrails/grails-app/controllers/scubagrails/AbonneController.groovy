@@ -3,7 +3,7 @@ package scubagrails
 import org.springframework.dao.DataIntegrityViolationException
 
 import scubagrails.utils.PaginateableList;
-import uk.co.desirableobjects.sendgrid.SendGridService
+//import uk.co.desirableobjects.sendgrid.SendGridService
 
 
 class AbonneController {
@@ -325,18 +325,18 @@ class AbonneController {
 		redirect(action: "show", id: abonneInstance.id)
 	}
 	
-	SendGridService sendGridService	
-	
-	def sendMailAbonne() {
-		sendGridService.sendMail {
-			from "moi@scubagrails.com"
-			to 'spamskelt@free.fr'		
-			//bcc 'yourbcc@example.com'
-			subject 'This is the subject line'
-			body 'This is our message body'
-			
-		}
-		
-		redirect(action: "list", params: params)				
-	}
+//	SendGridService sendGridService	
+//	
+//	def sendMailAbonne() {
+//		sendGridService.sendMail {
+//			from "moi@scubagrails.com"
+//			to 'spamskelt@free.fr'		
+//			//bcc 'yourbcc@example.com'
+//			subject 'This is the subject line'
+//			body 'This is our message body'
+//			
+//		}
+//		
+//		redirect(action: "list", params: params)				
+//	}
 }

@@ -89,20 +89,25 @@
 				<li>Nombre d'administrateurs : ${nbUtilisateur}</li>
 				<li>Nombre d'écoles : ${nbEcole}</li>
 				<li>Nombre de saisons : ${nbSaison}</li>
-				<li>Nombre de niveaux : ${nbNiveau}</li>								
-				
+				<li>Nombre de niveaux : ${nbNiveau}</li>				
+			</ul>
+			<br />
+			<h1>Certificats</h1>
+			<ul>
 				<g:if test="${session?.listeAbonneCMPerime?.size() > 0}">
-				<li><span style="color: red">Certificat périmé : </span>
+				<li><span style="color: red">Périmés : </span>
 				<g:link controller="abonne" action="showAbonneCMPerime"> ${session?.listeAbonneCMPerime?.size()}</g:link>
 				</li>
 				</g:if>
 				<g:else>
-				<li>Certificat périmé : 
+				<li>Périmés : 
 				0
 				</li>
 				</g:else>
+				<li>Dans le mois :  a faire</li>
 				
 			</ul>
+			<br />
 			<h1>Info</h1>
 			<ul>
 				<li>Version actuelle : <g:meta name="app.version"/></li>				
@@ -116,29 +121,76 @@
 		<div id="page-body" role="main">
 			<h1>Bienvenue sur l'interface de gestion du club</h1>
 			<p>Afin de gérer les différentes fonctionnalit&eacute;s du club, veuillez cliquer sur les actions suivantes : </p>
+			<br /><br />
+
+			<!--  Interface admin -->
+			<table id="interfaceAdmin">
+			<tr id="trInterfaceAdmin">
+				<td>
+					<g:link controller="abonne">
+						<g:img dir="images/scuba/admin" file="user.png"  alt="Gérer les abonnés" />
+					</g:link>
+				</td>
+				<td>
+					<g:link controller="user">
+							<g:img dir="images/scuba/admin" file="admin.png"  alt="Gérer les administrateurs" />
+					</g:link>			
+				</td>
+				<td>
+					<g:link controller="ecole">
+							<g:img dir="images/scuba/admin" file="ecole.png"  alt="Gérer les écoles" />
+					</g:link>
+				</td>
+			</tr>
+			<tr id="trInterfaceAdmin">
+				<td>Gérer les abonnés</td>
+				<td>Gérer les administrateurs</td>
+				<td>Gérer les écoles</td>
+			</tr>
+			</table>
+			
+			<br />
+			
+			<table id="interfaceAdmin">
+			<tr id="trInterfaceAdmin">
+				<td>
+					<g:link controller="niveau">
+						<g:img dir="images/scuba/admin" file="niveau.png"  alt="Gérer les niveaux" />
+					</g:link>
+				</td>
+				<td>
+					<g:link controller="typeMembre">
+						<g:img dir="images/scuba/admin" file="typeMembre.png" alt="Gérer les types de membre" />
+					</g:link>
+				</td>
+				<td>
+					<g:link controller="saison">
+						<g:img dir="images/scuba/admin" file="saison.png" alt="Gérer les saisons" />
+					</g:link>
+				</td>
+			</tr>
+			<tr id="trInterfaceAdmin">
+				<td>Gérer les niveaux</td>
+				<td>Gérer les types de membre</td>
+				<td>Gérer les saisons</td>
+			</tr>
+			</table>
+
+			
 <%--			<div id="controller-list" role="navigation">--%>
-<%--				<h2>Available Controllers:</h2>--%>
+<%--				<h2>Choix :</h2>--%>
 <%--				<ul>--%>
-<%--					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">--%>
-<%--						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>--%>
-<%--					</g:each>--%>
+<%--					<g:if test="${session?.user?.admin}">--%>
+<%--						<li class="controller"> <g:link controller="abonne"> Gérer les abonnés </g:link> </li>--%>
+<%--						<li class="controller"> <g:link controller="user"> Gérer les utilisateurs </g:link> </li>--%>
+<%--						<li class="controller"> <g:link controller="ecole"> Gérer les écoles </g:link> </li>--%>
+<%--						<li class="controller"> <g:link controller="niveau"> Gérer les niveaux </g:link> </li>--%>
+<%--						<li class="controller"> <g:link controller="typeMembre"> Gérer les types de membre </g:link> </li>--%>
+<%--						<li class="controller"> <g:link controller="saison"> Gérer les saisons </g:link> </li>--%>
+<%--					</g:if>--%>
+<%--					--%>
 <%--				</ul>--%>
 <%--			</div>--%>
-			
-			<div id="controller-list" role="navigation">
-				<h2>Choix :</h2>
-				<ul>
-					<g:if test="${session?.user?.admin}">
-						<li class="controller"> <g:link controller="abonne"> Gérer les abonnés </g:link> </li>
-						<li class="controller"> <g:link controller="user"> Gérer les utilisateurs </g:link> </li>
-						<li class="controller"> <g:link controller="ecole"> Gérer les écoles </g:link> </li>
-						<li class="controller"> <g:link controller="niveau"> Gérer les niveaux </g:link> </li>
-						<li class="controller"> <g:link controller="typeMembre"> Gérer les types de membre </g:link> </li>
-						<li class="controller"> <g:link controller="saison"> Gérer les saisons </g:link> </li>
-					</g:if>
-					
-				</ul>
-			</div>
 		</div>
 	</body>
 </html>
