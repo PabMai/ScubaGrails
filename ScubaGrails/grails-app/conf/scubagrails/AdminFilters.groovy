@@ -31,7 +31,7 @@ class AdminFilters {
 			}
 		}
 		
-		gestionAbonne(controller:'abonne', action:'list|create|delete|showAbonneCMPerime') {
+		gestionAbonne(controller:'abonne', action:'list|create|delete|showAbonneCMPerime|showAbonneCMPerimeMois') {
 			before = {
 				// admin ? --> ok
 				if(session?.user?.admin){
@@ -47,7 +47,7 @@ class AdminFilters {
 			}
 		}
 		
-		gestionAbonneShow(controller:'abonne', action:'show|edit|edit|editMotDePasse') {
+		gestionAbonneShow(controller:'abonne', action:'show|edit|edit|editMotDePasse|updatePassword') {
 			before = {
 				// admin ? --> ok
 				if(session?.user?.admin){

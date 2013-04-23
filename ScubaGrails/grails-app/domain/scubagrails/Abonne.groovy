@@ -126,7 +126,7 @@ class Abonne {
 		autorisationParentale(blank:true)
 		prixAbonnement(min: Double.valueOf("0"), max: Double.valueOf("1000"), blank:false, scale: 2)
 		prixAssurance(min: Double.valueOf("0"), max: Double.valueOf("1000"), blank:false, scale: 2)
-		avatar(nullable:true, maxSize: 16384) /* 16K */
+		avatar(nullable:true, maxSize: 524288) /* 512 Ko */
 		mimeType(nullable:true)
     }
 	

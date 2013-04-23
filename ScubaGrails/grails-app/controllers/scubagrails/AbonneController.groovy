@@ -196,7 +196,7 @@ class AbonneController {
 		/** File Upload **/
 		def file = request.getFile('avatar')
 		if (file.size != 0) {
-			if (file.size <= 16384) {
+			if (file.size <= 524288) {
 
 				def okcontents = [
 					'image/png',
@@ -212,7 +212,7 @@ class AbonneController {
 				abonneInstance.mimeType = file.getContentType()				
 			} else {
 				// on ne fait rien, trop gros
-				flash.message = "Image trop volumineuse (maxi : 16Ko) !"
+				flash.message = "Image trop volumineuse (maxi : 512Ko) !"
 				render(view:'show', model:[abonneInstance: abonneInstance])
 				return
 			}
