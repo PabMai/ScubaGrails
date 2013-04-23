@@ -13,11 +13,13 @@ import scubagrails.type.Sexe;
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(AbonneService)
+//@TestFor(AbonneService)
 @Mock([Niveau, TypeMembre, Ecole, Abonne])
 class AbonneServiceTests extends GroovyTestCase {
 	
-	def abonneService
+	AbonneService abonneService
+	
+	
 
     void testRecuperationListeAbonneCertifPerime() {			
 		
@@ -52,14 +54,14 @@ class AbonneServiceTests extends GroovyTestCase {
 		// on force la validate a false afin de pouvoir ajouter un certif périmé
 		abonne1.save(validate : false)	
 		
-        List<Abonne> liste = abonneService.getAbonnesCertificatMedicalPerime()
+        List<Abonne> liste = abonneService.getAbonnesCertificatMedicalPerime(365)
 		assertEquals(1, liste.size())
 		assertEquals("Problo", ((Abonne) liste.get(0)).nom)
 		
 		abonne1.setDateCertificat(new Date())	
 		abonne1.save(validate : false)
 		
-		liste = abonneService.getAbonnesCertificatMedicalPerime()
+		liste = abonneService.getAbonnesCertificatMedicalPerime(365)
 		assertEquals(0, liste.size())		
 		
     }
@@ -71,5 +73,58 @@ class AbonneServiceTests extends GroovyTestCase {
 		int nbJour = abonneService.getNbJourPeremptionCM(dateCertif)
 		assertEquals(5, nbJour)
 	}
+	
+//	void testRecuperationCMPerimeDansleMois() {
+//		def niveauN2 = new Niveau(niveau: "N2")
+//		niveauN2.save(failOnError : true)
+//		def typeMembreLicence = new TypeMembre(nom: "Licence seule").save(failOnError : true)
+//		def ecoleInit = new Ecole(nom: "Initiation").save(failOnError : true)
+//
+//		def abonne1 = new Abonne(nom:"Problo",
+//				prenom: "Guillaume",
+//				dateNaissance: Date.parse("dd/MM/yyyy", "14/12/1988"),
+//				departementNaissance: "49",
+//				lieuNaissance: "Angers",
+//				sexe: Sexe.MASCULIN,
+//				dateCertificat: new Date() - 360,
+//				telephoneFixe: "0241552233",
+//				telephonePortable: "0674885566",
+//				mail:"guillaume.problo@gmail.com",
+//				numeroLicence: "3556484",
+//				prixAbonnement: 450,
+//				prixAssurance: 54.24,
+//				secouriste: true,
+//				numeroRue: "10",
+//				nomRue: "Avenue du Général de Gaulle",
+//				codePostal: "75100",
+//				ville : "Paris",
+//				password: "test" )
+//		
+//		abonne1.setEcole(ecoleInit)
+//		abonne1.setTypeMembre(typeMembreLicence)
+//		abonne1.setNiveau(niveauN2)
+//		
+//		// on force la validate a false afin de pouvoir ajouter un certif périmé
+//		abonne1.save(validate : false)
+//		
+//		List<Abonne> liste = abonneService.getAbonnesCertificatMedicalPerimeDansLeMois()
+//		// on doit récupéré l'abonné, car non périmé mais périmé dans 5 jours
+//		assertEquals(1, liste.size())
+//		assertEquals("Problo", ((Abonne) liste.get(0)).nom)
+//		
+//		abonne1.setDateCertificat(new Date() - 366)
+//		abonne1.save(validate : false)
+//		
+//		liste = abonneService.getAbonnesCertificatMedicalPerimeDansLeMois()
+//		assertEquals(0, liste.size())
+//		
+//		// pas encore périmé dans le mois
+//		abonne1.setDateCertificat(new Date() - 330)
+//		abonne1.save(validate : false)
+//		
+//		liste = abonneService.getAbonnesCertificatMedicalPerimeDansLeMois()
+//		assertEquals(0, liste.size())
+//	}
+	
 	
 }

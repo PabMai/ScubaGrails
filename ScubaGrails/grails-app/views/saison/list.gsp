@@ -39,7 +39,12 @@
 				<g:each in="${saisonInstanceList}" status="i" var="saisonInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${saisonInstance.id}">${fieldValue(bean: saisonInstance, field: "libelle")}</g:link></td>
+						<td>
+							<g:link action="show" id="${saisonInstance.id}">${fieldValue(bean: saisonInstance, field: "libelle")}</g:link>
+							<g:if test="${saisonInstance?.enCours}">
+								(en cours)
+							</g:if>
+						</td>
 					
 						<td><g:formatDate date="${saisonInstance.dateDebut}" format="dd/MM/yyyy" /></td>
 					

@@ -83,7 +83,10 @@
 	<body>		
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="status" role="complementary">
-			<h1>Indicateurs</h1>
+		<g:link controller="admin" action="refreshAdminData">
+			<g:img dir="images/scuba" file="refresh.png" class="refreshDonneesAdmin" title="Rafraichir les données"/>
+		</g:link>
+			<h1>Indicateurs</h1>			
 			<ul>				
 				<li>Nombre d'abonnés : ${nbAbonne}</li>
 				<li>Nombre d'administrateurs : ${nbUtilisateur}</li>
@@ -95,30 +98,49 @@
 			<h1>Certificats</h1>
 			<ul>
 				<g:if test="${session?.listeAbonneCMPerime?.size() > 0}">
-				<li><span style="color: red">Périmés : </span>
-				<g:link controller="abonne" action="showAbonneCMPerime"> ${session?.listeAbonneCMPerime?.size()}</g:link>
-				</li>
+					<li><span style="color: red">Périmés : </span>
+					<g:link controller="abonne" action="showAbonneCMPerime"> ${session?.listeAbonneCMPerime?.size()}</g:link>
+					</li>
 				</g:if>
 				<g:else>
-				<li>Périmés : 
-				0
-				</li>
+					<li>Périmés : 0</li>
 				</g:else>
-				<li>Dans le mois :  a faire</li>
-				
+				<g:if test="${session?.listeAbonneCMPerimeDansLeMois?.size() > 0}">
+					<li>Périmés dans le mois :
+					<g:link controller="abonne" action="showAbonneCMPerimeMois"> ${session?.listeAbonneCMPerimeDansLeMois?.size()}</g:link>
+					</li>
+				</g:if>
+				<g:else>
+					<li>Périmés dans le mois : 0</li>
+				</g:else>				
 			</ul>
 			<br />
-			<h1>Info</h1>
+			<!--  Saison en cours -->
+			<g:if test="${saisonEnCours}">
+			<h1>Saison ${saisonEnCours?.libelle}</h1>
 			<ul>
-				<li>Version actuelle : <g:meta name="app.version"/></li>				
+				<li>Effectif : ${saisonEnCours?.enregistrements?.count?.size}</li>			
+				<li>Nombre de niveau ? </li>								
 			</ul>
+			</g:if>
+			<g:else>
+				<h1>Pas de saison en cours</h1>
+			</g:else>
+			
+			
 			<br />
-			<br />
-			<br />
-			<br />
+			<br />	
+			<ul>
+			<li>Version actuelle : <g:meta name="app.version"/></li>
+			</ul>		
 		</div>
 		<g:render template="/layouts/barreNavigation" />
 		<div id="page-body" role="main">
+			<g:if test="${flash.message}">
+				<div class="message" role="status" style="margin:0">
+					${flash.message}
+				</div>
+			</g:if>
 			<h1>Bienvenue sur l'interface de gestion du club</h1>
 			<p>Afin de gérer les différentes fonctionnalit&eacute;s du club, veuillez cliquer sur les actions suivantes : </p>
 			<br /><br />

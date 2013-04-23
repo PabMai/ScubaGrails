@@ -274,6 +274,34 @@ class AbonneController {
 		[listePagineAbonneCMPerime : listePaginee, abonneInstanceTotal:listeAbonneCMPerime.size(), listeComplete : listeAbonneCMPerime]
 	}
 	
+	def showAbonneCMPerimeMois() {
+		params.max = Math.min(params.max ? params.int('max') : 5,100)
+		// récupération de la liste en session
+		List<Abonne> listeAbonneCMPerime = []
+		listeAbonneCMPerime = (List<Abonne>) session?.listeAbonneCMPerimeDansLeMois
+		List<Abonne> listePaginee = []
+		if (!listeAbonneCMPerime.isEmpty())	{
+			if (params.sort) {
+				if (params?.order == "asc") {
+					listeAbonneCMPerime.sort{it.(params.sort)}
+				} else if (params?.order == "desc") {
+					listeAbonneCMPerime.sort{a,b -> b.(params.sort) <=> a.(params.sort)}
+				}
+			} else {
+				listeAbonneCMPerime.sort{it.nom}
+			}
+			use(PaginateableList) {
+				listePaginee = listeAbonneCMPerime.paginate(5,(params.offset ?: 0))
+			}
+		}
+		
+		listePaginee.each {
+			Abonne abonne -> abonne.nbJourPerimeCM = abonneService.getNbJourAvantPeremptionCM(abonne.getDateCertificat())
+		}
+
+		[listePagineAbonneCMPerime : listePaginee, abonneInstanceTotal:listeAbonneCMPerime.size(), listeComplete : listeAbonneCMPerime]
+	}
+	
 	def editMotDePasse(Long id) {
 		def abonneInstance = Abonne.get(id)
 		if (!abonneInstance) {

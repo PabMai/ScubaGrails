@@ -41,18 +41,20 @@
 					
 				</li>
 				</g:if>
-			
-<%--				<g:if test="${saisonInstance?.enregistrements}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="enregistrements-label" class="property-label"><g:message code="saison.enregistrements.label" default="Enregistrements" /></span>--%>
-<%--					--%>
-<%--						<g:each in="${saisonInstance.enregistrements}" var="e">--%>
-<%--						<span class="property-value" aria-labelledby="enregistrements-label"><g:link controller="enregistrement" action="show" id="${e.id}">${e.abonne?.nom?.encodeAsHTML()}</g:link></span>--%>
-<%--						</g:each>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
-		<g:if test="${listeEnregistrement}">
+
+			<li class="fieldcontain"><span id="enCours-label"
+				class="property-label"><g:message code="saison.enCours.label"
+						default="Saison en cours" /></span> <span class="property-value"
+				aria-labelledby="enCours-label"> <g:if
+						test="${saisonInstance?.enCours}">
+						<img src="${resource(dir:'images/scuba',file:'fleche_ok.png')}"
+							alt="Oui" />
+					</g:if> <g:else>
+						<img src="${resource(dir:'images/scuba',file:'fleche_ko.png')}"
+							alt="Non" />
+					</g:else></span></li>
+
+			<g:if test="${listeEnregistrement}">
 			<div id="list-abonne" class="content scaffold-list" role="main" style="width:400px;margin: auto">
 			<h1 style="margin-left:0px"><g:message code="saison.label.liste.abonne"/></h1>			
 			<table>

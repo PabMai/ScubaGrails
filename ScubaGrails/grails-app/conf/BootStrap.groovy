@@ -150,7 +150,8 @@ class BootStrap {
 
 				def saison20122013 = new Saison(libelle: "2012-2013",
 				dateDebut: Date.parse("dd/MM/yyyy", "01/09/2012"),
-				dateFin: Date.parse("dd/MM/yyyy", "31/08/2013"))
+				dateFin: Date.parse("dd/MM/yyyy", "31/08/2013"), 
+				enCours: true)
 				saison20122013.save()
 				if(saison20122013.hasErrors()){
 					println saison20122013.errors

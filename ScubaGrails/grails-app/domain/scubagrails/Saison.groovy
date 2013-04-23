@@ -5,6 +5,7 @@ class Saison {
 	String libelle
 	Date dateDebut
 	Date dateFin
+	Boolean enCours
 	
 	// Une saison peut être enregistrée pour un ou plusieurs abonnés
 	static hasMany = [enregistrements:Enregistrement]
@@ -15,8 +16,9 @@ class Saison {
 		dateFin(blank:false, validator: {val, obj ->
 			// val --> champ courant
 			// obj --> variable représentant une instance de Saison
-			return val.after(obj.dateDebut)			
+			return val.after(obj.dateDebut)	
 		})
+		enCours(blank:true, nullable : true) 
     }
 	
 	@Override

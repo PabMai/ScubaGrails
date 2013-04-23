@@ -126,11 +126,12 @@ class UserController {
 		String login = session?.user?.login ?: session?.abonne?.login
 		if (login == "agnes") {
 			login = "Maman"
-		}
-		String messageAuRevoir = "Au revoir " + login
-		flash.message = "${messageAuRevoir}"
+		}					
 		session.user = null
 		session.abonne = null
+		session.invalidate()
+		String messageAuRevoir = "Au revoir " + login
+		flash.message = "${messageAuRevoir}"
 		redirect(action:"login")
 	}
 
@@ -141,7 +142,11 @@ class UserController {
 				params.password.encodeAsMD5())
 		if(user){
 			session.user = user
-			flash.message = "Bonjour ${user.login} "
+			String login = user.login
+			if (user.login == "agnes") {
+				login = "Maman"
+			}
+			flash.message = "Bonjour $login"
 			redirect(controller:"admin", action:"index")
 		}else{
 			// Alors c'est un abonné ?

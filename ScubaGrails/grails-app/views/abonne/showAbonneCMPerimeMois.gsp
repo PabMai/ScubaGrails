@@ -18,7 +18,7 @@
 		</ul>
 	</div>
 	<div id="show-abonne" class="content scaffold-show" role="main">
-	<h1>Abonnés avec certificat médical périmé </h1>
+	<h1>Abonnés avec certificat médical périmé dans le mois</h1>
 	<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 	</g:if>
@@ -28,7 +28,7 @@
 			<g:if test="${listePagineAbonneCMPerime}">
 			<ol class="property-list ecole">
 				<div id="list-abonne" class="content scaffold-list" role="main"
-					style="width: 610px; margin: auto">
+					style="width: 600px; margin: auto">
 					<h1 style="margin-left: 0px">
 						
 					</h1>
@@ -43,7 +43,7 @@
 									
 								<th> Certificat du </th>							
 								
-								<th> Périmé depuis </th>	
+								<th> Périmé dans </th>	
 								
 								<th > Action </th>								
 							</tr>
@@ -72,7 +72,7 @@
 									<fieldset class="buttons">									
 										<g:link class="edit" controller="abonne" action="edit" id="${abonneInstance?.id}">Editer</g:link>
 										<br />
-										<g:mailTo mail="${abonneInstance?.mail}" prenom="${abonneInstance?.prenom}" nbJourPerime="${abonneInstance?.nbJourPerimeCM}"/>
+										<g:mailTo mail="${abonneInstance?.mail}" prenom="${abonneInstance?.prenom}" nbJourPerime="${abonneInstance?.nbJourPerimeCM}" avantMois="true" />
 									</fieldset>
 									</td>
 								</tr>
@@ -85,9 +85,9 @@
 				</div>
 			</ol>
 			<!--  Envoi groupé  -->
-			<div style="float: right; width: 157px; margin-right: 193px">
+			<div style="float: right; width: 165px; margin-right: 195px">
 				<fieldset class="buttons">
-					<g:mailToAll>
+					<g:mailToAll avantMois="true">
 						<g:each in="${listeComplete}" status="i" var="abonneInstance">
 							${abonneInstance?.mail},
 			</g:each>

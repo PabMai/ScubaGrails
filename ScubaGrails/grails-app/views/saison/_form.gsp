@@ -26,4 +26,11 @@
 	<g:datePicker name="dateFin" precision="day"  value="${saisonInstance?.dateFin}"  />
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: saisonInstance, field: 'enCours', 'error')} ">
+	<label for="enCours">
+		<g:message code="saison.enCours.label" default="Saison en cours" />		
+	</label>
+	<g:checkBox name="enCours" value="${saisonInstance?.enCours}" />
+</div>
+
 

@@ -6,11 +6,11 @@ class LoginLogoutTagLib {
 
 	def loginControl = {
 		if(request.getSession(false) && session.user){
-			out << "Bonjour ${session.user.login} "
+			out << "${session.user.login} "
 			out << """[${link(action:"logout",
 					controller:"user"){"Se déconnecter"}}]"""
 		} else if (request.getSession(false) && session.abonne) {
-			out << "Bonjour ${session.abonne.login} "
+			out << "${session.abonne.login} "
 			out << """[${link(action:"logout",
 						controller:"user"){"Se déconnecter"}}]"""		
 		} else {
