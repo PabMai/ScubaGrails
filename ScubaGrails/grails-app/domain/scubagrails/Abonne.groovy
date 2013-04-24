@@ -15,6 +15,9 @@ import scubagrails.type.Sexe;
  */
 class Abonne {
 	
+	// Pour le plugin searchable
+	static searchable = true
+	
 	String nom
 	String prenom
 	String login

@@ -22,13 +22,14 @@
 					</g:link>
 			</li>
 			<li><g:link class="list" action="list">
-					<g:message code="default.list.label" args="[entityName]" />
+					<g:message code="abonne.list.label"/>
 				</g:link>
 			</li>				
 				<li><g:link class="create" action="create">
-					<g:message code="default.new.label" args="[entityName]" />
+					<g:message code="abonne.new.label"/>
 				</g:link>
 			</li>
+			<g:render template="/layouts/abonneSearch" />
 			</g:if>
 			<!--  SI ABONNE -->
 			<g:if test="${session?.abonne}">

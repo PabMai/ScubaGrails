@@ -59,6 +59,7 @@ grails.project.dependency.resolution = {
         build ":tomcat:$grailsVersion"
         runtime ":database-migration:1.3.2"
         compile ':cache:1.0.1'		
+		compile ":searchable:0.6.4"
 		//compile ":wslite:0.7.1"
 		//runtime ':sendgrid:1.0'
     }

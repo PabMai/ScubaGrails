@@ -4,6 +4,7 @@
 				<!--  SI ADMIN -->
 				<g:if test="${session?.user?.admin}">
 				<li><g:link controller="admin" action="index" class="adminHome"><g:message code="scubaGrails.nav.homeAdmin.label"/></g:link></li>
+				<g:render template="/layouts/abonneSearch" />
 				</g:if>
 				<!--  SI ABONNE -->
 				<g:if test="${session?.abonne}">

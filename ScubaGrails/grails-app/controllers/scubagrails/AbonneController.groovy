@@ -353,6 +353,23 @@ class AbonneController {
 		redirect(action: "show", id: abonneInstance.id)
 	}
 	
+	def search = {
+		if (!params.q.isEmpty()){
+			request.messageRequete = "Résulats pour : ${params.q}"
+			def resultsMap = Abonne.search(params.q, params)
+			render(view:'list',
+			model:[
+				abonneInstanceList:resultsMap.results,
+				abonneInstanceTotal:Abonne.countHits(params.q)
+			]
+			)			
+		} else {
+			flash.message = "Veuillez saisir un critère de recherche"
+			// redirection
+			redirect(controller:"admin", action:"index")
+		}
+	}
+	
 //	SendGridService sendGridService	
 //	
 //	def sendMailAbonne() {
@@ -367,4 +384,6 @@ class AbonneController {
 //		
 //		redirect(action: "list", params: params)				
 //	}
+	
+	
 }
