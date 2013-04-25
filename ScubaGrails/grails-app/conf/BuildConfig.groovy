@@ -38,6 +38,7 @@ grails.project.dependency.resolution = {
         mavenRepo "http://repository.jboss.com/maven2/"
 		mavenRepo "https://oss.sonatype.org/content/groups/public/"
 		mavenRepo "http://repo1.maven.org/maven2/com/github/groovy-wslite/groovy-wslite/"
+		mavenRepo "http://maven.springframework.org/milestone/"
     }
 
     dependencies {
@@ -47,10 +48,12 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        runtime ":hibernate:$grailsVersion"
+		compile ':webxml:1.4.1'
+		compile ':cloud-foundry:1.2.3'
+		runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
         runtime ":resources:1.1.6"
-
+		
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
         //runtime ":cached-resources:1.0"
