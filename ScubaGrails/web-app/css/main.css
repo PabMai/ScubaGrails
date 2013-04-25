@@ -213,7 +213,8 @@ img {
 	text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create, a.adminHome, a.abonneProfil {
+.nav a.home, .nav a.list, .nav a.create, .nav a.adminHome, 
+.nav a.abonneProfil, .nav a.calendrierProfil {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -237,6 +238,10 @@ img {
 
 .nav a.abonneProfil {
 	background-image: url(../images/scuba/monProfil.png);
+}
+
+.nav a.calendrierProfil {
+	background-image: url(../images/scuba/calendar.png);
 }
 
 /* CREATE/EDIT FORMS AND SHOW PAGES */

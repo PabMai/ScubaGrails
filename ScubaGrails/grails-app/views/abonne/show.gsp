@@ -36,6 +36,11 @@
 			<li><g:link class="abonneProfil" action="show/${session?.abonne?.id}">
 					<g:message code="scubaGrails.abonne.moncompte.label"/>
 				</g:link></li>
+			<li>
+				<g:link class="calendrierProfil" action="calendrier">
+					<g:message code="scubaGrails.abonne.calendrier.label"/>
+				</g:link>
+			</li>
 			</g:if>
 		</ul>
 	</div>

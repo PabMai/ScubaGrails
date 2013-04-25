@@ -54,7 +54,7 @@
 					
 						<td>${fieldValue(bean: userInstance, field: "role")}</td>
 						
-						<td> <g:link action="show" id="${userInstance.id}"> Modifier </g:link> </td>
+						<td> <g:link action="show" id="${userInstance.id}"> Visualiser </g:link> </td>
 											
 					</tr>
 				</g:each>

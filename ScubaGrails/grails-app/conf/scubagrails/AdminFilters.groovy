@@ -47,7 +47,7 @@ class AdminFilters {
 			}
 		}
 		
-		gestionAbonneShow(controller:'abonne', action:'show|edit|edit|editMotDePasse|updatePassword') {
+		gestionAbonneShow(controller:'abonne', action:'show|edit|editMotDePasse|updatePassword') {
 			before = {
 				// admin ? --> ok
 				if(session?.user?.admin){
@@ -64,6 +64,18 @@ class AdminFilters {
 						redirect(controller:"abonne", action:"show/${session?.abonne?.id}")
 						return false
 					}
+				}
+			}
+		}
+		
+		gestionCalendrier(controller:'abonne', action:'calendrier') {
+			before = {
+				if (session.user || session.abonne) {
+					return true
+				} else {
+					flash.message = "Accès non autorisé"
+					redirect(controller:"user", action:"login")
+					return false
 				}
 			}
 		}

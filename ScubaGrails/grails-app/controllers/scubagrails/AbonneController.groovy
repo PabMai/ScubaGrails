@@ -370,6 +370,9 @@ class AbonneController {
 		}
 	}
 	
+	def calendrier() {	
+	}
+	
 //	SendGridService sendGridService	
 //	
 //	def sendMailAbonne() {

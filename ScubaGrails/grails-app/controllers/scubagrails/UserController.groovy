@@ -117,8 +117,10 @@ class UserController {
 	}
 
 	def login = {
-		if (session.user) {
+		if (session.user?.admin) {
 			redirect(controller:"admin", action:"index")
+		} else if (session.abonne) {
+			redirect(controller:"abonne", action:"show/${session.abonne?.id}")
 		}
 	}
 

@@ -53,9 +53,11 @@
 												<div class="border-right png">
 													<div class="inside png">
 														<h2>Bienvenue sur ScubaGrails</h2>
-														<p>Site de gestion du centre de plong&eacute;e</p> 
-														<p>blablabla</p> 
-														blablabla
+														<p>Amis plongeurs, bonjour ! </p>
+														<p>Ce site vous permet de vous tenir au courant des évènements 
+														de votre association préférée, de modifier vos informations personnelles si celles-ci venaient à changer et bien d'autres choses.</p> 
+														<p>Connectez-vous à votre compte pour profiter de toutes ces fonctionnalités.</p> 
+														
 													</div>
 												</div>
 											</div>
