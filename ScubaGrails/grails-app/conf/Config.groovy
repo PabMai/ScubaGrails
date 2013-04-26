@@ -96,6 +96,5 @@ sendgrid {
 	password = "test"
 }
 
-grails.plugin.cloudfoundry.username = 'spamskelt@free.fr'
-grails.plugin.cloudfoundry.password = 'esk92vx'
+
 
