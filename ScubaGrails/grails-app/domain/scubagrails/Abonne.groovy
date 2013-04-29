@@ -106,17 +106,17 @@ class Abonne {
 		
 		// la date du certificat inséré ne doit pas être inférieur de 1 an
 		// a partir de la date d'insertion
-		dateCertificat(validator: {
-			Date now  = new Date()
-			Date anneePrecedente = new Date() - 365
-			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy")			
-			if ((it < anneePrecedente) || (it > now)) {				
-				return ['abonne.dateCertificat.validator.invalid', format.format(anneePrecedente), format.format(now)]
-			} else {
-				return true
-			}	
-			//return ((it > (new Date() - 365)) && (it < new Date()))
-		})
+//		dateCertificat(validator: {
+//			Date now  = new Date()
+//			Date anneePrecedente = new Date() - 365
+//			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy")			
+//			if ((it < anneePrecedente) || (it > now)) {				
+//				return ['abonne.dateCertificat.validator.invalid', format.format(anneePrecedente), format.format(now)]
+//			} else {
+//				return true
+//			}	
+//			//return ((it > (new Date() - 365)) && (it < new Date()))
+//		})
 		ecole(blank:true, nullable:true)
 		typeMembre(blank:true,nullable:true) 
 		niveau(black:true, nullable:true)

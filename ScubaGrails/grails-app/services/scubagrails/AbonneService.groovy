@@ -55,4 +55,20 @@ class AbonneService {
 			duration.days + 1
 		 }
 	}
+	
+	/**
+	 * TODO supprimer
+	 * @param abonne
+	 */
+	void ajouterUnMois(Abonne abonne) {
+		abonne.setDateCertificat(abonne.getDateCertificat() + 30)
+	}
+	
+	/**
+	 * TODO supprimer
+	 * @param abonne
+	 */
+	void enleverUnMois(Abonne abonne) {
+		abonne.setDateCertificat(abonne.getDateCertificat() - 30)
+	}
 }

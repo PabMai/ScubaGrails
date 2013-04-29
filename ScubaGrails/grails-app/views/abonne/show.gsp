@@ -226,6 +226,8 @@
 					aria-labelledby="dateCertificat-label"><g:formatDate
 							date="${abonneInstance?.dateCertificat}" format="dd/MM/yyyy" /></span></li>
 			</g:if>
+			<g:link action="enleverUnMois" params="[id: "${abonneInstance?.id}"]" controller="abonne">enlever un mois</g:link>
+			<g:link action="ajouterUnMois" params="[id: "${abonneInstance?.id}"]" controller="abonne">ajouter un mois</g:link>
 
 			<g:if test="${abonneInstance?.prixAbonnement}">
 				<li class="fieldcontain"><span id="prixAbonnement-label"

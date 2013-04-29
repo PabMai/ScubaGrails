@@ -373,6 +373,56 @@ class AbonneController {
 	def calendrier() {	
 	}
 	
+	/**
+	 * TODO supprimer
+	 * @deprecated
+	 * @return
+	 */
+	def ajouterUnMois() {
+		def abonneInstance = Abonne.get(params.id)
+		if (!abonneInstance) {
+			flash.message = message(code: 'abonne.not.found.message')
+			redirect(action: "list")
+			return
+		}
+		abonneService.ajouterUnMois(abonneInstance)
+		
+		if (!abonneInstance.save(validate : false)) {			
+			redirect(action: "show", id: abonneInstance.id)
+			flash.message = "erreur dans augmentation mois"
+			return
+		}
+
+		flash.message = message(code: 'abonne.updated.message')
+		redirect(action: "show", id: abonneInstance.id)
+		
+	}
+	
+	/**
+	 * TODO supprimer
+	 * @deprecated
+	 * @return
+	 */
+	def enleverUnMois() {
+		def abonneInstance = Abonne.get(params.id)
+		if (!abonneInstance) {
+			flash.message = message(code: 'abonne.not.found.message')
+			redirect(action: "list")
+			return
+		}
+		abonneService.enleverUnMois(abonneInstance)
+		
+		if (!abonneInstance.save(validate : false)) {
+			redirect(action: "show", id: abonneInstance.id)
+			flash.message = "erreur dans augmentation mois"
+			return
+		}
+
+		flash.message = message(code: 'abonne.updated.message')
+		redirect(action: "show", id: abonneInstance.id)
+		
+	}
+	
 //	SendGridService sendGridService	
 //	
 //	def sendMailAbonne() {
