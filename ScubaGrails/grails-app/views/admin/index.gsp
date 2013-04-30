@@ -132,8 +132,7 @@
 			<br />	
 			<ul>
 			<li>Version actuelle : <g:meta name="app.version"/></li>
-			</ul>		
-			<g:link controller="abonne" action="calendrier">Visualiser l'agenda</g:link> 	
+			</ul>				
 		</div>
 		<g:render template="/layouts/barreNavigation" />
 		<div id="page-body" role="main">
@@ -198,6 +197,7 @@
 				<td>Gérer les saisons</td>
 			</tr>
 			</table>
+
 						
 <%--			<div id="controller-list" role="navigation">--%>
 <%--				<h2>Choix :</h2>--%>

@@ -1,6 +1,9 @@
 package scubagrails
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import javassist.bytecode.stackmap.BasicBlock.Catch;
 
 import org.springframework.dao.DataIntegrityViolationException
 
@@ -367,22 +370,29 @@ class AbonneController {
 	
 	def search = {
 		if (!params.q.isEmpty()){
+
 			// Par défaut, on tri par Nom
 			if (!params?.sort) {
 				params.sort="nom"
 			}
 			request.messageRequete = "Résulats pour : ${params.q}"
-			def resultsMap = Abonne.search(params.q, params)
-			
-			generationExport(params, resultsMap.results)
-			
-			render(view:'list',
-			model:[
-				abonneInstanceList:resultsMap.results,
-				abonneInstanceTotal:Abonne.countHits(params.q),
-				valeurRecherche:params.q
-			]
-			)			
+			def resultsMap = [:]
+			params.escape="true"
+			try {
+				resultsMap = Abonne.search(params.q, params)
+				generationExport(params, resultsMap.results)
+
+				render(view:'list',
+				model:[
+					abonneInstanceList:resultsMap.results,
+					abonneInstanceTotal:Abonne.countHits(params.q.encodeAsHTML()),
+					valeurRecherche:params.q.encodeAsHTML()
+				])
+			} catch (SearchEngineQueryParseException) {
+				flash.message = "Veuillez saisir un critère de recherche adéquat"
+				redirect(controller:"admin", action:"index")
+				return [parseException: true]
+			}
 		} else {
 			flash.message = "Veuillez saisir un critère de recherche"
 			// redirection
@@ -445,7 +455,6 @@ class AbonneController {
 	
 	
 	private void generationExport(params, List<Abonne> liste ) {
-		// Export
 		if(params?.format && params.format != "html"){
 			response.contentType = grailsApplication.config.grails.mime.types[params.format]
 			response.setHeader("Content-disposition", "attachment; filename=abonnes.${params.extension}")
@@ -469,8 +478,24 @@ class AbonneController {
 
 			exportService.export(params.format, response.outputStream, liste, fields, labels, formatters, parameters)
 		}
-		// Fin export
 	}
+	
+	def searchAjaxAutoComplete = {
+		def abonne = Abonne.findAllByNomIlikeOrPrenomIlike("%${params.query}%", "%${params.query}%")
+		//Create XML response
+		render(contentType: "text/xml") {
+			results() {
+				abonne.each { abonneTrouve ->
+					result(){						
+						name(abonneTrouve.prenom + " " + abonneTrouve.nom)
+
+					}
+				}
+			}
+		}
+	}
+	
+	
 	
 //	SendGridService sendGridService	
 //	

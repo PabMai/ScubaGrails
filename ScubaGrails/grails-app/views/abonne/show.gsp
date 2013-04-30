@@ -12,6 +12,9 @@
 	<a href="#show-abonne" class="skip" tabindex="-1"><g:message
 			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 	<div class="nav" role="navigation">
+		<g:if test="${session?.user?.admin}">
+		<g:render template="/layouts/abonneSearch" />
+		</g:if>
 		<ul>
 			<li><a class="home" href="${createLink(uri: '/')}"><g:message
 						code="default.home.label" /></a></li>
@@ -28,8 +31,7 @@
 				<li><g:link class="create" action="create">
 					<g:message code="abonne.new.label"/>
 				</g:link>
-			</li>
-			<g:render template="/layouts/abonneSearch" />
+			</li>			
 			</g:if>
 			<!--  SI ABONNE -->
 			<g:if test="${session?.abonne}">

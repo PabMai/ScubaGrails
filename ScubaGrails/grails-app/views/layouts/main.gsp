@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<g:layoutHead/>
 		<r:layoutResources />
+		<resource:include components="autoComplete" />		
 	</head>
 	<body>
 <%--		<div id="grailsLogo" role="banner"><g:link controller="admin"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></g:link></div>--%>

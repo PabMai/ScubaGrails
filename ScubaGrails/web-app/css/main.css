@@ -734,7 +734,8 @@ img.avatar {
 }
 
 #search { 
-float: right; 
+float: right;
+width: 215px;
 }
 
 /* Pour l'export */

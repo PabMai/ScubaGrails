@@ -9,12 +9,15 @@
 	<body>
 		<a href="#edit-abonne" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
+		<g:if test="${session?.user?.admin}">
+			<g:render template="/layouts/abonneSearch" />
+		</g:if>
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<!--  SI ADMIN -->
 				<g:if test="${session?.user?.admin}">
 				<li><g:link class="list" action="list"><g:message code="abonne.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="abonne.new.label" args="[entityName]" /></g:link></li>
-				<g:render template="/layouts/abonneSearch" />
 				</g:if>
 				<!--  SI ABONNE -->
 				<g:if test="${session?.abonne}">
