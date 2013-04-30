@@ -1,6 +1,10 @@
 package scubagrails
 
+import java.text.SimpleDateFormat;
+
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import scubagrails.utils.PaginateableList;
 //import uk.co.desirableobjects.sendgrid.SendGridService
@@ -11,6 +15,8 @@ class AbonneController {
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	
 	AbonneService abonneService
+	def exportService
+	def grailsApplication
 	
 	def index() {
 		redirect(action: "list", params: params)
@@ -18,6 +24,12 @@ class AbonneController {
 
 	def list(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
+		// Par défaut, on tri par Nom
+		if (!params?.sort) {
+			params.sort="nom"
+		}
+		generationExport(params, Abonne.list(params))
+		
 		[abonneInstanceList: Abonne.list(params), abonneInstanceTotal: Abonne.count()]
 	}
 
@@ -355,12 +367,20 @@ class AbonneController {
 	
 	def search = {
 		if (!params.q.isEmpty()){
+			// Par défaut, on tri par Nom
+			if (!params?.sort) {
+				params.sort="nom"
+			}
 			request.messageRequete = "Résulats pour : ${params.q}"
 			def resultsMap = Abonne.search(params.q, params)
+			
+			generationExport(params, resultsMap.results)
+			
 			render(view:'list',
 			model:[
 				abonneInstanceList:resultsMap.results,
-				abonneInstanceTotal:Abonne.countHits(params.q)
+				abonneInstanceTotal:Abonne.countHits(params.q),
+				valeurRecherche:params.q
 			]
 			)			
 		} else {
@@ -421,6 +441,35 @@ class AbonneController {
 		flash.message = message(code: 'abonne.updated.message')
 		redirect(action: "show", id: abonneInstance.id)
 		
+	}
+	
+	
+	private void generationExport(params, List<Abonne> liste ) {
+		// Export
+		if(params?.format && params.format != "html"){
+			response.contentType = grailsApplication.config.grails.mime.types[params.format]
+			response.setHeader("Content-disposition", "attachment; filename=abonnes.${params.extension}")
+
+			List fields = ["numeroLicence", "nom", "prenom", "dateNaissance", "sexe"]
+			Map labels = ["numeroLicence": "N° Licence", "nom": "Nom", "prenom": "Prénom",
+				"dateNaissance": "Date de naissance", "sexe": "Sexe"]
+			
+			// Formatter closure
+			def upperCase = { domain, value ->
+				return value.toUpperCase()
+			}
+			
+			def formatDate = { domain, value ->
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
+				return sdf.format(value)				
+			}
+
+			Map formatters = [nom: upperCase, dateNaissance: formatDate]
+			Map parameters = [title: "Liste des abonnés", "column.widths": [0.225, 0.225, 0.225, 0.225, 0.10]]
+
+			exportService.export(params.format, response.outputStream, liste, fields, labels, formatters, parameters)
+		}
+		// Fin export
 	}
 	
 //	SendGridService sendGridService	

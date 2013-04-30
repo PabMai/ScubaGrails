@@ -737,6 +737,11 @@ img.avatar {
 float: right; 
 }
 
+/* Pour l'export */
+
+.export .menuButton {
+	margin-left: 10px;
+}
 
 
 

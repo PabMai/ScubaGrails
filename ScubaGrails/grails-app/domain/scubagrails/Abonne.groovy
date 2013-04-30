@@ -103,7 +103,7 @@ class Abonne {
 			, validator : {val, obj -> return (!val.isEmpty() || !obj.telephoneFixe.isEmpty())})
 		mail(blank:false, email:true)
 		
-		
+		//TODO a remettre
 		// la date du certificat inséré ne doit pas être inférieur de 1 an
 		// a partir de la date d'insertion
 //		dateCertificat(validator: {

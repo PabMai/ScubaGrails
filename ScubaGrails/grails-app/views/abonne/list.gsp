@@ -1,5 +1,5 @@
-
 <%@ page import="scubagrails.Abonne" %>
+<r:require module="export"/>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,17 +29,17 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="numeroLicence" title="${message(code: 'abonne.numeroLicence.label', default: 'Numéro de licence')}" />						
+						<g:sortableColumn params="[q:params?.q]" property="numeroLicence" title="${message(code: 'abonne.numeroLicence.label', default: 'Numéro de licence')}" />						
 					
-						<g:sortableColumn property="prenom" title="${message(code: 'abonne.prenom.label', default: 'Prenom')}" />
+						<g:sortableColumn params="[q:params?.q]" property="prenom" title="${message(code: 'abonne.prenom.label', default: 'Prenom')}" />
 						
-						<g:sortableColumn property="nom" title="${message(code: 'abonne.nom.label', default: 'Nom')}" />
+						<g:sortableColumn params="[q:params?.q]" property="nom" title="${message(code: 'abonne.nom.label', default: 'Nom')}" />
 					
-						<g:sortableColumn property="dateNaissance" title="${message(code: 'abonne.dateNaissance.label', default: 'Date Naissance')}" />
+						<g:sortableColumn params="[q:params?.q]" property="dateNaissance" title="${message(code: 'abonne.dateNaissance.label', default: 'Date Naissance')}" />
 										
-						<g:sortableColumn property="lieuNaissance" title="${message(code: 'abonne.lieuNaissance.label', default: 'Lieu Naissance')}" />
+						<g:sortableColumn params="[q:params?.q]" property="lieuNaissance" title="${message(code: 'abonne.lieuNaissance.label', default: 'Lieu Naissance')}" />
 					
-						<g:sortableColumn property="sexe" title="${message(code: 'abonne.sexe.label', default: 'Sexe')}" />
+						<g:sortableColumn params="[q:params?.q]" property="sexe" title="${message(code: 'abonne.sexe.label', default: 'Sexe')}" />
 					
 						<th> Action </th>
 					</tr>
@@ -69,6 +69,8 @@
 			<div class="pagination">
 				<g:paginate total="${abonneInstanceTotal}" />
 			</div>
+			<br />
+			<export:formats formats="['csv', 'excel', 'pdf']" params="[sort: params?.sort,q : params?.q]" />
 		</div>
 	</body>
 </html>

@@ -12,7 +12,7 @@ class MailToCMPerimeTagLib {
 		
 		StringBuilder linkMailto = new StringBuilder()		
 		// Début du lien 
-		linkMailto.append("<a class='alertMail' href='mailto:$mail?subject=")		
+		linkMailto.append("<a class='alertMail' onclick=\"adclick('mailto:$mail?subject=")		
 		
 		// Sujet
 		String subject = java.net.URLEncoder.encode("Alerte ASCSB - Certificat médical", "UTF-8")
@@ -29,7 +29,7 @@ class MailToCMPerimeTagLib {
 		linkMailto.append(bodyS)
 		
 		// Fin du lien
-		linkMailto.append("'>Envoyer mail</a>")
+		linkMailto.append("')\">Envoyer mail</a>")
 		
 		out << linkMailto.toString()
 				
@@ -44,7 +44,7 @@ class MailToCMPerimeTagLib {
 		StringBuilder linkMailto = new StringBuilder()
 		
 		// Début du lien
-		linkMailto.append("<a class='alertMail' href='mailto:")	
+		linkMailto.append("<a class='alertMail' onclick=\"adclick('mailto:")	
 		linkMailto.append(body())
 		linkMailto.append("?subject=")
 		
@@ -64,7 +64,7 @@ class MailToCMPerimeTagLib {
 		linkMailto.append(bodyS)
 		
 		// Fin du lien
-		linkMailto.append("'>Envoi groupé</a>")		
+		linkMailto.append("')\">Envoi groupé</a>")		
 		
 		out << linkMailto.toString()
 		
