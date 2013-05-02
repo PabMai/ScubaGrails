@@ -107,12 +107,12 @@ class BootStrap {
 					println "TypeMembre 'Licence seule' cree : OK !"
 				}
 
-				def typeMembreNormal = new TypeMembre(nom: "Normal")
+				def typeMembreNormal = new TypeMembre(nom: "Scaphandre")
 				typeMembreNormal.save()
 				if(typeMembreNormal.hasErrors()){
 					println typeMembreNormal.errors
 				} else {
-					println "TypeMembre 'Normal' cree : OK !"
+					println "TypeMembre 'Scaphandre' cree : OK !"
 				}
 
 				def typeMembreApnee = new TypeMembre(nom: "Apnée")
@@ -300,7 +300,7 @@ class BootStrap {
 				dateNaissance: Date.parse("dd/MM/yyyy", "14/01/1972"),
 				departementNaissance: "44",
 				lieuNaissance: "Nantes",
-				sexe: Sexe.FEMININ,
+				sexe: Sexe.MASCULIN,
 				dateCertificat: Date.parse("dd/MM/yyyy", "13/09/2012"),
 				telephoneFixe: "0152658744",
 				telephonePortable: "0652415263",
@@ -330,7 +330,7 @@ class BootStrap {
 				dateNaissance: Date.parse("dd/MM/yyyy", "31/07/1986"),
 				departementNaissance: "69",
 				lieuNaissance: "Lyon",
-				sexe: Sexe.FEMININ,
+				sexe: Sexe.MASCULIN,
 				dateCertificat: Date.parse("dd/MM/yyyy", "14/01/2013"),
 				telephoneFixe: "0240156354",
 				telephonePortable: "0679854612",
@@ -384,6 +384,152 @@ class BootStrap {
 				} else {
 					println "Abonné 'Aurélie Partour' crée : OK !"
 				}
+				
+				def abonne7 = new Abonne(nom:"Dus",
+					prenom: "Jean-Clause",
+					dateNaissance: Date.parse("dd/MM/yyyy", "01/05/1972"),
+					departementNaissance: "49",
+					lieuNaissance: "Saint Barthélémy d'Anjou",
+					sexe: Sexe.MASCULIN,
+					dateCertificat: Date.parse("dd/MM/yyyy", "02/05/2013"),
+					telephoneFixe: "0240115236",
+					telephonePortable: "0655887744",
+					mail:"jc.dus@yahoo.fr",
+					numeroLicence: "1213E111",
+					//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
+					prixAbonnement: 175,
+					prixAssurance: 10,
+					numeroRue: "25",
+					nomRue: "Rue des Champom",
+					codePostal: "75000",
+					ville : "Paris",
+					password: "test" )
+	
+					abonne7.setEcole(ecoleN1)
+					abonne7.setTypeMembre(typeMembreLicence)
+					abonne7.setNiveau(niveauBees1)
+					abonne7.save()
+					if(abonne7.hasErrors()){
+						println abonne7.errors
+					} else {
+						println "Abonné 'Jean-Clause Dus' crée : OK !"
+					}
+					
+					def abonne8 = new Abonne(nom:"Zidane",
+						prenom: "Zinedine",
+						dateNaissance: Date.parse("dd/MM/yyyy", "01/01/1965"),
+						departementNaissance: "13",
+						lieuNaissance: "Marseille",
+						sexe: Sexe.MASCULIN,
+						dateCertificat: Date.parse("dd/MM/yyyy", "01/04/2013"),
+						telephoneFixe: "",
+						telephonePortable: "0632887744",
+						mail:"zizou@realmadrid.fr",
+						numeroLicence: "451478",						
+						prixAbonnement: 155,
+						prixAssurance: 55,
+						numeroRue: "25",
+						nomRue: "Rue du trois zéro",
+						codePostal: "49124",
+						ville : "Saint Barthélémy d'Anjou",
+						password: "test" )
+		
+						abonne8.setEcole(ecoleN2)
+						abonne8.setTypeMembre(typeMembreLicence)
+						abonne8.setNiveau(niveauN1)
+						abonne8.save()
+						if(abonne8.hasErrors()){
+							println abonne8.errors
+						} else {
+							println "Abonné 'Zinedine Zidane' crée : OK !"
+						}
+						
+						def abonne9 = new Abonne(nom:"Chirac",
+							prenom: "Jacques",
+							dateNaissance: Date.parse("dd/MM/yyyy", "01/10/1932"),
+							departementNaissance: "75",
+							lieuNaissance: "Paris",
+							sexe: Sexe.MASCULIN,
+							dateCertificat: Date.parse("dd/MM/yyyy", "01/01/2013"),
+							telephoneFixe: "",
+							telephonePortable: "0632887744",
+							mail:"jacqueChirac@france.fr",
+							numeroLicence: "45147814",
+							prixAbonnement: 100,
+							prixAssurance: 10,
+							numeroRue: "11Bis",
+							nomRue: "Rue de la présidence",
+							codePostal: "53000",
+							ville : "Laval",
+							password: "test" )
+			
+							abonne9.setEcole(ecoleN1)
+							abonne9.setTypeMembre(typeMembreNormal)
+							abonne9.setNiveau(null)
+							abonne9.save()
+							if(abonne9.hasErrors()){
+								println abonne9.errors
+							} else {
+								println "Abonné 'Jacques Chirac' crée : OK !"
+							}
+							
+							def abonne10 = new Abonne(nom:"Obama",
+								prenom: "Barack",
+								dateNaissance: Date.parse("dd/MM/yyyy", "17/02/1961"),
+								departementNaissance: "75",
+								lieuNaissance: "Paris",
+								sexe: Sexe.MASCULIN,
+								dateCertificat: Date.parse("dd/MM/yyyy", "11/12/2012"),
+								telephoneFixe: "0255996633",
+								telephonePortable: "0622558844",
+								mail:"baraque@usa.com",
+								numeroLicence: "54874",
+								prixAbonnement: 185,
+								prixAssurance: 52.25,
+								numeroRue: "85ter",
+								nomRue: "avenue des champs élysées",
+								codePostal: "75100",
+								ville : "Paris",
+								password: "test" )
+				
+								abonne10.setEcole(ecoleN2)
+								abonne10.setTypeMembre(typeMembreLicence)
+								abonne10.setNiveau(niveauN1)
+								abonne10.save()
+								if(abonne10.hasErrors()){
+									println abonne10.errors
+								} else {
+									println "Abonné 'Barack Obama' crée : OK !"
+								}
+								
+								def abonne11 = new Abonne(nom:"De Funès",
+									prenom: "Louis",
+									dateNaissance: Date.parse("dd/MM/yyyy", "12/12/1950"),
+									departementNaissance: "44",
+									lieuNaissance: "Nantes",
+									sexe: Sexe.MASCULIN,
+									dateCertificat: Date.parse("dd/MM/yyyy", "11/11/2012"),
+									telephoneFixe: "0155886699",
+									telephonePortable: "0744115588",
+									mail:"louisDeFufu@free.fr",
+									numeroLicence: "2121548",
+									prixAbonnement: 785.65,
+									prixAssurance: 17.34,
+									numeroRue: "65",
+									nomRue: "Boulevard des miserables",
+									codePostal: "85000",
+									ville : "La Roche sur Yon",
+									password: "test" )
+					
+									abonne11.setEcole(ecoleN2)
+									abonne11.setTypeMembre(typeMembreLicence)
+									abonne11.setNiveau(niveauN1)
+									abonne11.save()
+									if(abonne11.hasErrors()){
+										println abonne11.errors
+									} else {
+										println "Abonné 'Louis De Funès' crée : OK !"
+									}
 
 			/**
 			 * ===============================================

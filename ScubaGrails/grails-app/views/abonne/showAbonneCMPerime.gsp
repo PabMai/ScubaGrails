@@ -7,6 +7,11 @@
 <g:set var="entityName"
 	value="${message(code: 'abonne.label', default: 'Abonne')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
+<script type="text/javascript">
+function adclick(site) {
+	window.open(site);
+}
+</script>
 </head>
 <body>
 	<a href="#show-abonne" class="skip" tabindex="-1"><g:message
@@ -90,11 +95,7 @@
 			<!--  Envoi groupé  -->
 			<div style="float: right; width: 157px; margin-right: 193px">
 				<fieldset class="buttons">
-					<g:mailToAll>
-						<g:each in="${listeComplete}" status="i" var="abonneInstance">
-							${abonneInstance?.mail},
-			</g:each>
-					</g:mailToAll>
+					<g:mailToAll><g:each in="${listeComplete}" status="i" var="abonneInstance">${abonneInstance?.mail},</g:each></g:mailToAll>
 				</fieldset>
 			</div>
 		</g:if>

@@ -20,6 +20,7 @@ class AbonneController {
 	AbonneService abonneService
 	def exportService
 	def grailsApplication
+	def filterPaneService
 	
 	def index() {
 		redirect(action: "list", params: params)
@@ -33,7 +34,9 @@ class AbonneController {
 		}
 		generationExport(params, Abonne.list(params))
 		
-		[abonneInstanceList: Abonne.list(params), abonneInstanceTotal: Abonne.count()]
+		[abonneInstanceList: Abonne.list(params), 
+			abonneInstanceTotal: Abonne.count(),
+			filterParams: org.grails.plugin.filterpane.FilterPaneUtils.extractFilterParams(params)]
 	}
 
 	def create() {
@@ -385,8 +388,8 @@ class AbonneController {
 				render(view:'list',
 				model:[
 					abonneInstanceList:resultsMap.results,
-					abonneInstanceTotal:Abonne.countHits(params.q.encodeAsHTML()),
-					valeurRecherche:params.q.encodeAsHTML()
+					abonneInstanceTotal:Abonne.countHits(params.q),
+					valeurRecherche:params.q
 				])
 			} catch (SearchEngineQueryParseException) {
 				flash.message = "Veuillez saisir un critère de recherche adéquat"
@@ -493,6 +496,17 @@ class AbonneController {
 				}
 			}
 		}
+	}
+	
+	def filter = {
+		//if(!params.max) params.max = 10
+		def listeFiltree = filterPaneService.filter( params, Abonne )
+		generationExport(params, listeFiltree)
+		render( view:'list',
+			model:[ abonneInstanceList: listeFiltree,
+			abonneInstanceTotal: filterPaneService.count( params, Abonne ),
+			filterParams: org.grails.plugin.filterpane.FilterPaneUtils.extractFilterParams(params),
+			params:params ] )
 	}
 	
 	

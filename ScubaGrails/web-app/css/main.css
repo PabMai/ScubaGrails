@@ -744,5 +744,14 @@ width: 215px;
 	margin-left: 10px;
 }
 
+/* Pour le filtre */
+.indicationFiltre {
+	float:right;
+	background-image: url(../images/scuba/warning_blue.png);
+	background-position: 0.7em center;
+	background-repeat: no-repeat;
+	text-indent: 30px;
+}
+
 
 
