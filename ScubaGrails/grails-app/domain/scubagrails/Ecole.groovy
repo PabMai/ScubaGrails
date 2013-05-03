@@ -2,6 +2,9 @@ package scubagrails
 
 class Ecole {
 	
+	// Pour le plugin searchable
+	static searchable = true
+	
 	String nom
 	
 	// Une école possède 1 ou plusieurs abonnés

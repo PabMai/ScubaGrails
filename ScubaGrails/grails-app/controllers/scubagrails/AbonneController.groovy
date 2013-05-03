@@ -374,9 +374,9 @@ class AbonneController {
 	def search = {
 		if (!params.q.isEmpty()){
 
-			// Par défaut, on tri par Nom
+			// Par défaut, on tri par numéro de licence
 			if (!params?.sort) {
-				params.sort="nom"
+				params.sort="numeroLicence"
 			}
 			request.messageRequete = "Résulats pour : ${params.q}"
 			def resultsMap = [:]
@@ -389,7 +389,8 @@ class AbonneController {
 				model:[
 					abonneInstanceList:resultsMap.results,
 					abonneInstanceTotal:Abonne.countHits(params.q),
-					valeurRecherche:params.q
+					valeurRecherche:params.q,
+					filterParams : [:]
 				])
 			} catch (SearchEngineQueryParseException) {
 				flash.message = "Veuillez saisir un critère de recherche adéquat"

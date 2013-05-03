@@ -8,6 +8,9 @@ package scubagrails
  */
 class TypeMembre {
 	
+	// Pour le plugin searchable
+	static searchable = true
+	
 	String nom
 	
 	// un type de membre peut avoir 1 ou plusieurs abonnés

@@ -2,6 +2,9 @@ package scubagrails
 
 class Niveau {
 	
+	// Pour le plugin searchable
+	static searchable = true
+	
 	String niveau
 	
 	// Un niveau est acquis par un ou plusieurs abonnés
