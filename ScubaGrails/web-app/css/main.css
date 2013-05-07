@@ -753,5 +753,13 @@ width: 215px;
 	text-indent: 30px;
 }
 
+/* Pour l'agenda */
+.spinnerAgenda {
+	background: url(../images/spinner.gif) 50% 50% no-repeat transparent;
+	width: 17px;
+	text-indent: -9999px;
+	float: left;
+	margin-top: 25px;
+}
 
 

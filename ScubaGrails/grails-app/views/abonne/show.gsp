@@ -39,7 +39,7 @@
 					<g:message code="scubaGrails.abonne.moncompte.label"/>
 				</g:link></li>
 			<li>
-				<g:link class="calendrierProfil" action="calendrier">
+				<g:link class="calendrierProfil" controller="event" action="index">
 					<g:message code="scubaGrails.abonne.calendrier.label"/>
 				</g:link>
 			</li>

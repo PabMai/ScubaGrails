@@ -68,7 +68,7 @@ class AdminFilters {
 			}
 		}
 		
-		gestionCalendrier(controller:'abonne', action:'calendrier') {
+		gestionCalendrierConsultation(controller:'event', action:'index|show|list') {
 			before = {
 				if (session.user || session.abonne) {
 					return true
@@ -76,6 +76,28 @@ class AdminFilters {
 					flash.message = "Accès non autorisé"
 					redirect(controller:"user", action:"login")
 					return false
+				}
+			}
+		}
+		
+		gestionCalendrierModification(controller:'event', action:'create|delete|update|edit|save') {
+			before = {
+				if (session.user?.admin) {
+					return true
+				} else {
+
+					// pas abonné ?
+					if(!session?.abonne){
+						flash.message = "Accès non autorisé"
+						redirect(controller:"user", action:"login")
+						return false
+					} else {
+						if (!(params.id == String.valueOf(session?.abonne?.id))) {
+							flash.message = "Accès non autorisé"
+							redirect(controller:"abonne", action:"show/${session?.abonne?.id}")
+							return false
+						}
+					}
 				}
 			}
 		}
