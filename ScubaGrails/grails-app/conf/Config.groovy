@@ -65,12 +65,14 @@ grails.hibernate.cache.queries = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+		//grails.serverURL = "http://localhost:8080/${appName}"
     }
     production {
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
+        //grails.serverURL = "http://scubagrails.cloudfoundry.com/"
     }
 }
+
 
 // log4j configuration
 log4j = {
@@ -98,6 +100,8 @@ sendgrid {
 	username = "test@test.fr"
 	password = "test"
 }
+
+
 
 
 

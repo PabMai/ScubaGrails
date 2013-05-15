@@ -74,6 +74,11 @@ jQuery(function($){
     <g:textArea name="description"  value="${eventInstance?.description}" />
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: eventInstance, field: 'url', 'error')}">
+    <label for="url"><g:message code="event.url.label" default="Lien" /></label>
+    <g:textField name="url"  value="${eventInstance?.url}" />
+</div>
+
 
 <div id="recurPopup"></div>
 <div id="recurOptions" style="display:none" >

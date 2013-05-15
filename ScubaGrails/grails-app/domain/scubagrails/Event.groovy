@@ -8,6 +8,7 @@ class Event {
     String title
     String location
     String description
+	String url
 
     Date startTime
     Date endTime
@@ -30,6 +31,7 @@ class Event {
         title(nullable: false, blank: false)
         location(nullable: true, blank:  true)
         description(nullable: true, blank: true)
+		url(nullable:true, blank: true, url : true)
         recurType(nullable: true)
         recurInterval(nullable: true)
         recurUntil(nullable: true)

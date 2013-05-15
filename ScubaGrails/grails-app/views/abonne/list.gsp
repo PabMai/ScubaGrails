@@ -34,11 +34,11 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="numeroLicence" title="${message(code: 'abonne.numeroLicence.label', default: 'Numéro de licence')}" />						
+						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="numeroLicence" title="${message(code: 'abonne.numeroLicenceListe.label', default: 'N° licence')}" />						
 					
-						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="prenom" title="${message(code: 'abonne.prenom.label', default: 'Prenom')}" />
-						
 						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="nom" title="${message(code: 'abonne.nom.label', default: 'Nom')}" />
+						
+						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="prenom" title="${message(code: 'abonne.prenom.label', default: 'Prenom')}" />
 					
 						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="dateNaissance" title="${message(code: 'abonne.dateNaissance.label', default: 'Age')}" />
 										
@@ -61,9 +61,9 @@
 					
 						<td><g:link action="show" id="${abonneInstance.id}">${fieldValue(bean: abonneInstance, field: "numeroLicence")} </g:link></td>
 					
-						<td>${fieldValue(bean: abonneInstance, field: "prenom")}</td>
-					
-						<td>${fieldValue(bean: abonneInstance, field: "nom")}</td>						
+						<td>${fieldValue(bean: abonneInstance, field: "nom")}</td>	
+						
+						<td>${fieldValue(bean: abonneInstance, field: "prenom")}</td>											
 					
 						<td>${abonneInstance?.getAge()}</td>
 					
@@ -87,13 +87,29 @@
 				<g:paginate total="${abonneInstanceTotal}" params="${filterParams}"/>
 				<filterpane:filterButton text="Filtrer" />						
 				<filterpane:isFiltered><g:link action="list">Effacer le filtre</g:link></filterpane:isFiltered>
+				<select name="filtreRecherche" ONCHANGE="location = this.options[this.selectedIndex].value;">
+				 <option value="">-Choisir un filtre-</option> 
+				 <option value="filter?sort=nom&order=&filter.op.ville=ILike&filter.ville=%25Saint+Barth%25&filter.op.codePostal=Equal&filter.codePostal=49124">Résidant St Barth</option>
+				 <option value="filter?sort=nom&order=asc&filter.op.niveau.niveau=Equal&filter.niveau.niveau=N1">Niveau N1</option>
+				 <option value="filter?sort=nom&order=asc&filter.op.niveau.niveau=Equal&filter.niveau.niveau=N2">Niveau N2</option>
+				 <option value="filter?sort=nom&order=asc&filter.op.niveau.niveau=Equal&filter.niveau.niveau=N3">Niveau N3</option>
+				 <option value="filter?sort=nom&order=asc&filter.op.ecole.nom=Equal&filter.ecole.nom=Initiation">Ecole Initiation</option>
+				 <option value="filter?sort=nom&order=asc&filter.op.ecole.nom=Equal&filter.ecole.nom=N1">Ecole N1</option>
+				 <option value="filter?sort=nom&order=asc&filter.op.ecole.nom=Equal&filter.ecole.nom=N2">Ecole N2</option>
+				 <option value="filter?sort=nom&order=asc&filter.op.ecole.nom=Equal&filter.ecole.nom=MF1">Ecole MF1</option>
+				 <option value="">Autres...</option>
+				</select>
 			</div>
 			<br />
-<%--			<export:formats formats="['csv', 'excel', 'pdf']" params="[sort: params?.sort,q : params?.q]" />--%>
 			<export:formats formats="['csv', 'excel', 'pdf']" params="${filterParams + ['sort': params?.sort,'q' : params?.q]}"  />
-			<filterpane:filterLink values="${[ville:[op:'ILike', value:'%Saint Barth%'], codePostal:[op:'Equal',value:'49124']]}" controller="abonne" action="filter">
-  					"Résidant St Barth"
-				</filterpane:filterLink>		
+				          		
+									
+
+<%--			<filterpane:filterLink values="${[ville:[op:'ILike', value:'%Saint Barth%'], codePostal:[op:'Equal',value:'49124']]}" controller="abonne" action="filter">--%>
+<%--  					"Résidant St Barth"--%>
+<%--			</filterpane:filterLink>	--%>
+
+
 		</div>
 		<filterpane:filterPane domain="Abonne" 
 		dialog="true" 

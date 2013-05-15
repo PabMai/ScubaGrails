@@ -78,6 +78,20 @@
 
             </li>
         </g:if>
+        
+        <g:if test="${eventInstance?.url}">
+            <li class="fieldcontain">
+                <span id="url-label" class="property-label"><g:message code="event.url.label"
+                                                                            default="Lien"/></span>
+
+                <span class="property-value" aria-labelledby="url-label">
+                	<g:link url="${eventInstance?.url.encodeAsHTML()}">
+                	<g:fieldValue bean="${eventInstance}" field="url"/>
+                	</g:link>
+                </span>
+
+            </li>
+        </g:if>
 
 
 
