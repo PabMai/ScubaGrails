@@ -1,12 +1,16 @@
 package scubagrails.gestion
 
+import org.apache.commons.lang.mutable.MutableInt;
+
 import scubagrails.Abonne;
 import scubagrails.AbonneService;
 import scubagrails.Ecole;
+import scubagrails.Enregistrement;
 import scubagrails.Niveau;
 import scubagrails.Saison;
 import scubagrails.SaisonService;
 import scubagrails.User;
+import scubagrails.type.Sexe;
 
 class AdminController {	
 	
@@ -32,31 +36,53 @@ class AdminController {
 			//flag
 			session.isRecupereCMMois = "1"
 		}
-		
-		// Récupération de la saison en cours
-//		if (!session.isRecupereSaison || session.isRecupereSaison == "0") {			
-//			Saison saisonEnCours = saisonService.getSaisonEnCours()
-//			session.saisonEnCours = saisonEnCours
-//			//flag
-//			session.isRecupereSaison = "1"
-//		}			
-		
-		Saison saisonEnCours = saisonService.getSaisonEnCours()
+
+		// Récupération des données de la saison en cours
+		if (!session.isRecupereDonneesSaisonEnCours || session.isRecupereDonneesSaisonEnCours == "0") {
+			Saison saisonEnCours = saisonService.getSaisonEnCours()
+			MutableInt nbFemme = new MutableInt(0)
+			MutableInt nbHommme = new MutableInt(0)
+			Map<String, Integer> statEcole = new TreeMap<String, Integer>()
+			saisonService.getDonneesSaisonEnCours(saisonEnCours, nbHommme, nbFemme, statEcole)
+			
+			// Mise en session
+			session.saisonEnCours = saisonEnCours
+			session.nbFemmeSaisonEnCours = nbFemme.intValue()
+			session.nbHommeSaisonEnCours = nbHommme.intValue()
+			session.statEcole = statEcole
+			
+			//flag
+			session.isRecupereDonneesSaisonEnCours = "1"
+		}
 		
 		// Récupération des statistiques  :
 		[nbAbonne : Abonne.count, nbEcole : Ecole.count, nbSaison : Saison.count
-			, nbNiveau : Niveau.count, nbUtilisateur : User.count, saisonEnCours : saisonEnCours]
+			, nbNiveau : Niveau.count, nbUtilisateur : User.count]
 		
 	}
 	
 	def refreshAdminData = {
 		
+		// 1 : Refresh CM Périmé
 		List<Abonne> listeAbonneCMPerimeUnAn = abonneService.getAbonnesCertificatMedicalPerime(365)
 		session.listeAbonneCMPerime = listeAbonneCMPerimeUnAn
 		
+		// 2 : Refresh CM Périmé dans le mois
 		List<Abonne> listeAbonneCMPerimeDansLeMois = abonneService.getAbonnesCertificatMedicalPerimeDansLeMois()
 		session.listeAbonneCMPerimeDansLeMois = listeAbonneCMPerimeDansLeMois
 		
+		// 3 : Refresh données saison en cours
+		Saison saisonEnCours = saisonService.getSaisonEnCours()
+		MutableInt nbFemme = new MutableInt(0)
+		MutableInt nbHommme = new MutableInt(0)
+		Map<String, Integer> statEcole = new TreeMap<String, Integer>()
+		saisonService.getDonneesSaisonEnCours(saisonEnCours, nbHommme, nbFemme, statEcole)
+		session.saisonEnCours = saisonEnCours
+		session.nbFemmeSaisonEnCours = nbFemme.intValue()
+		session.nbHommeSaisonEnCours = nbHommme.intValue()
+		session.statEcole = statEcole
+		
+		// Redirection
 		redirect(view: "index")
 	}
 }

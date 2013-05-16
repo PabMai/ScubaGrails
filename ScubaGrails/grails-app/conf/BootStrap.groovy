@@ -285,7 +285,7 @@ class BootStrap {
 				ville : "Angers",				
 				password: "test" )
 
-				abonne3.setEcole(ecoleN1)
+				abonne3.setEcole(ecoleInit)
 				abonne3.setTypeMembre(typeMembreLicence)
 				abonne3.setNiveau(niveauBees1)
 				abonne3.save()
@@ -463,7 +463,7 @@ class BootStrap {
 							ville : "Laval",
 							password: "test" )
 			
-							abonne9.setEcole(ecoleN1)
+							abonne9.setEcole(ecoleMF1)
 							abonne9.setTypeMembre(typeMembreNormal)
 							abonne9.setNiveau(null)
 							abonne9.save()
@@ -575,6 +575,38 @@ class BootStrap {
 					println enreg5.errors
 				} else {
 					println "Enregistrement de Aurélie Partour pour la saison 2010-2011"
+				}
+				
+				def enreg6 = new Enregistrement(abonne: abonne7, saison: saison20122013)
+				enreg6.save()
+				if(enreg6.hasErrors()){
+					println enreg6.errors
+				} else {
+					println "Enregistrement de Jean-Clause Dus pour la saison 2012-2013"
+				}
+				
+				def enreg7 = new Enregistrement(abonne: abonne8, saison: saison20122013)
+				enreg7.save()
+				if(enreg7.hasErrors()){
+					println enreg7.errors
+				} else {
+					println "Enregistrement de Zinédine Zidane pour la saison 2012-2013"
+				}
+				
+				def enreg8 = new Enregistrement(abonne: abonne9, saison: saison20122013)
+				enreg8.save()
+				if(enreg8.hasErrors()){
+					println enreg8.errors
+				} else {
+					println "Enregistrement de Jacques Chirac pour la saison 2012-2013"
+				}
+				
+				def enreg9 = new Enregistrement(abonne: abonne3, saison: saison20122013)
+				enreg9.save()
+				if(enreg9.hasErrors()){
+					println enreg9.errors
+				} else {
+					println "Enregistrement de Christine Dupont pour la saison 2012-2013"
 				}
 
 				println """

@@ -116,11 +116,15 @@
 			</ul>
 			<br />
 			<!--  Saison en cours -->
-			<g:if test="${saisonEnCours}">
-			<h1>Saison ${saisonEnCours?.libelle}</h1>
+			<g:if test="${session?.saisonEnCours}">
+			<h1>Saison ${session?.saisonEnCours?.libelle}</h1>
 			<ul>
-				<li>Effectif : ${saisonEnCours?.enregistrements?.count?.size}</li>			
-				<li>Nombre de niveau ? </li>								
+				<li>Effectif : ${session?.saisonEnCours?.enregistrements?.count?.size}</li>			
+				<li>Nombre d'hommes : ${session?.nbHommeSaisonEnCours} </li>	
+				<li>Nombre de femmes : ${session?.nbFemmeSaisonEnCours} </li>	
+				<g:each in="${session?.statEcole}" var="ecole">
+				<li>Ecole ${ecole.key?.encodeAsHTML()} : ${ecole.value?.encodeAsHTML()}</li>
+				</g:each>							
 			</ul>
 			</g:if>
 			<g:else>
