@@ -52,14 +52,6 @@
 
 <h1> Coordonnées </h1>
 
-<div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'numeroRue', 'error')} required">
-	<label for="numeroRue">
-		<g:message code="abonne.numeroRue.label" default="N°" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="numeroRue" size="4" maxlength="8" required="" value="${abonneInstance?.numeroRue}"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'nomRue', 'error')} required">
 	<label for="nomRue">
 		<g:message code="abonne.nomRue.label" default="Nom de la rue" />

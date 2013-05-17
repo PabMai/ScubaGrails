@@ -4,8 +4,8 @@
 <title>Scuba Grails</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<meta name="description" content="Place your description here" />
-<meta name="keywords" content="put, your, keyword, here" />
+<meta name="description" content="ASCSB Plongée" />
+<meta name="keywords" content="ASCSB, plongée" />
 <meta name="author" content="MeYoGui" />
 <%--<link href="style.css" rel="stylesheet" type="text/css" />--%>
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}" type="text/css">
@@ -89,8 +89,7 @@
 <!-- footer -->
 						<div id="footer">
 							<div class="indent">
-								<div class="fright" style="margin-top:60px">Copyrights - MeYoGui</div>
-<%--								<div class="fright">Designed by: <a href="http://www.templates.com/" title="templates.com - website templates provider"><img alt="website templates" src="images/scuba/design/templates-logo.gif" /></a>&nbsp; <a href="http://www.templates.com" title="templates.com - website templates provider">Website Templates</a> Provider</div>--%>
+								<div class="fright" style="margin-top:60px">Copyrights - <a href="http://www.guillaume-monjal.com">MeYoGui</a></div>
 							</div>
 						</div>
 					</div>

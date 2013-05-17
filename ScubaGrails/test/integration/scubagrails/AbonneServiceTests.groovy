@@ -40,9 +40,8 @@ class AbonneServiceTests extends GroovyTestCase {
 				numeroLicence: "3556484",
 				prixAbonnement: 450,
 				prixAssurance: 54.24,
-				secouriste: true,
-				numeroRue: "10",
-				nomRue: "Avenue du Général de Gaulle",
+				secouriste: true,				
+				nomRue: "10 Avenue du Général de Gaulle",
 				codePostal: "75100",
 				ville : "Paris",
 				password: "test" )
@@ -94,8 +93,7 @@ class AbonneServiceTests extends GroovyTestCase {
 //				prixAbonnement: 450,
 //				prixAssurance: 54.24,
 //				secouriste: true,
-//				numeroRue: "10",
-//				nomRue: "Avenue du Général de Gaulle",
+//				nomRue: "10 Avenue du Général de Gaulle",
 //				codePostal: "75100",
 //				ville : "Paris",
 //				password: "test" )

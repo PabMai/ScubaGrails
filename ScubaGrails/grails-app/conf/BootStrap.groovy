@@ -7,6 +7,7 @@ import scubagrails.Saison
 import scubagrails.TypeMembre
 import scubagrails.User
 import scubagrails.type.Sexe;
+import scubagrails.utils.AbonneExcelImporter;
 
 class BootStrap {
 
@@ -99,12 +100,12 @@ class BootStrap {
 			 * ===============================================
 			 */
 
-				def typeMembreLicence = new TypeMembre(nom: "Licence seule")
-				typeMembreLicence.save()
-				if(typeMembreLicence.hasErrors()){
-					println typeMembreLicence.errors
+				def typeMembrePalme = new TypeMembre(nom: "Palmes loisir")
+				typeMembrePalme.save()
+				if(typeMembrePalme.hasErrors()){
+					println typeMembrePalme.errors
 				} else {
-					println "TypeMembre 'Licence seule' cree : OK !"
+					println "TypeMembre 'Palmes loisir' cree : OK !"
 				}
 
 				def typeMembreNormal = new TypeMembre(nom: "Scaphandre")
@@ -121,6 +122,14 @@ class BootStrap {
 					println typeMembreApnee.errors
 				} else {
 					println "TypeMembre 'Apnee' cree : OK !"
+				}
+				
+				def typeMembrePiscine = new TypeMembre(nom: "Piscine")
+				typeMembreApnee.save()
+				if(typeMembreApnee.hasErrors()){
+					println typeMembreApnee.errors
+				} else {
+					println "TypeMembre 'Piscine' cree : OK !"
 				}
 			/**
 			 * ===============================================
@@ -216,9 +225,8 @@ class BootStrap {
 				numeroLicence: "3556484",
 				prixAbonnement: 450,
 				prixAssurance: 54.24,
-				secouriste: true,
-				numeroRue: "10",
-				nomRue: "Avenue du Général de Gaulle",
+				secouriste: true,				
+				nomRue: "10, Avenue du Général de Gaulle",
 				codePostal: "75100",
 				ville : "Paris",				
 				password: "test" )
@@ -248,9 +256,8 @@ class BootStrap {
 				prixAssurance: 17.66,
 				secouriste: true,
 				encadrant: true,
-				allergique: true,
-				numeroRue: "75",
-				nomRue: "Rue de la Paix",
+				allergique: true,				
+				nomRue: "75 Rue de la Paix",
 				codePostal: "44000",
 				ville : "Nantes",				
 				password: "test"
@@ -278,15 +285,14 @@ class BootStrap {
 				numeroLicence: "55488",
 				//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
 				prixAbonnement: 772.52,
-				prixAssurance: 101,
-				numeroRue: "12Bis",
-				nomRue: "Rue des Pèrdrie",
+				prixAssurance: 101,				
+				nomRue: "12Bis Rue des Pèrdrie",
 				codePostal: "49000",
 				ville : "Angers",				
 				password: "test" )
 
 				abonne3.setEcole(ecoleInit)
-				abonne3.setTypeMembre(typeMembreLicence)
+				abonne3.setTypeMembre(typeMembrePalme)
 				abonne3.setNiveau(niveauBees1)
 				abonne3.save()
 				if(abonne3.hasErrors()){
@@ -308,15 +314,14 @@ class BootStrap {
 				numeroLicence: "5548855",
 				//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
 				prixAbonnement: 100.25,
-				prixAssurance: 1,
-				numeroRue: "11",
-				nomRue: "Rue des Tomates",
+				prixAssurance: 1,				
+				nomRue: "11 Rue des Tomates",
 				codePostal: "37000",
 				ville : "Tours",				
 				password: "test" )
 
 				abonne4.setEcole(ecoleN1)
-				abonne4.setTypeMembre(typeMembreLicence)
+				abonne4.setTypeMembre(typeMembrePalme)
 				abonne4.setNiveau(niveauBees1)
 				abonne4.save()
 				if(abonne4.hasErrors()){
@@ -338,9 +343,8 @@ class BootStrap {
 				numeroLicence: "4448812",
 				//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
 				prixAbonnement: 885,
-				prixAssurance: 126.21,
-				numeroRue: "7",
-				nomRue: "Rue Etienne Mangenote",
+				prixAssurance: 126.21,				
+				nomRue: "7 Rue Etienne Mangenote",
 				codePostal: "92000",
 				ville : "Boulogne Billancourt",				
 				password: "test" )
@@ -368,15 +372,14 @@ class BootStrap {
 				numeroLicence: "4589877",
 				//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
 				prixAbonnement: 17.25,
-				prixAssurance: 156,
-				numeroRue: "25",
-				nomRue: "Rue Haute Goulaine",
+				prixAssurance: 156,				
+				nomRue: "25 Rue Haute Goulaine",
 				codePostal: "44000",
 				ville : "Nantes",				
 				password: "test" )
 
 				abonne6.setEcole(ecoleN1)
-				abonne6.setTypeMembre(typeMembreLicence)
+				abonne6.setTypeMembre(typeMembrePalme)
 				abonne6.setNiveau(niveauBees1)
 				abonne6.save()
 				if(abonne6.hasErrors()){
@@ -398,15 +401,14 @@ class BootStrap {
 					numeroLicence: "1213E111",
 					//belongsTo: adresse3,coordonnees3,ecoleMF1,typeMembreLicence, niveauBees1,
 					prixAbonnement: 175,
-					prixAssurance: 10,
-					numeroRue: "25",
-					nomRue: "Rue des Champom",
+					prixAssurance: 10,					
+					nomRue: "25 Rue des Champom",
 					codePostal: "75000",
 					ville : "Paris",
 					password: "test" )
 	
 					abonne7.setEcole(ecoleN1)
-					abonne7.setTypeMembre(typeMembreLicence)
+					abonne7.setTypeMembre(typeMembrePalme)
 					abonne7.setNiveau(niveauBees1)
 					abonne7.save()
 					if(abonne7.hasErrors()){
@@ -427,15 +429,14 @@ class BootStrap {
 						mail:"zizou@realmadrid.fr",
 						numeroLicence: "451478",						
 						prixAbonnement: 155,
-						prixAssurance: 55,
-						numeroRue: "25",
-						nomRue: "Rue du trois zéro",
+						prixAssurance: 55,						
+						nomRue: "17 Rue du trois zéro",
 						codePostal: "49124",
 						ville : "Saint Barthélémy d'Anjou",
 						password: "test" )
 		
 						abonne8.setEcole(ecoleN2)
-						abonne8.setTypeMembre(typeMembreLicence)
+						abonne8.setTypeMembre(typeMembrePalme)
 						abonne8.setNiveau(niveauN1)
 						abonne8.save()
 						if(abonne8.hasErrors()){
@@ -456,9 +457,8 @@ class BootStrap {
 							mail:"jacqueChirac@france.fr",
 							numeroLicence: "45147814",
 							prixAbonnement: 100,
-							prixAssurance: 10,
-							numeroRue: "11Bis",
-							nomRue: "Rue de la présidence",
+							prixAssurance: 10,							
+							nomRue: "11Bis, Rue de la présidence",
 							codePostal: "53000",
 							ville : "Laval",
 							password: "test" )
@@ -485,15 +485,14 @@ class BootStrap {
 								mail:"baraque@usa.com",
 								numeroLicence: "54874",
 								prixAbonnement: 185,
-								prixAssurance: 52.25,
-								numeroRue: "85ter",
-								nomRue: "avenue des champs élysées",
+								prixAssurance: 52.25,								
+								nomRue: "85 ter Avenue des champs élysées",
 								codePostal: "75100",
 								ville : "Paris",
 								password: "test" )
 				
 								abonne10.setEcole(ecoleN2)
-								abonne10.setTypeMembre(typeMembreLicence)
+								abonne10.setTypeMembre(typeMembrePalme)
 								abonne10.setNiveau(niveauN1)
 								abonne10.save()
 								if(abonne10.hasErrors()){
@@ -514,15 +513,14 @@ class BootStrap {
 									mail:"louisDeFufu@free.fr",
 									numeroLicence: "2121548",
 									prixAbonnement: 785.65,
-									prixAssurance: 17.34,
-									numeroRue: "65",
-									nomRue: "Boulevard des miserables",
+									prixAssurance: 17.34,									
+									nomRue: "65 Boulevard des miserables",
 									codePostal: "85000",
 									ville : "La Roche sur Yon",
 									password: "test" )
 					
 									abonne11.setEcole(ecoleN2)
-									abonne11.setTypeMembre(typeMembreLicence)
+									abonne11.setTypeMembre(typeMembrePalme)
 									abonne11.setNiveau(niveauN1)
 									abonne11.save()
 									if(abonne11.hasErrors()){
@@ -613,6 +611,20 @@ class BootStrap {
 				=====================================
 					  DUMP développement - stop
 				====================================== """
+				
+				println """
+				=====================================
+					  IMPORT EXCEL - start
+				===================================== """
+				
+
+				
+				println """
+				=====================================
+					  IMPORT EXCEL - stop
+				===================================== """
+				
+				
 
 				break
 			/* Environnement de production */

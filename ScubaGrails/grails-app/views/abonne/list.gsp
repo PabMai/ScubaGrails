@@ -113,7 +113,7 @@
 		</div>
 		<filterpane:filterPane domain="Abonne" 
 		dialog="true" 
-		excludeProperties="mimeType,avatar,login,password,numeroRue"
+		excludeProperties="mimeType,avatar,login,password"
 		associatedProperties="niveau.niveau, ecole.nom, typeMembre.nom"
         filterPropertyValues="${[dateNaissance: [precision: 'day'], 
 			dateCertificat: [precision: 'day'], 

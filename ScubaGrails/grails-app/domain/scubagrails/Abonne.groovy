@@ -31,7 +31,6 @@ class Abonne {
 	String mail
 	
 	String nomRue
-	String numeroRue
 	String codePostal
 	String ville
 	
@@ -90,18 +89,17 @@ class Abonne {
 			"80", "81", "82", "83", "84", "85","86","87","88", "89",
 			"90", "91", "92", "93", "94", "95"])
 		lieuNaissance(blank:false, maxSize:50)
-		sexe(nullable : false)
-		
-		numeroRue(blank:false, maxSize:8)
+		sexe(nullable : false)		
+
 		nomRue(blank:false,maxSize:100)
 		codePostal(blank:false, size:5..5, matches: "[0-9]+")
 		ville(blank:false,maxSize:50)
 		
-		telephoneFixe(blank:true, maxSize: 10, matches: "0[1-9]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
-			, validator : {val, obj -> return (!val.isEmpty() || !obj.telephonePortable.isEmpty())})
-		telephonePortable(blank:true, maxSize: 10,  matches: "0[6-7]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
-			, validator : {val, obj -> return (!val.isEmpty() || !obj.telephoneFixe.isEmpty())})
-		mail(blank:false, email:true)
+		telephoneFixe(blank:true,nullable:true,  maxSize: 10, matches: "0[1-9]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
+			, validator : {val, obj -> return (!val?.isEmpty() || !obj.telephonePortable?.isEmpty())})
+		telephonePortable(blank:true,nullable:true, maxSize: 10,  matches: "0[6-7]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})"
+			, validator : {val, obj -> return (!val?.isEmpty() || !obj.telephoneFixe?.isEmpty())})
+		mail(blank:false, email:true, nullable:true)
 		
 		//TODO a remettre
 		// la date du certificat inséré ne doit pas être inférieur de 1 an

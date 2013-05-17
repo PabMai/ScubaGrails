@@ -20,7 +20,8 @@ class SaisonService {
 	 * @param nbF le nombre de Femmes
 	 * @param statEcole les stats pour les écoles
 	 */
-	void getDonneesSaisonEnCours(Saison saisonEnCours, MutableInt nbH, MutableInt nbF, Map<String, Integer> statEcole) {
+	void getDonneesSaisonEnCours(Saison saisonEnCours, MutableInt nbH, 
+		MutableInt nbF, Map<String, Integer> statEcole, Map<String, Integer> statTypeMembre) {
 		// Récupération du nombre d'enregistrement pour cette saison
 		Set<Enregistrement> enregSaisonEnCours = saisonEnCours.enregistrements		
 		
@@ -52,7 +53,26 @@ class SaisonService {
 						statEcole.put(ecole.nom, 1)
 					}
 				}
-			}						
+			}	
+			
+			// Compteur type membre
+			List<TypeMembre> listeTypeM = TypeMembre.findAll()
+			
+			// Pour chaque type de membre, on comptabilise son nombre d'abonné
+			listeTypeM.each {
+				typeM ->
+				if (abonne.typeMembre.nom == typeM.nom){
+					if (statTypeMembre.containsKey(typeM.nom)) {
+						Integer nb = (Integer) statTypeMembre.get(typeM.nom)
+						nb++
+						statTypeMembre.put(typeM.nom, nb)
+					} else {
+						statTypeMembre.put(typeM.nom, 1)
+					}
+				} 
+			}
+			
+								
 		}
 	}
 }

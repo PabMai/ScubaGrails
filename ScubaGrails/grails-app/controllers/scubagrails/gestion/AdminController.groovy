@@ -1,21 +1,26 @@
 package scubagrails.gestion
 
+import java.text.SimpleDateFormat
 import org.apache.commons.lang.mutable.MutableInt;
 
 import scubagrails.Abonne;
 import scubagrails.AbonneService;
+import scubagrails.AdminService;
 import scubagrails.Ecole;
 import scubagrails.Enregistrement;
 import scubagrails.Niveau;
 import scubagrails.Saison;
 import scubagrails.SaisonService;
+import scubagrails.TypeMembre
 import scubagrails.User;
 import scubagrails.type.Sexe;
+import scubagrails.utils.AbonneExcelImporter
 
 class AdminController {	
 	
 	AbonneService abonneService
 	SaisonService saisonService
+	AdminService adminService
 	
 	def index = {
 		
@@ -43,13 +48,15 @@ class AdminController {
 			MutableInt nbFemme = new MutableInt(0)
 			MutableInt nbHommme = new MutableInt(0)
 			Map<String, Integer> statEcole = new TreeMap<String, Integer>()
-			saisonService.getDonneesSaisonEnCours(saisonEnCours, nbHommme, nbFemme, statEcole)
+			Map<String, Integer> statTypeM = new TreeMap<String, Integer>()
+			saisonService.getDonneesSaisonEnCours(saisonEnCours, nbHommme, nbFemme, statEcole, statTypeM)
 			
 			// Mise en session
 			session.saisonEnCours = saisonEnCours
 			session.nbFemmeSaisonEnCours = nbFemme.intValue()
 			session.nbHommeSaisonEnCours = nbHommme.intValue()
 			session.statEcole = statEcole
+			session.statTypeM = statTypeM
 			
 			//flag
 			session.isRecupereDonneesSaisonEnCours = "1"
@@ -76,13 +83,25 @@ class AdminController {
 		MutableInt nbFemme = new MutableInt(0)
 		MutableInt nbHommme = new MutableInt(0)
 		Map<String, Integer> statEcole = new TreeMap<String, Integer>()
-		saisonService.getDonneesSaisonEnCours(saisonEnCours, nbHommme, nbFemme, statEcole)
+		Map<String, Integer> statTypeM = new TreeMap<String, Integer>()
+		saisonService.getDonneesSaisonEnCours(saisonEnCours, nbHommme, nbFemme, statEcole, statTypeM)
 		session.saisonEnCours = saisonEnCours
 		session.nbFemmeSaisonEnCours = nbFemme.intValue()
 		session.nbHommeSaisonEnCours = nbHommme.intValue()
 		session.statEcole = statEcole
+		session.statTypeM = statTypeM
 		
 		// Redirection
 		redirect(view: "index")
+	}
+	
+	def importAbonne = {		
+		//String fileName = /.\data_import\importAbonne.xls/
+		String fileName = /.\data_import\importAbonneMultiple.xls/
+		AbonneExcelImporter importer = new AbonneExcelImporter(fileName);
+		def abonnesMapList = importer.getAbonnes();
+		
+		adminService.traiterImportAbonne(abonnesMapList);   
+		
 	}
 }

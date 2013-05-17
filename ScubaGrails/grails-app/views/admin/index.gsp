@@ -124,6 +124,10 @@
 				<li>Nombre de femmes : ${session?.nbFemmeSaisonEnCours} </li>	
 				<g:each in="${session?.statEcole}" var="ecole">
 				<li>Ecole ${ecole.key?.encodeAsHTML()} : ${ecole.value?.encodeAsHTML()}</li>
+				</g:each>	
+				<br />
+				<g:each in="${session?.statTypeM}" var="typeM">
+				<li>${typeM.key?.encodeAsHTML()} : ${typeM.value?.encodeAsHTML()}</li>
 				</g:each>							
 			</ul>
 			</g:if>
@@ -133,7 +137,7 @@
 			
 			
 			<br />
-			<br />	
+
 			<ul>
 			<li>Version actuelle : <g:meta name="app.version"/></li>
 			</ul>				

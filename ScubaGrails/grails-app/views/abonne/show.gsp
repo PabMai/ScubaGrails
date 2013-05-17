@@ -82,7 +82,7 @@
 			<li class="fieldcontain">Né le <g:formatDate
 					date="${abonneInstance?.dateNaissance}" format="dd/MM/yyyy" /> (${abonneInstance?.getAge()} ans), ${abonneInstance?.sexe.value}</li>
 			<li class="fieldcontain">
-				${abonneInstance?.numeroRue}, ${abonneInstance?.nomRue}
+				${abonneInstance?.nomRue}
 			</li>
 			<li class="fieldcontain">
 				${abonneInstance?.codePostal} - ${abonneInstance?.ville}
