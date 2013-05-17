@@ -1,5 +1,4 @@
-
-<%@ page import="scubagrails.Niveau" %>
+<%@ page import="scubagrails.NiveauApnee" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,11 +15,11 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link controller="admin" action="index" class="adminHome"><g:message code="scubaGrails.nav.homeAdmin.label"/></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="niveau.new.label"/></g:link></li>
+				<li><g:link class="create" action="create"><g:message code="niveauApnee.new.label"/></g:link></li>
 			</ul>
 		</div>
 		<div id="list-niveau" class="content scaffold-list" role="main">
-			<h1><g:message code="niveau.list.label"/></h1>
+			<h1><g:message code="niveauApnee.list.label"/></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

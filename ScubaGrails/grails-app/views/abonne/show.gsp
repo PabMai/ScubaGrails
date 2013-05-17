@@ -301,11 +301,22 @@
 			<g:if test="${abonneInstance?.niveau}">
 				<li class="fieldcontain"><span id="niveau-label"
 					class="property-label-abonne"><g:message
-							code="abonne.niveau.label" default="Niveau" /></span> <span
+							code="abonne.niveau.label" default="Niveau Scaphandre" /></span> <span
 					class="property-value-abonne" aria-labelledby="niveau-label"><g:link
-							controller="niveau" action="show"
+							controller="niveauScaphandre" action="show"
 							id="${abonneInstance?.niveau?.id}">
 							${abonneInstance?.niveau?.encodeAsHTML()}
+						</g:link></span></li>
+			</g:if>
+			
+			<g:if test="${abonneInstance?.niveauApnee}">
+				<li class="fieldcontain"><span id="niveauApnee-label"
+					class="property-label-abonne"><g:message
+							code="abonne.niveauApnee.label" default="Niveau Apnée" /></span> <span
+					class="property-value-abonne" aria-labelledby="niveauApnee-label"><g:link
+							controller="niveauApnee" action="show"
+							id="${abonneInstance?.niveauApnee?.id}">
+							${abonneInstance?.niveauApnee?.encodeAsHTML()}
 						</g:link></span></li>
 			</g:if>
 

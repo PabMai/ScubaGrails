@@ -1,5 +1,6 @@
 <%@ page import="scubagrails.Abonne" %>
-<%@ page import="scubagrails.Niveau" %>
+<%@ page import="scubagrails.NiveauScaphandre" %>
+<%@ page import="scubagrails.NiveauApnee" %>
 <%@ page import="scubagrails.Ecole" %>
 <%@ page import="scubagrails.TypeMembre" %>
 <r:require module="export"/>
@@ -42,11 +43,15 @@
 					
 						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="dateNaissance" title="${message(code: 'abonne.dateNaissance.label', default: 'Age')}" />
 										
-						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="ville" title="${message(code: 'abonne.ville.label', default: 'Ville')}" />
+<%--						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="ville" title="${message(code: 'abonne.ville.label', default: 'Ville')}" />--%>
 					
-						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="niveau" title="${message(code: 'abonne.niveau.label', default: 'Niveau')}" />
+						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="niveau" title="${message(code: 'abonne.niveau.label', default: 'Niveau (S)')}" />
 						
-						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="ecole" title="${message(code: 'abonne.ecole.label', default: 'Ecole')}" />
+<%--						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="ecole" title="${message(code: 'abonne.ecole.label', default: 'Ecole Scaphandre')}" />--%>
+						
+						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="niveauApnee" title="${message(code: 'abonne.niveauApnee.label', default: 'Niveau (A)')}" />
+						<!--  TODO mettre ecoleApnee -->
+<%--						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="ecole" title="${message(code: 'abonne.ecoleApnee.label', default: 'Ecole Apnée')}" />--%>
 						
 						<g:sortableColumn params="${filterParams + ['q': params?.q]}" property="typeMembre" title="${message(code: 'abonne.typeMembre.label', default: 'Type')}" />
 						
@@ -67,11 +72,16 @@
 					
 						<td>${abonneInstance?.getAge()}</td>
 					
-						<td>${fieldValue(bean: abonneInstance, field: "ville")}</td>
+<%--						<td>${fieldValue(bean: abonneInstance, field: "ville")}</td>--%>
 					
 						<td>${fieldValue(bean: abonneInstance, field: "niveau")}</td>
 						
-						<td>${fieldValue(bean: abonneInstance, field: "ecole")}</td>
+<%--						<td>${fieldValue(bean: abonneInstance, field: "ecole")}</td>--%>
+						
+						<td>${fieldValue(bean: abonneInstance, field: "niveauApnee")}</td>
+						
+						<!-- TODO mettre ecoleApnee -->
+<%--						<td>${fieldValue(bean: abonneInstance, field: "ecole")}</td>--%>
 						
 						<td>${fieldValue(bean: abonneInstance, field: "typeMembre")}</td>
 						
@@ -114,10 +124,11 @@
 		<filterpane:filterPane domain="Abonne" 
 		dialog="true" 
 		excludeProperties="mimeType,avatar,login,password"
-		associatedProperties="niveau.niveau, ecole.nom, typeMembre.nom"
+		associatedProperties="niveau.niveau, niveauApnee.niveau, ecole.nom, typeMembre.nom"
         filterPropertyValues="${[dateNaissance: [precision: 'day'], 
 			dateCertificat: [precision: 'day'], 
-			'niveau.niveau': [values:Niveau.list()],
+			'niveau.niveau': [values:NiveauScaphandre.list()],
+			'niveauApnee.niveau': [values:NiveauApnee.list()],
 			'ecole.nom': [values:Ecole.list()],
 			'typeMembre.nom': [values:TypeMembre.list()]
 			]}"

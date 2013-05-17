@@ -1,4 +1,4 @@
-<%@ page import="scubagrails.Niveau" %>
+<%@ page import="scubagrails.NiveauScaphandre" %>
 <!DOCTYPE html>
 <html>
 	<head>

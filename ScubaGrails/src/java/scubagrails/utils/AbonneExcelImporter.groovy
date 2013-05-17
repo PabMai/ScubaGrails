@@ -6,12 +6,14 @@ import org.grails.plugins.excelimport.*
 class AbonneExcelImporter extends AbstractExcelImporter {
 	
 	static Map CONFIG_ABONNE_COLUMN_MAP = [
-          sheet:'Feuil1', 
+          sheet:'ListingSecrétariat', 
 		  startRow: 1,
           columnMap:  [
 			      'A':'numeroLicence',
                   'B':'nom',
                   'C':'prenom',
+				  'D':'niveau',
+				  'G':'niveauApnee',
 				  'J':'typeMembre',
 				  'O':'nomRue',
 				  'N':'comiteDirecteur',
@@ -37,6 +39,8 @@ class AbonneExcelImporter extends AbstractExcelImporter {
 				  numeroLicence:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  nom:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  prenom:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
+				  niveau:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
+				  niveauApnee:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  typeMembre:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  nomRue:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  comiteDirecteur:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),

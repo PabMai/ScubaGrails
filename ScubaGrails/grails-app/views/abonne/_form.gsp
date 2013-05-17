@@ -224,7 +224,7 @@
 		<g:message code="abonne.niveau.label" default="Niveau" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="niveau" name="niveau.id" from="${scubagrails.Niveau.list()}" optionKey="id" required="" value="${abonneInstance?.niveau?.id}" class="many-to-one"/>
+	<g:select id="niveau" name="niveau.id" from="${scubagrails.NiveauScaphandre.list()}" optionKey="id" required="" value="${abonneInstance?.niveau?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'typeMembre', 'error')} required">

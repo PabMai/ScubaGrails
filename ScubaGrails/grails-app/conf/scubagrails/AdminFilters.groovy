@@ -4,7 +4,7 @@ class AdminFilters {
 
     def filters = {
         // filtre pour les admins
-        adminOnly(controller:'ecole|enregistrement|niveau|saison|typeMembre', action:'*') {
+        adminOnly(controller:'ecole|enregistrement|niveau|niveauApnee|niveauScaphandre|saison|typeMembre', action:'*') {
 			before = {
 				if (session?.abonne) {
 					flash.message = "Accès non autorisé"

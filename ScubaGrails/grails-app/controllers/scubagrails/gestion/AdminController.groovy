@@ -8,7 +8,7 @@ import scubagrails.AbonneService;
 import scubagrails.AdminService;
 import scubagrails.Ecole;
 import scubagrails.Enregistrement;
-import scubagrails.Niveau;
+import scubagrails.NiveauScaphandre;
 import scubagrails.Saison;
 import scubagrails.SaisonService;
 import scubagrails.TypeMembre
@@ -64,7 +64,7 @@ class AdminController {
 		
 		// Récupération des statistiques  :
 		[nbAbonne : Abonne.count, nbEcole : Ecole.count, nbSaison : Saison.count
-			, nbNiveau : Niveau.count, nbUtilisateur : User.count]
+			, nbNiveau : NiveauScaphandre.count, nbUtilisateur : User.count]
 		
 	}
 	
@@ -96,12 +96,15 @@ class AdminController {
 	}
 	
 	def importAbonne = {		
-		//String fileName = /.\data_import\importAbonne.xls/
-		String fileName = /.\data_import\importAbonneMultiple.xls/
+		//String fileName = /.\data_import\importAbonne_OK.xls/
+		//String fileName = /.\data_import\importAbonneMultiple_OK.xls/
+		String fileName = /.\data_import\importFull.xls/
 		AbonneExcelImporter importer = new AbonneExcelImporter(fileName);
 		def abonnesMapList = importer.getAbonnes();
 		
-		adminService.traiterImportAbonne(abonnesMapList);   
+		List<String> listeLogs = adminService.traiterImportAbonne(abonnesMapList);   
+		
+		[listeLogs : listeLogs]
 		
 	}
 }

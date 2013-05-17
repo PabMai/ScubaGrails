@@ -1,5 +1,4 @@
-
-<%@ page import="scubagrails.Niveau" %>
+<%@ page import="scubagrails.NiveauApnee" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,12 +15,12 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link controller="admin" action="index" class="adminHome"><g:message code="scubaGrails.nav.homeAdmin.label"/></g:link></li>
-				<li><g:link class="list" action="list"><g:message code="niveau.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="niveau.new.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="list" action="list"><g:message code="niveauApnee.list.label"/></g:link></li>
+				<li><g:link class="create" action="create"><g:message code="niveauApnee.new.label"/></g:link></li>
 			</ul>
 		</div>
 		<div id="show-niveau" class="content scaffold-show" role="main">
-			<h1>Niveau <g:fieldValue bean="${niveauInstance}" field="niveau"/></h1>
+			<h1>Niveau Apnée <g:fieldValue bean="${niveauInstance}" field="niveau"/></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

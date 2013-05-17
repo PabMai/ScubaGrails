@@ -2,7 +2,8 @@ import grails.util.Environment;
 import scubagrails.Abonne
 import scubagrails.Ecole
 import scubagrails.Enregistrement
-import scubagrails.Niveau
+import scubagrails.NiveauApnee
+import scubagrails.NiveauScaphandre
 import scubagrails.Saison
 import scubagrails.TypeMembre
 import scubagrails.User
@@ -173,7 +174,7 @@ class BootStrap {
 			 * 				CREATION NIVEAU
 			 * ===============================================
 			 */
-				def niveauN1 = new Niveau(niveau: "N1")
+				def niveauN1 = new NiveauScaphandre(niveau: "N1")
 				niveauN1.save()
 				if(niveauN1.hasErrors()){
 					println niveauN1.errors
@@ -181,7 +182,7 @@ class BootStrap {
 					println "Niveau 'N1' cree : OK !"
 				}
 
-				def niveauN2 = new Niveau(niveau: "N2")
+				def niveauN2 = new NiveauScaphandre(niveau: "N2")
 				niveauN2.save()
 				if(niveauN2.hasErrors()){
 					println niveauN2.errors
@@ -189,7 +190,7 @@ class BootStrap {
 					println "Niveau 'N2' cree : OK !"
 				}
 
-				def niveauN3 = new Niveau(niveau: "N3")
+				def niveauN3 = new NiveauScaphandre(niveau: "N3")
 				niveauN3.save()
 				if(niveauN3.hasErrors()){
 					println niveauN3.errors
@@ -197,12 +198,44 @@ class BootStrap {
 					println "Niveau 'N3' cree : OK !"
 				}
 
-				def niveauBees1 = new Niveau(niveau: "BEES1")
+				def niveauBees1 = new NiveauScaphandre(niveau: "BEES1")
 				niveauBees1.save()
 				if(niveauBees1.hasErrors()){
 					println niveauBees1.errors
 				} else {
 					println "Niveau 'BEES1' cree : OK !"
+				}
+				
+				def niveauApneeN1 = new NiveauApnee(niveau: "N1")
+				niveauApneeN1.save()
+				if(niveauApneeN1.hasErrors()){
+					println niveauApneeN1.errors
+				} else {
+					println "Niveau Apnée 'N1' cree : OK !"
+				}
+
+				def niveauApneeN2 = new NiveauApnee(niveau: "N2")
+				niveauApneeN2.save()
+				if(niveauApneeN2.hasErrors()){
+					println niveauApneeN2.errors
+				} else {
+					println "Niveau Apnée 'N2' cree : OK !"
+				}
+
+				def niveauApneeN3 = new NiveauApnee(niveau: "N3")
+				niveauApneeN3.save()
+				if(niveauApneeN3.hasErrors()){
+					println niveauApneeN3.errors
+				} else {
+					println "Niveau Apnée 'N3' cree : OK !"
+				}
+
+				def niveauApneeMF1= new NiveauApnee(niveau: "MF1")
+				niveauApneeMF1.save()
+				if(niveauApneeMF1.hasErrors()){
+					println niveauApneeMF1.errors
+				} else {
+					println "Niveau Apnée 'MF1' cree : OK !"
 				}
 
 
@@ -234,6 +267,7 @@ class BootStrap {
 				abonne1.setEcole(ecoleN1)
 				abonne1.setTypeMembre(typeMembreApnee)
 				abonne1.setNiveau(niveauN1)
+				abonne1.setNiveauApnee(niveauApneeN1)
 				abonne1.save()
 				if(abonne1.hasErrors()){
 					println abonne1.errors
@@ -265,6 +299,7 @@ class BootStrap {
 				abonne2.setEcole(ecoleN1)
 				abonne2.setTypeMembre(typeMembreNormal)
 				abonne2.setNiveau(niveauN2)
+				abonne2.setNiveauApnee(null)
 				abonne2.save()
 				if(abonne2.hasErrors()){
 					println abonne2.errors
@@ -294,6 +329,7 @@ class BootStrap {
 				abonne3.setEcole(ecoleInit)
 				abonne3.setTypeMembre(typeMembrePalme)
 				abonne3.setNiveau(niveauBees1)
+				abonne3.setNiveauApnee(niveauApneeN2)
 				abonne3.save()
 				if(abonne3.hasErrors()){
 					println abonne3.errors
@@ -323,6 +359,7 @@ class BootStrap {
 				abonne4.setEcole(ecoleN1)
 				abonne4.setTypeMembre(typeMembrePalme)
 				abonne4.setNiveau(niveauBees1)
+				abonne4.setNiveauApnee(niveauApneeMF1)
 				abonne4.save()
 				if(abonne4.hasErrors()){
 					println abonne4.errors
@@ -381,6 +418,7 @@ class BootStrap {
 				abonne6.setEcole(ecoleN1)
 				abonne6.setTypeMembre(typeMembrePalme)
 				abonne6.setNiveau(niveauBees1)
+				abonne6.setNiveauApnee(niveauApneeN1)
 				abonne6.save()
 				if(abonne6.hasErrors()){
 					println abonne6.errors
@@ -410,6 +448,7 @@ class BootStrap {
 					abonne7.setEcole(ecoleN1)
 					abonne7.setTypeMembre(typeMembrePalme)
 					abonne7.setNiveau(niveauBees1)
+					abonne7.setNiveauApnee(niveauApneeN3)
 					abonne7.save()
 					if(abonne7.hasErrors()){
 						println abonne7.errors
@@ -438,6 +477,7 @@ class BootStrap {
 						abonne8.setEcole(ecoleN2)
 						abonne8.setTypeMembre(typeMembrePalme)
 						abonne8.setNiveau(niveauN1)
+						abonne8.setNiveauApnee(niveauApneeN1)
 						abonne8.save()
 						if(abonne8.hasErrors()){
 							println abonne8.errors
