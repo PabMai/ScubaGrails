@@ -61,7 +61,7 @@ class SaisonService {
 			// Pour chaque type de membre, on comptabilise son nombre d'abonné
 			listeTypeM.each {
 				typeM ->
-				if (abonne.typeMembre.nom == typeM.nom){
+				if (abonne?.typeMembre?.nom == typeM.nom){
 					if (statTypeMembre.containsKey(typeM.nom)) {
 						Integer nb = (Integer) statTypeMembre.get(typeM.nom)
 						nb++

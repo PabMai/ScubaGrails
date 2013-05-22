@@ -20,13 +20,36 @@
 			
 			
 			
-			<h1>Logs de l'import : </h1>
+			<h1>Veuillez choisir un fichier à importer : </h1>
 			
 			<br />
 			
-			<g:each in="${listeLogs}">
-				${it}<br />			
-			</g:each>
+			<g:form controller="admin" action="importAbonne" enctype="multipart/form-data">
+				
+				
+				
+				
+				<div class="fieldcontain">
+					<label for="nomFeuille">
+						Nom de la feuille Excel
+						<span class="required-indicator">*</span>
+					</label>
+					<g:textField name="nomFeuille" maxlength="50" required=""/>
+				</div>
+				
+				<div class="fieldcontain">
+					<label for="nomFeuille">
+						Fichier
+						<span class="required-indicator">*</span>
+					</label>
+					<input type="file" name="file" id="file" required="" />
+				</div>		
+								
+				<br />
+				<fieldset class="buttons">
+					<g:submitButton name="create" class="save" value="Importer" />
+				</fieldset>
+			</g:form>
 			
 			
 

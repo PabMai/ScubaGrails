@@ -6,7 +6,7 @@ import org.grails.plugins.excelimport.*
 class AbonneExcelImporter extends AbstractExcelImporter {
 	
 	static Map CONFIG_ABONNE_COLUMN_MAP = [
-          sheet:'ListingSecrétariat', 
+          //sheet:'ListingSecrétariat', 
 		  //sheet:'Feuil1',
 		  startRow: 1,
           columnMap:  [
@@ -61,17 +61,20 @@ class AbonneExcelImporter extends AbstractExcelImporter {
 				  prixAssurance:([expectedType: ExpectedPropertyType.DoubleType, defaultValue:0])
 	]
 	
+	private String nomFeuille
+	
 	//can also configure injection in resources.groovy
 	def getExcelImportService() {
 		ExcelImportService.getService()
 	}
 	
-	public AbonneExcelImporter(fileName) {
+	public AbonneExcelImporter(fileName, nomFeuille) {
 		super(fileName)
+		this.nomFeuille = nomFeuille		
 	  }
 	
 	List<Map> getAbonnes() {
-		List abonneList = excelImportService.columns(workbook, CONFIG_ABONNE_COLUMN_MAP, null, propertyConfigurationMap)
+		List abonneList = excelImportService.columns(workbook, CONFIG_ABONNE_COLUMN_MAP + [sheet:nomFeuille], null, propertyConfigurationMap)
 		
 		
 		//List abonneList = excelImportService.columns(workbook, CONFIG_ABONNE_COLUMN_MAP)

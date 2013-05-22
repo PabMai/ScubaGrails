@@ -286,7 +286,6 @@
 							</g:link></span>
 					</g:each></li>
 			</g:if>
-
 			<g:else>
 				<li class="fieldcontain"><span id="enregistrements-label"
 					class="property-label-abonne"><g:message

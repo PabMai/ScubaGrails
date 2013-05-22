@@ -37,28 +37,33 @@ class EcoleScaphandreController {
         def ecoleInstance = EcoleScaphandre.get(id)
 		params.max = Math.min(params.max ? params.int('max') : 5,100)		
 		
-        if (!ecoleInstance) {
-            flash.message = message(code: 'ecole.not.found.message', args: [message(code: 'ecole.label', default: 'Ecole'), id])
-            redirect(action: "list")
-            return
-        }
-		
-		List<Abonne> listeOrigine = (List) ecoleInstance.abonnes.toArray()
-		if (params.sort) {			
+		if (!ecoleInstance) {
+			flash.message = message(code: 'ecole.not.found.message', args: [
+				message(code: 'ecole.label', default: 'Ecole'),
+				id
+			])
+			redirect(action: "list")
+			return
+		}
+
+		List<Abonne> listeOrigine = (List) ecoleInstance.abonnes?.toArray()
+		List<Abonne> listePaginee = []
+		if (listeOrigine) {
+			if (params.sort) {
 				if (params?.order == "asc") {
 					listeOrigine.sort{it.(params.sort)}
 				} else if (params?.order == "desc") {
 					listeOrigine.sort{a,b -> b.(params.sort) <=> a.(params.sort)}
-				}			
-		} else {
+				}
+			} else {
 				listeOrigine.sort{it.nom}
-		}
-		List<Abonne> listePaginee = []
-		use(PaginateableList) {
-			listePaginee = listeOrigine.paginate(5,(params.offset ?: 0))
+			}
+			use(PaginateableList) {
+				listePaginee = listeOrigine.paginate(5,(params.offset ?: 0))
+			}
 		}
 		
-        [ecoleInstance: ecoleInstance, listeAbonnes:listePaginee , abonneInstanceTotal:listeOrigine.size()]
+        [ecoleInstance: ecoleInstance, listeAbonnes:listePaginee , abonneInstanceTotal:listeOrigine ? listeOrigine.size() : 0]
     }
 
     def edit(Long id) {
@@ -109,7 +114,7 @@ class EcoleScaphandreController {
             return
         }
 		
-		if (!ecoleInstance.abonnes.isEmpty()) {
+		if (ecoleInstance.abonnes != null && !ecoleInstance.abonnes.isEmpty()) {
 			flash.message = message(code: 'ecole.not.deleted.message', args: [ecoleInstance.nom])
 			redirect(action: "show", id: id)
 			return

@@ -10,10 +10,6 @@ modules = {
 		resource url: '/css/smoothness/jquery-ui-1.8.18.custom.css'
 	}
 	
-	home {
-		resource url:'/css/home.css'
-	}
-	
 	datePicker {
 		dependsOn 'core'
 		resource url: '/js/jquery-ui-timepicker-addon.js'

@@ -47,7 +47,7 @@ class AbonneController {
 
 	def save() {		
 		def abonneInstance = new Abonne(params)	
-		if (!abonneInstance.save(flush: true)) {
+		if (!abonneInstance.save(flush: true)) {			
 			List<Saison> listeDesSaisons = Saison.list()
 			render(view: "create", model: [abonneInstance: abonneInstance, listeDesSaisons:listeDesSaisons])
 			return
@@ -87,13 +87,13 @@ class AbonneController {
 		}
 		
 		//Tri de la liste des saisons par dates
-		List<Enregistrement> listeEnreg = abonneInstance.enregistrements.toList()
-		listeEnreg.sort{
+		List<Enregistrement> listeEnreg = abonneInstance.enregistrements?.toList()
+		listeEnreg?.sort{
 			it.saison.dateDebut
 		}
 		
 		List<Enregistrement> listeEnregTroisDernier = []
-		if (listeEnreg.size() > 3) {
+		if (listeEnreg?.size() > 3) {
 			listeEnregTroisDernier = listeEnreg.subList(listeEnreg.size() - 3, listeEnreg.size())
 		} else {
 			listeEnregTroisDernier = listeEnreg
@@ -271,7 +271,7 @@ class AbonneController {
 		List<Abonne> listeAbonneCMPerime = []
 		listeAbonneCMPerime = (List<Abonne>) session?.listeAbonneCMPerime
 		List<Abonne> listePaginee = []
-		if (!listeAbonneCMPerime.isEmpty())	{
+		if (!listeAbonneCMPerime?.isEmpty())	{
 			if (params.sort) {
 				if (params?.order == "asc") {
 					listeAbonneCMPerime.sort{it.(params.sort)}

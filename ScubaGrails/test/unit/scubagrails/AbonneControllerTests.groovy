@@ -3,16 +3,31 @@ package scubagrails
 
 
 import org.junit.*
+
+import scubagrails.type.Sexe;
 import grails.test.mixin.*
 
 @TestFor(AbonneController)
-@Mock(Abonne)
+@Mock([Abonne, Saison, Enregistrement])
 class AbonneControllerTests {
 
     def populateValidParams(params) {
-        assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        assert params != null        
+        params["nom"] = 'nomTest'
+		params["prenom"] = 'prenomTest'
+		params["dateNaissance"] = Date.parse("dd/MM/yyyy", "14/01/1972")
+		params["sexe"] = Sexe.MASCULIN
+		params["dateCertificat"] = Date.parse("dd/MM/yyyy", "13/09/2012")
+		params["telephoneFixe"] = "0152658744"
+		params["telephonePortable"] = "0652415263"
+		params["mail"] ="j.dujardin@gmail.com"
+		params["numeroLicence"] = "5548855"		
+		params["prixAbonnement"] = 100.25
+		params["prixAssurance"] = 1
+		params["nomRue"] = "11 Rue des Tomates"
+		params["codePostal"] = "37000"
+		params["ville"] = "Tours"
+		params["password"] = "test"
     }
 
     void testIndex() {
@@ -21,7 +36,9 @@ class AbonneControllerTests {
     }
 
     void testList() {
-
+		Saison saison = new Saison(libelle: "2012-2013",dateDebut: new Date() - 365,
+			dateFin: new Date() - 1)
+		saison.save()
         def model = controller.list()
 
         assert model.abonneInstanceList.size() == 0
@@ -52,7 +69,10 @@ class AbonneControllerTests {
 
     void testShow() {
         controller.show()
-
+		
+		// On ajout un enregistrement au moins
+		
+		
         assert flash.message != null
         assert response.redirectedUrl == '/abonne/list'
 
@@ -101,7 +121,8 @@ class AbonneControllerTests {
 
         // test invalid parameters in update
         params.id = abonne.id
-        //TODO: add invalid values to params object
+        //add invalid values to params object
+		params["ville"] = null
 
         controller.update()
 

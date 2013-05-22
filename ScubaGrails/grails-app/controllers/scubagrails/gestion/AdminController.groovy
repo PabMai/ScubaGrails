@@ -12,6 +12,7 @@ import scubagrails.NiveauScaphandre;
 import scubagrails.Saison;
 import scubagrails.SaisonService;
 import scubagrails.TypeMembre
+import scubagrails.UploadService
 import scubagrails.User;
 import scubagrails.type.Sexe;
 import scubagrails.utils.AbonneExcelImporter
@@ -21,6 +22,7 @@ class AdminController {
 	AbonneService abonneService
 	SaisonService saisonService
 	AdminService adminService
+	UploadService uploadService
 	
 	def index = {
 		
@@ -95,16 +97,31 @@ class AdminController {
 		redirect(view: "index")
 	}
 	
-	def importAbonne = {		
-		//String fileName = /.\data_import\importAbonne_OK.xls/
-		//String fileName = /.\data_import\importAbonneMultiple_OK.xls/
-		String fileName = /.\data_import\importFull.xls/
-		AbonneExcelImporter importer = new AbonneExcelImporter(fileName);
-		def abonnesMapList = importer.getAbonnes();
+	def importAbonne = {	
 		
-		List<String> listeLogs = adminService.traiterImportAbonne(abonnesMapList);   
+		def downloadedFile = request.getFile("file")
+		def chemin = ""
+		if (!downloadedFile.isEmpty()) {
+			chemin = uploadService.uploadFile(downloadedFile, "excelImport.xls", "data_import")
+
+			String nomFeuille = params.nomFeuille
+			//String nomFeuille = /.\data_import\importAbonne_OK.xls/
+			//String nomFeuille = /.\data_import\importAbonneMultiple_OK.xls/
+			//String nomFeuille = /.\data_import\importFull.xls/
+			AbonneExcelImporter importer = new AbonneExcelImporter(chemin, nomFeuille);
+			def abonnesMapList = importer.getAbonnes();
+
+			List<String> listeLogs = adminService.traiterImportAbonne(abonnesMapList);
+
+			[listeLogs : listeLogs]
+		} else {
+			List<String> listeLogs = new ArrayList<String>()
+			listeLogs.add("Aucun traitement effectué, le fichier est vide")
+			[listeLogs : listeLogs]
+		}
 		
-		[listeLogs : listeLogs]
-		
+	}
+	
+	def indexImport = {		
 	}
 }

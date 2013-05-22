@@ -3,21 +3,24 @@ package scubagrails
 
 
 import org.junit.*
+
+import scubagrails.type.Sexe;
 import grails.test.mixin.*
 
 @TestFor(EcoleScaphandreController)
-@Mock(EcoleScaphandre)
+@Mock([EcoleScaphandre, Abonne])
 class EcoleScaphandreControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        // Populate valid properties like...
+        params["nom"] = 'ecoleTestScaphandre'
+		
     }
 
     void testIndex() {
         controller.index()
-        assert "/ecole/list" == response.redirectedUrl
+        assert "/ecoleScaphandre/list" == response.redirectedUrl
     }
 
     void testList() {
@@ -38,14 +41,14 @@ class EcoleScaphandreControllerTests {
         controller.save()
 
         assert model.ecoleInstance != null
-        assert view == '/ecole/create'
+        assert view == '/ecoleScaphandre/create'
 
         response.reset()
 
         populateValidParams(params)
         controller.save()
 
-        assert response.redirectedUrl == '/ecole/show/1'
+        assert response.redirectedUrl == '/ecoleScaphandre/show/1'
         assert controller.flash.message != null
         assert EcoleScaphandre.count() == 1
     }
@@ -54,7 +57,7 @@ class EcoleScaphandreControllerTests {
         controller.show()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/ecole/list'
+        assert response.redirectedUrl == '/ecoleScaphandre/list'
 
         populateValidParams(params)
         def ecole = new EcoleScaphandre(params)
@@ -72,7 +75,7 @@ class EcoleScaphandreControllerTests {
         controller.edit()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/ecole/list'
+        assert response.redirectedUrl == '/ecoleScaphandre/list'
 
         populateValidParams(params)
         def ecole = new EcoleScaphandre(params)
@@ -90,7 +93,7 @@ class EcoleScaphandreControllerTests {
         controller.update()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/ecole/list'
+        assert response.redirectedUrl == '/ecoleScaphandre/list'
 
         response.reset()
 
@@ -101,11 +104,12 @@ class EcoleScaphandreControllerTests {
 
         // test invalid parameters in update
         params.id = ecole.id
+		params['nom'] = null
         //TODO: add invalid values to params object
 
         controller.update()
 
-        assert view == "/ecole/edit"
+        assert view == "/ecoleScaphandre/edit"
         assert model.ecoleInstance != null
 
         ecole.clearErrors()
@@ -113,7 +117,7 @@ class EcoleScaphandreControllerTests {
         populateValidParams(params)
         controller.update()
 
-        assert response.redirectedUrl == "/ecole/show/$ecole.id"
+        assert response.redirectedUrl == "/ecoleScaphandre/show/$ecole.id"
         assert flash.message != null
 
         //test outdated version number
@@ -125,7 +129,7 @@ class EcoleScaphandreControllerTests {
         params.version = -1
         controller.update()
 
-        assert view == "/ecole/edit"
+        assert view == "/ecoleScaphandre/edit"
         assert model.ecoleInstance != null
         assert model.ecoleInstance.errors.getFieldError('version')
         assert flash.message != null
@@ -134,7 +138,7 @@ class EcoleScaphandreControllerTests {
     void testDelete() {
         controller.delete()
         assert flash.message != null
-        assert response.redirectedUrl == '/ecole/list'
+        assert response.redirectedUrl == '/ecoleScaphandre/list'
 
         response.reset()
 
@@ -146,10 +150,65 @@ class EcoleScaphandreControllerTests {
 
         params.id = ecole.id
 
-        controller.delete()
+		// avec abonnés : pas de suppression
+		createAbonne(ecole)
+        controller.delete()		
+		
+        assert EcoleScaphandre.count() == 1 
+        assert EcoleScaphandre.get(ecole.id) == ecole
+		assert response.redirectedUrl == "/ecoleScaphandre/show/$ecole.id"		
+		
+		response.reset()
+		
+		// sans abonnés : suppression effective
+		// CAS 1 : null
+		ecole.abonnes = null
+		controller.delete()
+		
+		assert EcoleScaphandre.count() == 0
+		assert EcoleScaphandre.get(ecole.id) == null		
+        assert response.redirectedUrl == '/ecoleScaphandre/list'
+		
+		response.reset()
+		
+		// CAS 2 : vide
+		populateValidParams(params)
+		ecole = new EcoleScaphandre(params)
 
-        assert EcoleScaphandre.count() == 0
-        assert EcoleScaphandre.get(ecole.id) == null
-        assert response.redirectedUrl == '/ecole/list'
+		assert ecole.save(flush:true) != null
+		assert EcoleScaphandre.count() == 1
+		
+		ecole.abonnes = new HashSet<Abonne>()
+		controller.delete(ecole.id)
+		
+		assert EcoleScaphandre.count() == 0
+		assert EcoleScaphandre.get(ecole.id) == null
+		assert response.redirectedUrl == '/ecoleScaphandre/list'
+				
     }
+	
+	void createAbonne(EcoleScaphandre ecoleS) {
+		def abonne1 = new Abonne(nom:"Problo",
+				prenom: "Guillaume",
+				dateNaissance: Date.parse("dd/MM/yyyy", "14/12/1988"),
+				sexe: Sexe.MASCULIN,
+				dateCertificat: Date.parse("dd/MM/yyyy", "15/07/2012"),
+				telephoneFixe: "0241552233",
+				telephonePortable: "0674885566",
+				mail:"guillaume.problo@gmail.com",
+				numeroLicence: "3556484",
+				prixAbonnement: 450,
+				prixAssurance: 54.24,
+				secouriste: true,				
+				nomRue: "10, Avenue du Général de Gaulle",
+				codePostal: "75100",
+				ville : "Paris",				
+				password: "test" )
+
+				abonne1.setEcole(ecoleS)				
+				abonne1.save()
+				if(abonne1.hasErrors()){
+					fail "Impossible d'inserer l'abonné"
+				}
+	}
 }

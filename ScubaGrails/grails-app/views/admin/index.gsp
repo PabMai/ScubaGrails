@@ -212,7 +212,9 @@
 			<table id="interfaceAdmin">
 			<tr id="trInterfaceAdmin">
 				<td>
-					
+					<g:link controller="admin" action="indexImport">
+						<g:img dir="images/scuba/admin" file="importExcel.png" alt="Importer un fichier excel" />
+					</g:link>
 				</td>
 				<td>
 					<g:link controller="encadrant">
@@ -220,13 +222,15 @@
 					</g:link>
 				</td>
 				<td>
-					
+					<g:link controller="admin">
+						<g:img dir="images/scuba/admin" file="questionMark.png" alt="?" />
+					</g:link>
 				</td>
 			</tr>
 			<tr id="trInterfaceAdmin">
-				<td></td>
+				<td>Importer un fichier excel</td>
 				<td>Gérer les types d'encadrant</td>
-				<td></td>
+				<td>?</td>
 			</tr>			
 			</table>
 
