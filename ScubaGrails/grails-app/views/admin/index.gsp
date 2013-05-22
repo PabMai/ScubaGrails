@@ -121,11 +121,12 @@
 			<ul>
 				<li>Effectif : ${session?.saisonEnCours?.enregistrements?.count?.size}</li>			
 				<li>Nombre d'hommes : ${session?.nbHommeSaisonEnCours} </li>	
-				<li>Nombre de femmes : ${session?.nbFemmeSaisonEnCours} </li>	
-				<g:each in="${session?.statEcole}" var="ecole">
-				<li>Ecole ${ecole.key?.encodeAsHTML()} : ${ecole.value?.encodeAsHTML()}</li>
-				</g:each>	
-				<br />
+				<li>Nombre de femmes : ${session?.nbFemmeSaisonEnCours} </li>
+				<%-- Stats sur les écoles ?? --%>	
+<%--				<g:each in="${session?.statEcole}" var="ecole">--%>
+<%--				<li>Ecole ${ecole.key?.encodeAsHTML()} : ${ecole.value?.encodeAsHTML()}</li>--%>
+<%--				</g:each>	--%>
+<%--				<br />--%>
 				<g:each in="${session?.statTypeM}" var="typeM">
 				<li>${typeM.key?.encodeAsHTML()} : ${typeM.value?.encodeAsHTML()}</li>
 				</g:each>							
@@ -203,7 +204,30 @@
 				<td>Gérer les niveaux</td>
 				<td>Gérer les types de membre</td>
 				<td>Gérer les saisons</td>
+			</tr>			
+			</table>
+			
+			<br />
+			
+			<table id="interfaceAdmin">
+			<tr id="trInterfaceAdmin">
+				<td>
+					
+				</td>
+				<td>
+					<g:link controller="encadrant">
+						<g:img dir="images/scuba/admin" file="encadrant.png" alt="Gérer les types d'encadrant" />
+					</g:link>
+				</td>
+				<td>
+					
+				</td>
 			</tr>
+			<tr id="trInterfaceAdmin">
+				<td></td>
+				<td>Gérer les types d'encadrant</td>
+				<td></td>
+			</tr>			
 			</table>
 
 						

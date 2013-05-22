@@ -104,6 +104,7 @@
 
 		<h1>Informations Association</h1>
 		
+		<div style="min-height:300px;">
 		<!--  DIVISION boolean -->
 			<div style="float:right;width:300px;margin-top:-10px;padding-right:40px;">
 			<ol class="property-list abonne">
@@ -217,7 +218,7 @@
 			</div>
 		
 		
-		<ol class="property-list abonne" style="margin-left: 50px">
+		<ol class="property-list abonne" style="margin-left: 50px;">
 
 			<g:if test="${abonneInstance?.dateCertificat}">
 				<li class="fieldcontain"><span id="dateCertificat-label"
@@ -253,27 +254,25 @@
 			<g:if test="${abonneInstance?.ecole}">
 				<li class="fieldcontain"><span id="ecole-label"
 					class="property-label-abonne"><g:message
-							code="abonne.ecole.label" default="Ecole" /></span> <span
+							code="abonne.ecole.label" default="Ecole Scaphandre" /></span> <span
 					class="property-value-abonne" aria-labelledby="ecole-label"><g:link
-							controller="ecole" action="show"
+							controller="ecoleScaphandre" action="show"
 							id="${abonneInstance?.ecole?.id}">
 							${abonneInstance?.ecole?.encodeAsHTML()}
 						</g:link></span></li>
 			</g:if>
-
-<%--			<g:if test="${abonneInstance?.enregistrements}">--%>
-<%--				<li class="fieldcontain"><span id="enregistrements-label"--%>
-<%--					class="property-label-abonne"><g:message--%>
-<%--							code="abonne.enregistrements.label"--%>
-<%--							default="Inscrit pour les saisons" /></span> <g:each--%>
-<%--						in="${abonneInstance.enregistrements}" var="e">--%>
-<%--						<span class="property-value-abonne"--%>
-<%--							aria-labelledby="enregistrements-label"><g:link--%>
-<%--								controller="enregistrement" action="show" id="${e.id}">--%>
-<%--								${e?.saison?.libelle?.encodeAsHTML()}--%>
-<%--							</g:link></span>--%>
-<%--					</g:each></li>--%>
-<%--			</g:if>--%>
+			
+			<g:if test="${abonneInstance?.ecoleApnee}">
+				<li class="fieldcontain"><span id="ecole-label"
+					class="property-label-abonne"><g:message
+							code="abonne.ecoleApnee.label" default="Ecole Apnée" /></span> <span
+					class="property-value-abonne" aria-labelledby="ecole-label"><g:link
+							controller="ecoleApnee" action="show"
+							id="${abonneInstance?.ecoleApnee?.id}">
+							${abonneInstance?.ecoleApnee?.encodeAsHTML()}
+						</g:link></span></li>
+			</g:if>
+			
 			<g:if test="${listeEnregistrement}">
 				<li class="fieldcontain"><span id="enregistrements-label"
 					class="property-label-abonne"><g:message
@@ -330,8 +329,32 @@
 							${abonneInstance?.typeMembre?.encodeAsHTML()}
 						</g:link></span></li>
 			</g:if>
+			
+			<g:if test="${abonneInstance?.encadrantScaphandre}">
+				<li class="fieldcontain"><span id="encadrantScaphandre-label"
+					class="property-label-abonne"><g:message
+							code="abonne.encadrantScaphandre.label" default="Encadrant Scaphandre" /></span> <span
+					class="property-value-abonne" aria-labelledby="encadrantScaphandre-label"><g:link
+							controller="encadrantScaphandre" action="show"
+							id="${abonneInstance?.encadrantScaphandre?.id}">
+							${abonneInstance?.encadrantScaphandre?.encodeAsHTML()}
+						</g:link></span></li>
+			</g:if>
+			
+			<g:if test="${abonneInstance?.encadrantApnee}">
+				<li class="fieldcontain"><span id="encadrantApnee-label"
+					class="property-label-abonne"><g:message
+							code="abonne.encadrantApnee.label" default="Encadrant Apnée" /></span> <span
+					class="property-value-abonne" aria-labelledby="encadrantApnee-label"><g:link
+							controller="encadrantApnee" action="show"
+							id="${abonneInstance?.encadrantApnee?.id}">
+							${abonneInstance?.encadrantApnee?.encodeAsHTML()}
+						</g:link></span></li>
+			</g:if>
 
 		</ol>
+		</div>
+		<div>
 		<g:form style="margin-top:20px">
 			<fieldset class="buttons">
 				<g:hiddenField name="id" value="${abonneInstance?.id}" />
@@ -348,6 +371,7 @@
 				</g:if>
 			</fieldset>
 		</g:form>
+		</div>
 	</div>
 </body>
 </html>

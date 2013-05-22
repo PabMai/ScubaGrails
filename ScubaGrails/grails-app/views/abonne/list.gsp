@@ -1,7 +1,8 @@
 <%@ page import="scubagrails.Abonne" %>
 <%@ page import="scubagrails.NiveauScaphandre" %>
 <%@ page import="scubagrails.NiveauApnee" %>
-<%@ page import="scubagrails.Ecole" %>
+<%@ page import="scubagrails.EcoleScaphandre" %>
+<%@ page import="scubagrails.EcoleApnee" %>
 <%@ page import="scubagrails.TypeMembre" %>
 <r:require module="export"/>
 <!DOCTYPE html>
@@ -124,12 +125,13 @@
 		<filterpane:filterPane domain="Abonne" 
 		dialog="true" 
 		excludeProperties="mimeType,avatar,login,password"
-		associatedProperties="niveau.niveau, niveauApnee.niveau, ecole.nom, typeMembre.nom"
+		associatedProperties="niveau.niveau, niveauApnee.niveau, ecole.nom, ecoleApnee.nom, typeMembre.nom"
         filterPropertyValues="${[dateNaissance: [precision: 'day'], 
 			dateCertificat: [precision: 'day'], 
 			'niveau.niveau': [values:NiveauScaphandre.list()],
 			'niveauApnee.niveau': [values:NiveauApnee.list()],
-			'ecole.nom': [values:Ecole.list()],
+			'ecole.nom': [values:EcoleScaphandre.list()],
+			'ecoleApnee.nom': [values:EcoleApnee.list()],
 			'typeMembre.nom': [values:TypeMembre.list()]
 			]}"
 		/>

@@ -7,13 +7,16 @@ class AbonneExcelImporter extends AbstractExcelImporter {
 	
 	static Map CONFIG_ABONNE_COLUMN_MAP = [
           sheet:'ListingSecrétariat', 
+		  //sheet:'Feuil1',
 		  startRow: 1,
           columnMap:  [
 			      'A':'numeroLicence',
                   'B':'nom',
                   'C':'prenom',
 				  'D':'niveau',
+				  'E':'ecole',
 				  'G':'niveauApnee',
+				  'H':'ecoleApnee',
 				  'J':'typeMembre',
 				  'O':'nomRue',
 				  'N':'comiteDirecteur',
@@ -27,8 +30,6 @@ class AbonneExcelImporter extends AbstractExcelImporter {
 				  'X':'dateNaissance',
 				  'AA':'autorisationParentale',
 				  'AB':'sexe',
-				  'AC':'departementNaissance',
-				  'AD':'lieuNaissance',
 				  'AF':'prixAbonnement',
 				  'AI':'prixAssurance'				                    
           ]
@@ -40,7 +41,9 @@ class AbonneExcelImporter extends AbstractExcelImporter {
 				  nom:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  prenom:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  niveau:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
+				  ecole:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  niveauApnee:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
+				  ecoleApnee:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  typeMembre:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  nomRue:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  comiteDirecteur:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
@@ -54,8 +57,6 @@ class AbonneExcelImporter extends AbstractExcelImporter {
 				  dateNaissance:([expectedType: ExpectedPropertyType.DateType, defaultValue:null]),
 				  autorisationParentale:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  sexe:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
-				  departementNaissance:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
-				  lieuNaissance:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  prixAbonnement:([expectedType: ExpectedPropertyType.DoubleType, defaultValue:0]),
 				  prixAssurance:([expectedType: ExpectedPropertyType.DoubleType, defaultValue:0])
 	]

@@ -1,6 +1,6 @@
 package scubagrails
 
-class Ecole {
+class EcoleScaphandre {
 	
 	// Pour le plugin searchable
 	static searchable = true

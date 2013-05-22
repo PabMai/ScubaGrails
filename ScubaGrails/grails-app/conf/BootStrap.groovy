@@ -1,6 +1,9 @@
 import grails.util.Environment;
 import scubagrails.Abonne
-import scubagrails.Ecole
+import scubagrails.EcoleApnee
+import scubagrails.EcoleScaphandre
+import scubagrails.EncadrantApnee
+import scubagrails.EncadrantScaphandre
 import scubagrails.Enregistrement
 import scubagrails.NiveauApnee
 import scubagrails.NiveauScaphandre
@@ -56,44 +59,178 @@ class BootStrap {
 				} else {
 					println "Utilisateur 'Moi' cree : OK !"
 				}
+				
+			/**
+			 * ===============================================
+			 * 				CREATION ENCADRANTS
+			 * ===============================================
+			 */
+				
+			def encadrantAC2 = new EncadrantApnee(nom : "C2")
+			encadrantAC2.save()
+			if(encadrantAC2.hasErrors()){
+				println encadrantAC2.errors
+			} else {
+				println "Encadrant Apnée 'C2' cree : OK !"
+			}
+			
+			def encadrantAMFE1 = new EncadrantApnee(nom : "MFE1")
+			encadrantAMFE1.save()
+			if(encadrantAMFE1.hasErrors()){
+				println encadrantAMFE1.errors
+			} else {
+				println "Encadrant Apnée 'MFE1' cree : OK !"
+			}
+			
+			def encadrantSE1 = new EncadrantScaphandre(nom : "E1")
+			encadrantSE1.save()
+			if(encadrantSE1.hasErrors()){
+				println encadrantSE1.errors
+			} else {
+				println "Encadrant Scaphandre 'E1' cree : OK !"
+			}
+			
+			def encadrantSE2 = new EncadrantScaphandre(nom : "E2")
+			encadrantSE2.save()
+			if(encadrantSE2.hasErrors()){
+				println encadrantSE2.errors
+			} else {
+				println "Encadrant Scaphandre 'E2' cree : OK !"
+			}
+			
+			def encadrantSE3 = new EncadrantScaphandre(nom : "E3")
+			encadrantSE3.save()
+			if(encadrantSE3.hasErrors()){
+				println encadrantSE3.errors
+			} else {
+				println "Encadrant Scaphandre 'E3' cree : OK !"
+			}
+			
+			def encadrantSE4 = new EncadrantScaphandre(nom : "E4")
+			encadrantSE4.save()
+			if(encadrantSE4.hasErrors()){
+				println encadrantSE4.errors
+			} else {
+				println "Encadrant Scaphandre 'E4' cree : OK !"
+			}
+			
+			def encadrantSMF2 = new EncadrantScaphandre(nom : "MF2")
+			encadrantSMF2.save()
+			if(encadrantSMF2.hasErrors()){
+				println encadrantSMF2.errors
+			} else {
+				println "Encadrant Scaphandre 'MF2' cree : OK !"
+			}
 
 			/**
 			 * ===============================================
-			 * 				CREATION ECOLES
+			 * 				CREATION ECOLES Scaphandre
 			 * ===============================================
 			 */
 
-				def ecoleInit = new Ecole(nom: "Initiation")
+				def ecoleInit = new EcoleScaphandre(nom: "Initiateur")
 				ecoleInit.save()
 				if(ecoleInit.hasErrors()){
 					println ecoleInit.errors
 				} else {
-					println "Ecole 'Initiation' cree : OK !"
+					println "Ecole Scaphandre 'Initiateur' cree : OK !"
 				}
 
-				def ecoleN1 = new Ecole(nom: "N1")
+				def ecoleN1 = new EcoleScaphandre(nom: "N1")
 				ecoleN1.save()
 				if(ecoleN1.hasErrors()){
 					println ecoleN1.errors
 				} else {
-					println "Ecole 'N1' cree : OK !"
+					println "Ecole Scaphandre 'N1' cree : OK !"
 				}
 
-				def ecoleN2 = new Ecole(nom: "N2")
+				def ecoleN2 = new EcoleScaphandre(nom: "N2")
 				ecoleN2.save()
 				if(ecoleN2.hasErrors()){
 					println ecoleN2.errors
 				} else {
-					println "Ecole 'N2' cree : OK !"
+					println "Ecole Scaphandre 'N2' cree : OK !"
 				}
 
-				def ecoleMF1 = new Ecole(nom: "MF1")
+				def ecoleMF1 = new EcoleScaphandre(nom: "MF1")
 				ecoleMF1.save()
 				if(ecoleMF1.hasErrors()){
 					println ecoleMF1.errors
 				} else {
-					println "Ecole 'MF1' cree : OK !"
+					println "Ecole Scaphandre 'MF1' cree : OK !"
 				}
+				
+				def ecoleSApnee = new EcoleScaphandre(nom: "Apnée")
+				ecoleSApnee.save()
+				if(ecoleSApnee.hasErrors()){
+					println ecoleSApnee.errors
+				} else {
+					println "Ecole Scaphandre 'Apnée' cree : OK !"
+				}
+				
+				def ecoleSEnfant = new EcoleScaphandre(nom: "Enfant")
+				ecoleSEnfant.save()
+				if(ecoleSEnfant.hasErrors()){
+					println ecoleSEnfant.errors
+				} else {
+					println "Ecole Scaphandre 'Enfant' cree : OK !"
+				}
+				
+				def ecoleSN3 = new EcoleScaphandre(nom: "N3")
+				ecoleSN3.save()
+				if(ecoleSN3.hasErrors()){
+					println ecoleSN3.errors
+				} else {
+					println "Ecole Scaphandre 'N3' cree : OK !"
+				}
+				
+				def ecoleSN4 = new EcoleScaphandre(nom: "N4")
+				ecoleSN4.save()
+				if(ecoleSN4.hasErrors()){
+					println ecoleSN4.errors
+				} else {
+					println "Ecole Scaphandre 'N4' cree : OK !"
+				}
+				
+				def ecoleSPA40 = new EcoleScaphandre(nom: "PA40")
+				ecoleSPA40.save()
+				if(ecoleSPA40.hasErrors()){
+					println ecoleSPA40.errors
+				} else {
+					println "Ecole Scaphandre 'PA40' cree : OK !"
+				}
+				
+				
+				
+			/**
+			 * ===============================================
+			 * 				CREATION ECOLES Apnée
+			 * ===============================================
+			 */
+			
+				def ecoleAN1 = new EcoleApnee(nom: "N1")
+				ecoleAN1.save()
+				if(ecoleAN1.hasErrors()){
+					println ecoleAN1.errors
+				} else {
+					println "Ecole Apnée 'N1' cree : OK !"
+				}
+				
+				def ecoleAN2 = new EcoleApnee(nom: "N2")
+				ecoleAN2.save()
+				if(ecoleAN2.hasErrors()){
+					println ecoleAN2.errors
+				} else {
+					println "Ecole Apnée 'N2' cree : OK !"
+				}
+				
+				def ecoleAN3 = new EcoleApnee(nom: "N3")
+				ecoleAN3.save()
+				if(ecoleAN3.hasErrors()){
+					println ecoleAN3.errors
+				} else {
+					println "Ecole Apnée 'N3' cree : OK !"
+				}				
 
 			/**
 			 * ===============================================
@@ -171,15 +308,39 @@ class BootStrap {
 
 			/**
 			 * ===============================================
-			 * 				CREATION NIVEAU
+			 * 				CREATION NIVEAU SCAPHANDRE
 			 * ===============================================
 			 */
+				def niveauDeb = new NiveauScaphandre(niveau: "Deb")
+				niveauDeb.save()
+				if(niveauDeb.hasErrors()){
+					println niveauDeb.errors
+				} else {
+					println "Niveau Scaphandre 'Deb' cree : OK !"
+				}
+				
+				def niveauEnfant = new NiveauScaphandre(niveau: "Enfant")
+				niveauEnfant.save()
+				if(niveauEnfant.hasErrors()){
+					println niveauEnfant.errors
+				} else {
+					println "Niveau Scaphandre 'Enfant' cree : OK !"
+				}
+				
+				def niveauSApnee = new NiveauScaphandre(niveau: "Apnée")
+				niveauSApnee.save()
+				if(niveauSApnee.hasErrors()){
+					println niveauSApnee.errors
+				} else {
+					println "Niveau Scaphandre 'Apnée' cree : OK !"
+				}
+				
 				def niveauN1 = new NiveauScaphandre(niveau: "N1")
 				niveauN1.save()
 				if(niveauN1.hasErrors()){
 					println niveauN1.errors
 				} else {
-					println "Niveau 'N1' cree : OK !"
+					println "Niveau Scaphandre 'N1' cree : OK !"
 				}
 
 				def niveauN2 = new NiveauScaphandre(niveau: "N2")
@@ -187,7 +348,7 @@ class BootStrap {
 				if(niveauN2.hasErrors()){
 					println niveauN2.errors
 				} else {
-					println "Niveau 'N2' cree : OK !"
+					println "Niveau Scaphandre 'N2' cree : OK !"
 				}
 
 				def niveauN3 = new NiveauScaphandre(niveau: "N3")
@@ -195,7 +356,15 @@ class BootStrap {
 				if(niveauN3.hasErrors()){
 					println niveauN3.errors
 				} else {
-					println "Niveau 'N3' cree : OK !"
+					println "Niveau Scaphandre 'N3' cree : OK !"
+				}
+				
+				def niveauN4 = new NiveauScaphandre(niveau: "N4")
+				niveauN4.save()
+				if(niveauN4.hasErrors()){
+					println niveauN4.errors
+				} else {
+					println "Niveau Scaphandre 'N4' cree : OK !"
 				}
 
 				def niveauBees1 = new NiveauScaphandre(niveau: "BEES1")
@@ -203,8 +372,38 @@ class BootStrap {
 				if(niveauBees1.hasErrors()){
 					println niveauBees1.errors
 				} else {
-					println "Niveau 'BEES1' cree : OK !"
+					println "Niveau Scaphandre 'BEES1' cree : OK !"
 				}
+				
+				def niveauMF1 = new NiveauScaphandre(niveau: "MF1")
+				niveauMF1.save()
+				if(niveauMF1.hasErrors()){
+					println niveauMF1.errors
+				} else {
+					println "Niveau Scaphandre 'MF1' cree : OK !"
+				}
+				
+				def niveauMF2 = new NiveauScaphandre(niveau: "MF2")
+				niveauMF2.save()
+				if(niveauMF2.hasErrors()){
+					println niveauMF2.errors
+				} else {
+					println "Niveau Scaphandre 'MF2' cree : OK !"
+				}
+				
+				def niveauPADI = new NiveauScaphandre(niveau: "PADI open water")
+				niveauPADI.save()
+				if(niveauPADI.hasErrors()){
+					println niveauPADI.errors
+				} else {
+					println "Niveau Scaphandre 'PADI open water' cree : OK !"
+				}
+				
+				/**
+				 * ===============================================
+				 * 				CREATION NIVEAU APNEE
+				 * ===============================================
+				 */
 				
 				def niveauApneeN1 = new NiveauApnee(niveau: "N1")
 				niveauApneeN1.save()
@@ -248,8 +447,6 @@ class BootStrap {
 				def abonne1 = new Abonne(nom:"Problo",
 				prenom: "Guillaume",
 				dateNaissance: Date.parse("dd/MM/yyyy", "14/12/1988"),
-				departementNaissance: "49",
-				lieuNaissance: "Angers",
 				sexe: Sexe.MASCULIN,
 				dateCertificat: Date.parse("dd/MM/yyyy", "15/07/2012"),
 				telephoneFixe: "0241552233",
@@ -278,8 +475,6 @@ class BootStrap {
 				def abonne2 = new Abonne(nom:"Duroux",
 				prenom: "Marc",
 				dateNaissance: Date.parse("dd/MM/yyyy", "17/01/1964"),
-				departementNaissance: "53",
-				lieuNaissance: "Laval",
 				sexe: Sexe.MASCULIN,
 				dateCertificat: Date.parse("dd/MM/yyyy", "16/12/2012"),
 				numeroLicence: "111284",
@@ -300,6 +495,7 @@ class BootStrap {
 				abonne2.setTypeMembre(typeMembreNormal)
 				abonne2.setNiveau(niveauN2)
 				abonne2.setNiveauApnee(null)
+				abonne2.setEcoleApnee(ecoleAN1)
 				abonne2.save()
 				if(abonne2.hasErrors()){
 					println abonne2.errors
@@ -310,8 +506,6 @@ class BootStrap {
 				def abonne3 = new Abonne(nom:"Dupont",
 				prenom: "Christine",
 				dateNaissance: Date.parse("dd/MM/yyyy", "19/05/1975"),
-				departementNaissance: "44",
-				lieuNaissance: "Nantes",
 				sexe: Sexe.FEMININ,
 				dateCertificat: Date.parse("dd/MM/yyyy", "12/08/2012"),
 				telephoneFixe: "0155887744",
@@ -340,8 +534,6 @@ class BootStrap {
 				def abonne4 = new Abonne(nom:"Dujardin",
 				prenom: "Jean",
 				dateNaissance: Date.parse("dd/MM/yyyy", "14/01/1972"),
-				departementNaissance: "44",
-				lieuNaissance: "Nantes",
 				sexe: Sexe.MASCULIN,
 				dateCertificat: Date.parse("dd/MM/yyyy", "13/09/2012"),
 				telephoneFixe: "0152658744",
@@ -360,6 +552,7 @@ class BootStrap {
 				abonne4.setTypeMembre(typeMembrePalme)
 				abonne4.setNiveau(niveauBees1)
 				abonne4.setNiveauApnee(niveauApneeMF1)
+				abonne4.setEncadrantApnee(encadrantAC2)
 				abonne4.save()
 				if(abonne4.hasErrors()){
 					println abonne4.errors
@@ -370,8 +563,6 @@ class BootStrap {
 				def abonne5 = new Abonne(nom:"Denis",
 				prenom: "Corentin",
 				dateNaissance: Date.parse("dd/MM/yyyy", "31/07/1986"),
-				departementNaissance: "69",
-				lieuNaissance: "Lyon",
 				sexe: Sexe.MASCULIN,
 				dateCertificat: Date.parse("dd/MM/yyyy", "14/01/2013"),
 				telephoneFixe: "0240156354",
@@ -387,6 +578,7 @@ class BootStrap {
 				password: "test" )
 
 				abonne5.setEcole(ecoleN1)
+				abonne5.setEcoleApnee(ecoleAN2)
 				abonne5.setTypeMembre(typeMembreApnee)
 				abonne5.setNiveau(niveauN1)
 				abonne5.save()
@@ -399,8 +591,6 @@ class BootStrap {
 				def abonne6 = new Abonne(nom:"Partour",
 				prenom: "Aurélie",
 				dateNaissance: Date.parse("dd/MM/yyyy", "04/06/1987"),
-				departementNaissance: "53",
-				lieuNaissance: "Laval",
 				sexe: Sexe.FEMININ,
 				dateCertificat: Date.parse("dd/MM/yyyy", "17/02/2013"),
 				telephoneFixe: "0240153698",
@@ -419,6 +609,7 @@ class BootStrap {
 				abonne6.setTypeMembre(typeMembrePalme)
 				abonne6.setNiveau(niveauBees1)
 				abonne6.setNiveauApnee(niveauApneeN1)
+				abonne6.setEncadrantScaphandre(encadrantSE1)
 				abonne6.save()
 				if(abonne6.hasErrors()){
 					println abonne6.errors
@@ -429,8 +620,6 @@ class BootStrap {
 				def abonne7 = new Abonne(nom:"Dus",
 					prenom: "Jean-Clause",
 					dateNaissance: Date.parse("dd/MM/yyyy", "01/05/1972"),
-					departementNaissance: "49",
-					lieuNaissance: "Saint Barthélémy d'Anjou",
 					sexe: Sexe.MASCULIN,
 					dateCertificat: Date.parse("dd/MM/yyyy", "02/05/2013"),
 					telephoneFixe: "0240115236",
@@ -446,6 +635,7 @@ class BootStrap {
 					password: "test" )
 	
 					abonne7.setEcole(ecoleN1)
+					abonne7.setEcoleApnee(ecoleAN3)
 					abonne7.setTypeMembre(typeMembrePalme)
 					abonne7.setNiveau(niveauBees1)
 					abonne7.setNiveauApnee(niveauApneeN3)
@@ -459,8 +649,6 @@ class BootStrap {
 					def abonne8 = new Abonne(nom:"Zidane",
 						prenom: "Zinedine",
 						dateNaissance: Date.parse("dd/MM/yyyy", "01/01/1965"),
-						departementNaissance: "13",
-						lieuNaissance: "Marseille",
 						sexe: Sexe.MASCULIN,
 						dateCertificat: Date.parse("dd/MM/yyyy", "01/04/2013"),
 						telephoneFixe: "",
@@ -488,8 +676,6 @@ class BootStrap {
 						def abonne9 = new Abonne(nom:"Chirac",
 							prenom: "Jacques",
 							dateNaissance: Date.parse("dd/MM/yyyy", "01/10/1932"),
-							departementNaissance: "75",
-							lieuNaissance: "Paris",
 							sexe: Sexe.MASCULIN,
 							dateCertificat: Date.parse("dd/MM/yyyy", "01/01/2013"),
 							telephoneFixe: "",
@@ -506,6 +692,7 @@ class BootStrap {
 							abonne9.setEcole(ecoleMF1)
 							abonne9.setTypeMembre(typeMembreNormal)
 							abonne9.setNiveau(null)
+							abonne9.setNiveauApnee(niveauApneeN1)
 							abonne9.save()
 							if(abonne9.hasErrors()){
 								println abonne9.errors
@@ -516,8 +703,6 @@ class BootStrap {
 							def abonne10 = new Abonne(nom:"Obama",
 								prenom: "Barack",
 								dateNaissance: Date.parse("dd/MM/yyyy", "17/02/1961"),
-								departementNaissance: "75",
-								lieuNaissance: "Paris",
 								sexe: Sexe.MASCULIN,
 								dateCertificat: Date.parse("dd/MM/yyyy", "11/12/2012"),
 								telephoneFixe: "0255996633",
@@ -532,8 +717,11 @@ class BootStrap {
 								password: "test" )
 				
 								abonne10.setEcole(ecoleN2)
+								abonne10.setEcoleApnee(ecoleAN1)
 								abonne10.setTypeMembre(typeMembrePalme)
 								abonne10.setNiveau(niveauN1)
+								abonne10.setEncadrantApnee(encadrantAC2)
+								abonne10.setEncadrantScaphandre(encadrantSE2)
 								abonne10.save()
 								if(abonne10.hasErrors()){
 									println abonne10.errors
@@ -544,8 +732,6 @@ class BootStrap {
 								def abonne11 = new Abonne(nom:"De Funès",
 									prenom: "Louis",
 									dateNaissance: Date.parse("dd/MM/yyyy", "12/12/1950"),
-									departementNaissance: "44",
-									lieuNaissance: "Nantes",
 									sexe: Sexe.MASCULIN,
 									dateCertificat: Date.parse("dd/MM/yyyy", "11/11/2012"),
 									telephoneFixe: "0155886699",

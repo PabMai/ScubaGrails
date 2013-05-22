@@ -1,4 +1,4 @@
-<%@ page import="scubagrails.Ecole" %>
+<%@ page import="scubagrails.EcoleApnee" %>
 <!DOCTYPE html>
 <html>
 	<head>

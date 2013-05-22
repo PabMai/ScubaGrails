@@ -11,7 +11,15 @@ class AdminService {
 		abonnesMapList.each { Map abonneParams ->
 
 			listeLogs.add("=====================")
-			listeLogs.add("Traitement de l'abonné ${abonneParams.prenom} ${abonneParams.nom} en cours")
+			listeLogs.add("Traitement de l'abonné ${abonneParams?.prenom} ${abonneParams?.nom} en cours")
+			
+			// Formatage du nom
+			if (abonneParams.nom != null) {
+				String nomMinuscule = abonneParams.nom.toLowerCase()
+				//Majuscule sur la première lettre
+				String nomFormat = nomMinuscule.substring(0, 1).toUpperCase() + nomMinuscule.substring(1, nomMinuscule.length())
+				abonneParams.nom = nomFormat
+			}				
 			
 			// Téléphone fixe
 			if (abonneParams.telephoneFixe != null) {
@@ -40,7 +48,10 @@ class AdminService {
 					abonneParams.dateCertificat = sdf.parse(tempDate)
 				}
 			} else {
-				listeLogs.add("ERROR : date de certificat vide !")
+				listeLogs.add("WARNING : date de certificat vide ! On force le 09/09/1999")
+				String tempDate = "1999-09-09"
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				abonneParams.dateCertificat = sdf.parse(tempDate)
 			}
 
 			// Date naissance
@@ -53,7 +64,10 @@ class AdminService {
 					abonneParams.dateNaissance = sdf.parse(tempDate)
 				}
 			} else {
-				listeLogs.add("ERROR : date de naissance vide !")
+				listeLogs.add("WARNING : date de naissance vide ! On force 01/01/1800")
+				String tempDate = "1800-01-01"
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				abonneParams.dateNaissance = sdf.parse(tempDate)
 			}
 
 			// Allergie aspirine
@@ -76,20 +90,7 @@ class AdminService {
 				abonneParams.comiteDirecteur = true
 			} else {
 				abonneParams.comiteDirecteur = false
-			}
-
-
-			// Département naissance
-			// TODO que faire si département vide ???
-			if (abonneParams.departementNaissance == null) {
-				listeLogs.add("ERROR : Département de naissance vide")
-				//abonneParams.departementNaissance == "00"
-			}	
-			
-			// Lieu de naissance
-			if (abonneParams.lieuNaissance == null) {
-				listeLogs.add("WARNING : Lieu de naissance vide")
-			}
+			}			
 
 			// Sexe
 			if (abonneParams.sexe == null || abonneParams.sexe == "M") {
@@ -125,17 +126,56 @@ class AdminService {
 					listeLogs.add("Niveau Apnée [" + niveau + "] non trouvé")
 				}
 			}
-
-			//TODO faire une meilleure gestion des erreurs
+			
+			// Ecole Scaphandre
+			if (abonneParams.ecole != null) {
+				String ecole = abonneParams.ecole
+				abonneParams.ecole = EcoleScaphandre.findByNomIlike(abonneParams.ecole)
+				if (!abonneParams.ecole) {
+					listeLogs.add("Ecole Scaphandre [" + ecole + "] non trouvé")
+				}
+			}
+			
+			// Ecole Apnée
+			if (abonneParams.ecoleApnee != null) {
+				String ecole = abonneParams.ecoleApnee
+				abonneParams.ecoleApnee = EcoleApnee.findByNomIlike(abonneParams.ecoleApnee)
+				if (!abonneParams.ecoleApnee) {
+					listeLogs.add("Ecole Apnée [" + ecole + "] non trouvé")
+				}
+			}	
+			
+			// TODO GMO : gérer les encadrants
+			
+			// Création du mot de passe (dateDeNaissance ddMMyyyy)
+			SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy")
+			abonneParams.password = sdf.format(abonneParams.dateNaissance)			
+			
+			// Création de l'abonné
 			def newAbonne = new Abonne(abonneParams)
-			if (!newAbonne.save()) {
+			if (!newAbonne.save(flush: true)) {
 				listeLogs.add("Abonné non inséré (KO): ${newAbonne.errors}")	
 				listeLogs.add("=====================")
 			} else {
-				listeLogs.add("Abonné inséré (OK)")
-				listeLogs.add("=====================")
-			}
-			
+				listeLogs.add("Abonné inséré (OK)")				
+				// La création de l'abonné est effective, on lui ajoute un 
+				// enregistrement pour la saison 2012/2013
+				// Prix abonnement
+				// Si un abonnement a été payé, alors cela veut dire
+				// que l'abonné est valide pour la saison 2012/2013
+				if (newAbonne.prixAbonnement != null &&
+					newAbonne.prixAbonnement.compareTo(Double.valueOf(0)) > 0) {
+					Saison saison20122013 = Saison.findByLibelleLike("2012-2013");
+					Enregistrement enreg = new Enregistrement(abonne: newAbonne,saison: saison20122013)
+					if (!enreg.save(flush: true)) {
+						listeLogs.add("Enregistrement saison 2012/2013 KO : ${enreg.errors}")						
+						listeLogs.add("=====================")
+					} else {
+						listeLogs.add("Enregistrement saison 2012/2013 OK")
+						listeLogs.add("=====================")
+					}
+				}
+			}			
 			
 		}		
 		return listeLogs

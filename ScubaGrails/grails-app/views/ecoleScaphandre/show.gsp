@@ -1,5 +1,5 @@
 
-<%@ page import="scubagrails.Ecole" %>
+<%@ page import="scubagrails.EcoleScaphandre" %>
 <!DOCTYPE html>
 <html>
 	<head>

@@ -27,13 +27,14 @@ class AbonneController {
 	}
 
 	def list(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
+		
 		// Par défaut, on tri par Nom
 		if (!params?.sort) {
 			params.sort="nom"
 		}
 		generationExport(params, Abonne.list(params))
 		
+		params.max = Math.min(max ?: 10, 100)
 		[abonneInstanceList: Abonne.list(params), 
 			abonneInstanceTotal: Abonne.count(),
 			filterParams: org.grails.plugin.filterpane.FilterPaneUtils.extractFilterParams(params)]
@@ -375,9 +376,10 @@ class AbonneController {
 		if (!params.q.isEmpty()){
 
 			// Par défaut, on tri par numéro de licence
-			if (!params?.sort) {
-				params.sort="numeroLicence"
-			}
+//			if (!params?.sort) {
+//				params.sort="nom"
+//			}
+			
 			request.messageRequete = "Résulats pour : ${params.q}"
 			def resultsMap = [:]
 			params.escape="true"
@@ -500,32 +502,17 @@ class AbonneController {
 	}
 	
 	def filter = {
-		//if(!params.max) params.max = 10
+		// récupération de la liste filtré complète
+		def listeFiltreeSansMax = filterPaneService.filter( params, Abonne )
+		if(!params.max) params.max = 10
+		// récupération de la liste filtré mais avec un max de 10 abonnés
 		def listeFiltree = filterPaneService.filter( params, Abonne )
-		generationExport(params, listeFiltree)
+		generationExport(params, listeFiltreeSansMax)
 		render( view:'list',
 			model:[ abonneInstanceList: listeFiltree,
 			abonneInstanceTotal: filterPaneService.count( params, Abonne ),
 			filterParams: org.grails.plugin.filterpane.FilterPaneUtils.extractFilterParams(params),
 			params:params ] )
-	}
-	
-	
-	
-//	SendGridService sendGridService	
-//	
-//	def sendMailAbonne() {
-//		sendGridService.sendMail {
-//			from "moi@scubagrails.com"
-//			to 'spamskelt@free.fr'		
-//			//bcc 'yourbcc@example.com'
-//			subject 'This is the subject line'
-//			body 'This is our message body'
-//			
-//		}
-//		
-//		redirect(action: "list", params: params)				
-//	}
-	
+	}	
 	
 }

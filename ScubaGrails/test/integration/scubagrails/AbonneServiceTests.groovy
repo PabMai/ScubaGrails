@@ -14,7 +14,7 @@ import scubagrails.type.Sexe;
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 //@TestFor(AbonneService)
-@Mock([NiveauScaphandre, TypeMembre, Ecole, Abonne])
+@Mock([NiveauScaphandre, TypeMembre, EcoleScaphandre, Abonne])
 class AbonneServiceTests extends GroovyTestCase {
 	
 	AbonneService abonneService
@@ -25,13 +25,11 @@ class AbonneServiceTests extends GroovyTestCase {
 		
 	    def niveauN1 = new NiveauScaphandre(niveau: "N1").save(failOnError : true)		
 		def typeMembreLicence = new TypeMembre(nom: "Licence seule").save(failOnError : true)		
-		def ecoleInit = new Ecole(nom: "Initiation").save(failOnError : true)		
+		def ecoleInit = new EcoleScaphandre(nom: "Initiation").save(failOnError : true)		
 
 		def abonne1 = new Abonne(nom:"Problo",
 				prenom: "Guillaume",
 				dateNaissance: Date.parse("dd/MM/yyyy", "14/12/1988"),
-				departementNaissance: "49",
-				lieuNaissance: "Angers",
 				sexe: Sexe.MASCULIN,
 				dateCertificat: new Date() - 500,
 				telephoneFixe: "0241552233",
@@ -82,8 +80,6 @@ class AbonneServiceTests extends GroovyTestCase {
 //		def abonne1 = new Abonne(nom:"Problo",
 //				prenom: "Guillaume",
 //				dateNaissance: Date.parse("dd/MM/yyyy", "14/12/1988"),
-//				departementNaissance: "49",
-//				lieuNaissance: "Angers",
 //				sexe: Sexe.MASCULIN,
 //				dateCertificat: new Date() - 360,
 //				telephoneFixe: "0241552233",

@@ -38,13 +38,13 @@ class SaisonService {
 			}
 			
 			// Récupération de la liste de toutes les écoles
-			List<Ecole> listeEcole = Ecole.findAll()
+			List<EcoleScaphandre> listeEcole = EcoleScaphandre.findAll()
 			
 			// Pour chaque école, on comptabilise son nombre d'abonné
 			// (pour la saison actuelle)
 			listeEcole.each {
 				ecole ->
-				if (abonne.ecole.nom == ecole.nom) {
+				if (abonne.ecole?.nom == ecole.nom) {
 					if (statEcole.containsKey(ecole.nom)) {
 						Integer nb = (Integer) statEcole.get(ecole.nom)
 						nb++

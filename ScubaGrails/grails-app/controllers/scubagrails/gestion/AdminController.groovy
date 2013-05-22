@@ -6,7 +6,7 @@ import org.apache.commons.lang.mutable.MutableInt;
 import scubagrails.Abonne;
 import scubagrails.AbonneService;
 import scubagrails.AdminService;
-import scubagrails.Ecole;
+import scubagrails.EcoleScaphandre;
 import scubagrails.Enregistrement;
 import scubagrails.NiveauScaphandre;
 import scubagrails.Saison;
@@ -63,7 +63,7 @@ class AdminController {
 		}
 		
 		// Récupération des statistiques  :
-		[nbAbonne : Abonne.count, nbEcole : Ecole.count, nbSaison : Saison.count
+		[nbAbonne : Abonne.count, nbEcole : EcoleScaphandre.count, nbSaison : Saison.count
 			, nbNiveau : NiveauScaphandre.count, nbUtilisateur : User.count]
 		
 	}

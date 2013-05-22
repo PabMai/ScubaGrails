@@ -1,6 +1,6 @@
 package scubagrails
 
-class EcoleController {
+class EncadrantController {
 
     def index() { }
 }

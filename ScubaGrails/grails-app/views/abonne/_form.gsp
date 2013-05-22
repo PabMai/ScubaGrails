@@ -24,24 +24,6 @@
 	<g:datePicker name="dateNaissance" precision="day"  value="${abonneInstance?.dateNaissance}"  />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'departementNaissance', 'error')} required">
-	<label for="departementNaissance">
-		<g:message code="abonne.departementNaissance.label" default="Departement de naissance" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select name="departementNaissance" from="${abonneInstance.constraints.departementNaissance.inList}" required="" value="${abonneInstance?.departementNaissance}" valueMessagePrefix="abonne.departementNaissance"/>
-<%--	<g:textField name="departementNaissance" maxlength="30" required="" value="${abonneInstance?.departementNaissance}"/>--%>
-<%--	(ex : 49)--%>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'lieuNaissance', 'error')} required">
-	<label for="lieuNaissance">
-		<g:message code="abonne.lieuNaissance.label" default="Lieu de naissance" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="lieuNaissance" maxlength="50" required="" value="${abonneInstance?.lieuNaissance}"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'sexe', 'error')} required">
 	<label for="sexe">
 		<g:message code="abonne.sexe.label" default="Sexe" />
@@ -199,10 +181,16 @@
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'ecole', 'error')} required">
 	<label for="ecole">
-		<g:message code="abonne.ecole.label" default="Ecole" />
-		<span class="required-indicator">*</span>
+		<g:message code="abonne.ecole.label" default="Ecole Scaphandre" />		
 	</label>
-	<g:select id="ecole" name="ecole.id" from="${scubagrails.Ecole.list()}" optionKey="id" required="" value="${abonneInstance?.ecole?.id}" class="many-to-one"/>
+	<g:select id="ecole" name="ecole.id" from="${scubagrails.EcoleScaphandre.list()}" optionKey="id" value="${abonneInstance?.ecole?.id}" class="many-to-one" noSelection="['null':'Aucune']"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'ecoleApnee', 'error')} required">
+	<label for="ecoleApnee">
+		<g:message code="abonne.ecoleApnee.label" default="Ecole Apnée" />		
+	</label>
+	<g:select id="ecoleApnee" name="ecoleApnee.id" from="${scubagrails.EcoleApnee.list()}" optionKey="id" value="${abonneInstance?.ecoleApnee?.id}" class="many-to-one" noSelection="['null':'Aucune']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'lesSaisonsSelection', 'error')} ">
@@ -216,16 +204,19 @@
 			value="${abonneInstance?.enregistrements*.saison?.id}" />
 </div>
 
-
-
-
 	<div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'niveau', 'error')} required">
-	<label for="niveau">
-		<g:message code="abonne.niveau.label" default="Niveau" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="niveau" name="niveau.id" from="${scubagrails.NiveauScaphandre.list()}" optionKey="id" required="" value="${abonneInstance?.niveau?.id}" class="many-to-one"/>
-</div>
+		<label for="niveau">
+			<g:message code="abonne.niveau.label" default="Niveau Scaphandre" />			
+		</label>
+		<g:select id="niveau" name="niveau.id" from="${scubagrails.NiveauScaphandre.list()}" optionKey="id" value="${abonneInstance?.niveau?.id}" class="many-to-one" noSelection="['null':'Aucun']"/>
+	</div>
+	
+	<div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'niveauApnee', 'error')} required">
+		<label for="niveauApnee">
+			<g:message code="abonne.niveauApnee.label" default="Niveau Apnée" />			
+		</label>
+		<g:select id="niveauApnee" name="niveauApnee.id" from="${scubagrails.NiveauApnee.list()}" optionKey="id" value="${abonneInstance?.niveauApnee?.id}" class="many-to-one" noSelection="['null':'Aucun']"/>
+	</div>
 
 <div class="fieldcontain ${hasErrors(bean: abonneInstance, field: 'typeMembre', 'error')} required">
 	<label for="typeMembre">
