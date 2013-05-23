@@ -2,6 +2,7 @@ package scubagrails.gestion
 
 import java.text.SimpleDateFormat
 import org.apache.commons.lang.mutable.MutableInt;
+import org.springframework.web.multipart.MultipartFile;
 
 import scubagrails.Abonne;
 import scubagrails.AbonneService;
@@ -14,6 +15,7 @@ import scubagrails.SaisonService;
 import scubagrails.TypeMembre
 import scubagrails.UploadService
 import scubagrails.User;
+import scubagrails.gestionLogs.GestionLogs;
 import scubagrails.type.Sexe;
 import scubagrails.utils.AbonneExcelImporter
 
@@ -71,6 +73,7 @@ class AdminController {
 	}
 	
 	def refreshAdminData = {
+		println ("Start Refresing Admin Data : " + new Date().format("HH:mm:ss"))
 		
 		// 1 : Refresh CM Périmé
 		List<Abonne> listeAbonneCMPerimeUnAn = abonneService.getAbonnesCertificatMedicalPerime(365)
@@ -95,29 +98,32 @@ class AdminController {
 		
 		// Redirection
 		redirect(view: "index")
+		
+		println ("Stop Refresing Admin Data : " + new Date().format("HH:mm:ss"))
 	}
 	
 	def importAbonne = {	
-		
-		def downloadedFile = request.getFile("file")
-		def chemin = ""
-		if (!downloadedFile.isEmpty()) {
-			chemin = uploadService.uploadFile(downloadedFile, "excelImport.xls", "data_import")
+		if (params.file){
+			MultipartFile downloadedFile = request.getFile("file")
+			def chemin = ""
+			if (!downloadedFile.isEmpty() && (downloadedFile.getContentType() == "application/vnd.ms-excel" 
+				|| downloadedFile.getContentType() == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+				chemin = uploadService.uploadFile(downloadedFile, "excelImport.xls", "data_import")
 
-			String nomFeuille = params.nomFeuille
-			//String nomFeuille = /.\data_import\importAbonne_OK.xls/
-			//String nomFeuille = /.\data_import\importAbonneMultiple_OK.xls/
-			//String nomFeuille = /.\data_import\importFull.xls/
-			AbonneExcelImporter importer = new AbonneExcelImporter(chemin, nomFeuille);
-			def abonnesMapList = importer.getAbonnes();
+				String nomFeuille = params.nomFeuille
+				//String nomFeuille = /.\data_import\importAbonne_OK.xls/
+				//String nomFeuille = /.\data_import\importAbonneMultiple_OK.xls/
+				//String nomFeuille = /.\data_import\importFull.xls/
+				AbonneExcelImporter importer = new AbonneExcelImporter(chemin, nomFeuille);
+				def abonnesMapList = importer.getAbonnes();
 
-			List<String> listeLogs = adminService.traiterImportAbonne(abonnesMapList);
-
-			[listeLogs : listeLogs]
+				GestionLogs gestLogs = adminService.traiterImportAbonne(abonnesMapList);
+				session.gestLogs = gestLogs
+			} else {
+				session.gestLogs = null
+			}
 		} else {
-			List<String> listeLogs = new ArrayList<String>()
-			listeLogs.add("Aucun traitement effectué, le fichier est vide")
-			[listeLogs : listeLogs]
+			redirect(view: "index")
 		}
 		
 	}

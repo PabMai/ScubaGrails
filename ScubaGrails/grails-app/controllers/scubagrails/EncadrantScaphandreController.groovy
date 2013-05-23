@@ -52,7 +52,7 @@ class EncadrantScaphandreController {
 		}
 		List<Abonne> listePaginee = []
 		use(PaginateableList) {
-			listePaginee = listeOrigine.paginate(5,(params.offset ?: 0))
+			listePaginee = listeOrigine.paginate(10,(params.offset ?: 0))
 		}
 		
 

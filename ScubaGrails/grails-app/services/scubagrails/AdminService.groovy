@@ -2,16 +2,25 @@ package scubagrails
 
 import java.text.SimpleDateFormat
 
+import scubagrails.gestionLogs.GestionLogs;
 import scubagrails.type.Sexe;
 
 class AdminService {
 
-    List<String> traiterImportAbonne(List abonnesMapList ) {
-		List<String> listeLogs = new ArrayList<String>()
-		abonnesMapList.each { Map abonneParams ->
-
-			listeLogs.add("=====================")
-			listeLogs.add("Traitement de l'abonné ${abonneParams?.prenom} ${abonneParams?.nom} en cours")
+	/**
+	 * Gestion de l'import des données présentes dans un fichier Excel
+	 * 1) Vérification des paramètres
+	 * 2) Insertion en base de l'abonné
+	 * @param abonnesMapList List d'une map de paramètre d'un abonné
+	 * @return {@link GestionLogs}
+	 */
+    GestionLogs traiterImportAbonne(List abonnesMapList ) {
+		List<String> listeLogs = null
+		GestionLogs gestLogs = new GestionLogs(listeLogs, 0, 0)		
+		gestLogs.ajouterLogs("Début du traitement : le " + new Date().format("dd/MM/yyyy HH:mm:ss"))
+		abonnesMapList.each { Map abonneParams ->			
+			gestLogs.ajouterLogs("=====================")
+			gestLogs.ajouterLogs("Traitement de l'abonné ${abonneParams?.prenom} ${abonneParams?.nom} en cours")
 			
 			// Formatage du nom
 			if (abonneParams.nom != null) {
@@ -48,7 +57,7 @@ class AdminService {
 					abonneParams.dateCertificat = sdf.parse(tempDate)
 				}
 			} else {
-				listeLogs.add("WARNING : date de certificat vide ! On force le 09/09/1999")
+				gestLogs.ajouterLogs("WARNING : date de certificat vide ! On force le 09/09/1999")
 				String tempDate = "1999-09-09"
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				abonneParams.dateCertificat = sdf.parse(tempDate)
@@ -64,7 +73,7 @@ class AdminService {
 					abonneParams.dateNaissance = sdf.parse(tempDate)
 				}
 			} else {
-				listeLogs.add("WARNING : date de naissance vide ! On force 01/01/1800")
+				gestLogs.ajouterLogs("WARNING : date de naissance vide ! On force 01/01/1800")
 				String tempDate = "1800-01-01"
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				abonneParams.dateNaissance = sdf.parse(tempDate)
@@ -104,7 +113,7 @@ class AdminService {
 				String typeMembre = abonneParams.typeMembre
 				abonneParams.typeMembre = TypeMembre.findByNomIlike(typeMembre)
 				if (!abonneParams.typeMembre) {
-					listeLogs.add("Type de membre [" + typeMembre + "] non trouvé")
+					gestLogs.ajouterLogs("Type de membre [" + typeMembre + "] non trouvé")
 				}
 				
 			}
@@ -114,7 +123,7 @@ class AdminService {
 				String niveau = abonneParams.niveau
 				abonneParams.niveau = NiveauScaphandre.findByNiveauIlike(abonneParams.niveau)
 				if (!abonneParams.niveau) {
-					listeLogs.add("Niveau Scaphandre [" + niveau + "] non trouvé")					
+					gestLogs.ajouterLogs("Niveau Scaphandre [" + niveau + "] non trouvé")					
 				}
 			}
 			
@@ -123,7 +132,7 @@ class AdminService {
 				String niveau = abonneParams.niveauApnee
 				abonneParams.niveauApnee = NiveauApnee.findByNiveauIlike(abonneParams.niveauApnee)
 				if (!abonneParams.niveauApnee) {
-					listeLogs.add("Niveau Apnée [" + niveau + "] non trouvé")
+					gestLogs.ajouterLogs("Niveau Apnée [" + niveau + "] non trouvé")
 				}
 			}
 			
@@ -132,7 +141,7 @@ class AdminService {
 				String ecole = abonneParams.ecole
 				abonneParams.ecole = EcoleScaphandre.findByNomIlike(abonneParams.ecole)
 				if (!abonneParams.ecole) {
-					listeLogs.add("Ecole Scaphandre [" + ecole + "] non trouvé")
+					gestLogs.ajouterLogs("Ecole Scaphandre [" + ecole + "] non trouvé")
 				}
 			}
 			
@@ -141,11 +150,27 @@ class AdminService {
 				String ecole = abonneParams.ecoleApnee
 				abonneParams.ecoleApnee = EcoleApnee.findByNomIlike(abonneParams.ecoleApnee)
 				if (!abonneParams.ecoleApnee) {
-					listeLogs.add("Ecole Apnée [" + ecole + "] non trouvé")
+					gestLogs.ajouterLogs("Ecole Apnée [" + ecole + "] non trouvé")
 				}
-			}	
+			}			
 			
-			// TODO GMO : gérer les encadrants
+			// Encadrant Scaphandre
+			if (abonneParams.encadrantScaphandre != null) {
+				String encadrantS = abonneParams.encadrantScaphandre
+				abonneParams.encadrantScaphandre = EncadrantScaphandre.findByNomIlike(abonneParams.encadrantScaphandre)
+				if (!abonneParams.encadrantScaphandre) {
+					gestLogs.ajouterLogs("Encadrant Scaphandre [" + encadrantS + "] non trouvé")
+				}
+			}			
+			
+			// Encadrant Apnée
+			if (abonneParams.encadrantApnee != null) {
+				String encadrantA = abonneParams.encadrantApnee
+				abonneParams.encadrantApnee = EncadrantApnee.findByNomIlike(abonneParams.encadrantApnee)
+				if (!abonneParams.encadrantApnee) {
+					gestLogs.ajouterLogs("Encadrant Scaphandre [" + encadrantA + "] non trouvé")
+				}
+			}			
 			
 			// Création du mot de passe (dateDeNaissance ddMMyyyy)
 			SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy")
@@ -154,10 +179,12 @@ class AdminService {
 			// Création de l'abonné
 			def newAbonne = new Abonne(abonneParams)
 			if (!newAbonne.save(flush: true)) {
-				listeLogs.add("Abonné non inséré (KO): ${newAbonne.errors}")	
-				listeLogs.add("=====================")
+				gestLogs.ajouterLogs("Abonné non inséré (KO): ${newAbonne.errors}")	
+				gestLogs.ajouterLogs("=====================")
+				gestLogs.incrementerErrors()
 			} else {
-				listeLogs.add("Abonné inséré (OK)")				
+				gestLogs.ajouterLogs("Abonné inséré (OK)")	
+				gestLogs.incrementerSucces()
 				// La création de l'abonné est effective, on lui ajoute un 
 				// enregistrement pour la saison 2012/2013
 				// Prix abonnement
@@ -168,17 +195,18 @@ class AdminService {
 					Saison saison20122013 = Saison.findByLibelleLike("2012-2013");
 					Enregistrement enreg = new Enregistrement(abonne: newAbonne,saison: saison20122013)
 					if (!enreg.save(flush: true)) {
-						listeLogs.add("Enregistrement saison 2012/2013 KO : ${enreg.errors}")						
-						listeLogs.add("=====================")
+						gestLogs.ajouterLogs("Enregistrement saison 2012/2013 KO : ${enreg.errors}")						
+						gestLogs.ajouterLogs("=====================")						
 					} else {
-						listeLogs.add("Enregistrement saison 2012/2013 OK")
-						listeLogs.add("=====================")
+						gestLogs.ajouterLogs("Enregistrement saison 2012/2013 OK")
+						gestLogs.ajouterLogs("=====================")						
 					}
 				}
 			}			
 			
-		}		
-		return listeLogs
+		}	
+		gestLogs.ajouterLogs("Fin du traitement : le " + new Date().format("dd/MM/yyyy HH:mm:ss"))
+		return gestLogs
 		
     }
 }

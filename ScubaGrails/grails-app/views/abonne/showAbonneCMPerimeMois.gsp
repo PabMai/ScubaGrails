@@ -36,7 +36,7 @@ function adclick(site) {
 			<g:if test="${listePagineAbonneCMPerime}">
 			<ol class="property-list ecole">
 				<div id="list-abonne" class="content scaffold-list" role="main"
-					style="width: 600px; margin: auto">
+					style="width: 650px; margin: auto">
 					<h1 style="margin-left: 0px">
 						
 					</h1>

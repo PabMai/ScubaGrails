@@ -22,8 +22,16 @@ class SaisonService {
 	 */
 	void getDonneesSaisonEnCours(Saison saisonEnCours, MutableInt nbH, 
 		MutableInt nbF, Map<String, Integer> statEcole, Map<String, Integer> statTypeMembre) {
+		
+		println ("Début traitement saison en cours : " + new Date().format("HH:mm:ss"))
 		// Récupération du nombre d'enregistrement pour cette saison
 		Set<Enregistrement> enregSaisonEnCours = saisonEnCours.enregistrements		
+		
+		// Récupération de la liste de toutes les écoles
+		List<EcoleScaphandre> listeEcole = EcoleScaphandre.findAll()
+		
+		// Récupération des types de membre
+		List<TypeMembre> listeTypeM = TypeMembre.findAll()
 		
 		// Pour chaque enregistrement :
 		// Récupération de l'abonné et de ses statistiques
@@ -37,8 +45,7 @@ class SaisonService {
 				nbF.add(1);
 			}
 			
-			// Récupération de la liste de toutes les écoles
-			List<EcoleScaphandre> listeEcole = EcoleScaphandre.findAll()
+			
 			
 			// Pour chaque école, on comptabilise son nombre d'abonné
 			// (pour la saison actuelle)
@@ -53,10 +60,7 @@ class SaisonService {
 						statEcole.put(ecole.nom, 1)
 					}
 				}
-			}	
-			
-			// Compteur type membre
-			List<TypeMembre> listeTypeM = TypeMembre.findAll()
+			}				
 			
 			// Pour chaque type de membre, on comptabilise son nombre d'abonné
 			listeTypeM.each {
@@ -74,5 +78,7 @@ class SaisonService {
 			
 								
 		}
+		
+		println ("Fin traitement saison en cours : " + new Date().format("HH:mm:ss"))
 	}
 }

@@ -15,8 +15,10 @@ class AbonneExcelImporter extends AbstractExcelImporter {
                   'C':'prenom',
 				  'D':'niveau',
 				  'E':'ecole',
+				  'F':'encadrantScaphandre',
 				  'G':'niveauApnee',
 				  'H':'ecoleApnee',
+				  'I':'encadrantApnee',
 				  'J':'typeMembre',
 				  'O':'nomRue',
 				  'N':'comiteDirecteur',
@@ -42,8 +44,10 @@ class AbonneExcelImporter extends AbstractExcelImporter {
 				  prenom:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  niveau:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  ecole:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
+				  encadrantScaphandre:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  niveauApnee:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  ecoleApnee:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
+				  encadrantApnee:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  typeMembre:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  nomRue:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
 				  comiteDirecteur:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
@@ -75,9 +79,6 @@ class AbonneExcelImporter extends AbstractExcelImporter {
 	
 	List<Map> getAbonnes() {
 		List abonneList = excelImportService.columns(workbook, CONFIG_ABONNE_COLUMN_MAP + [sheet:nomFeuille], null, propertyConfigurationMap)
-		
-		
-		//List abonneList = excelImportService.columns(workbook, CONFIG_ABONNE_COLUMN_MAP)
-	  }
+	}
 
 }
