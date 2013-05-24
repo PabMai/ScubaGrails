@@ -25,8 +25,10 @@ environments {
     }
     production {
         dataSource {
+			username = "admin3QD7nih"
+			password = "aCAEz8TLysM7"
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/scuba_prod?autoreconnect=true"
+            url = "jdbc:mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/ascsb"
             pooled = true
             properties {
                maxActive = -1
