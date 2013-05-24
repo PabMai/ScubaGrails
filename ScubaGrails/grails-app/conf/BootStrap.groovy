@@ -16,6 +16,408 @@ import scubagrails.utils.AbonneExcelImporter;
 class BootStrap {
 
 	def init = { servletContext ->
+		
+		
+		/**
+		 * Création du socle fonctionnel
+		 */
+		
+		/**
+		 * ===============================================
+		 * 				CREATION UTILISATEURS
+		 * ===============================================
+		 */
+
+		// Création d'un Admin
+			def agnes = new User(login:"agnes",
+			password:"agnes",
+			email:"agnes@test.com",
+			nom: "tri",
+			prenom: "agnes",
+			role: "administrateur")
+			agnes.save()
+			if(agnes.hasErrors()){
+				println agnes.errors
+			} else {
+				println "Utilisateur 'Agnes' cree : OK !"
+			}	
+			
+		/**
+		 * ===============================================
+		 * 				CREATION ENCADRANTS
+		 * ===============================================
+		 */
+			
+		def encadrantAC2 = new EncadrantApnee(nom : "C2")
+		encadrantAC2.save()
+		if(encadrantAC2.hasErrors()){
+			println encadrantAC2.errors
+		} else {
+			println "Encadrant Apnée 'C2' cree : OK !"
+		}
+		
+		def encadrantAMFE1 = new EncadrantApnee(nom : "MFE1")
+		encadrantAMFE1.save()
+		if(encadrantAMFE1.hasErrors()){
+			println encadrantAMFE1.errors
+		} else {
+			println "Encadrant Apnée 'MFE1' cree : OK !"
+		}
+		
+		def encadrantSE1 = new EncadrantScaphandre(nom : "E1")
+		encadrantSE1.save()
+		if(encadrantSE1.hasErrors()){
+			println encadrantSE1.errors
+		} else {
+			println "Encadrant Scaphandre 'E1' cree : OK !"
+		}
+		
+		def encadrantSE2 = new EncadrantScaphandre(nom : "E2")
+		encadrantSE2.save()
+		if(encadrantSE2.hasErrors()){
+			println encadrantSE2.errors
+		} else {
+			println "Encadrant Scaphandre 'E2' cree : OK !"
+		}
+		
+		def encadrantSE3 = new EncadrantScaphandre(nom : "E3")
+		encadrantSE3.save()
+		if(encadrantSE3.hasErrors()){
+			println encadrantSE3.errors
+		} else {
+			println "Encadrant Scaphandre 'E3' cree : OK !"
+		}
+		
+		def encadrantSE4 = new EncadrantScaphandre(nom : "E4")
+		encadrantSE4.save()
+		if(encadrantSE4.hasErrors()){
+			println encadrantSE4.errors
+		} else {
+			println "Encadrant Scaphandre 'E4' cree : OK !"
+		}
+		
+		def encadrantSMF2 = new EncadrantScaphandre(nom : "MF2")
+		encadrantSMF2.save()
+		if(encadrantSMF2.hasErrors()){
+			println encadrantSMF2.errors
+		} else {
+			println "Encadrant Scaphandre 'MF2' cree : OK !"
+		}
+
+		/**
+		 * ===============================================
+		 * 				CREATION ECOLES Scaphandre
+		 * ===============================================
+		 */
+
+			def ecoleInit = new EcoleScaphandre(nom: "Initiateur")
+			ecoleInit.save()
+			if(ecoleInit.hasErrors()){
+				println ecoleInit.errors
+			} else {
+				println "Ecole Scaphandre 'Initiateur' cree : OK !"
+			}
+
+			def ecoleN1 = new EcoleScaphandre(nom: "N1")
+			ecoleN1.save()
+			if(ecoleN1.hasErrors()){
+				println ecoleN1.errors
+			} else {
+				println "Ecole Scaphandre 'N1' cree : OK !"
+			}
+
+			def ecoleN2 = new EcoleScaphandre(nom: "N2")
+			ecoleN2.save()
+			if(ecoleN2.hasErrors()){
+				println ecoleN2.errors
+			} else {
+				println "Ecole Scaphandre 'N2' cree : OK !"
+			}
+
+			def ecoleMF1 = new EcoleScaphandre(nom: "MF1")
+			ecoleMF1.save()
+			if(ecoleMF1.hasErrors()){
+				println ecoleMF1.errors
+			} else {
+				println "Ecole Scaphandre 'MF1' cree : OK !"
+			}
+			
+			def ecoleSApnee = new EcoleScaphandre(nom: "Apnée")
+			ecoleSApnee.save()
+			if(ecoleSApnee.hasErrors()){
+				println ecoleSApnee.errors
+			} else {
+				println "Ecole Scaphandre 'Apnée' cree : OK !"
+			}
+			
+			def ecoleSEnfant = new EcoleScaphandre(nom: "Enfant")
+			ecoleSEnfant.save()
+			if(ecoleSEnfant.hasErrors()){
+				println ecoleSEnfant.errors
+			} else {
+				println "Ecole Scaphandre 'Enfant' cree : OK !"
+			}
+			
+			def ecoleSN3 = new EcoleScaphandre(nom: "N3")
+			ecoleSN3.save()
+			if(ecoleSN3.hasErrors()){
+				println ecoleSN3.errors
+			} else {
+				println "Ecole Scaphandre 'N3' cree : OK !"
+			}
+			
+			def ecoleSN4 = new EcoleScaphandre(nom: "N4")
+			ecoleSN4.save()
+			if(ecoleSN4.hasErrors()){
+				println ecoleSN4.errors
+			} else {
+				println "Ecole Scaphandre 'N4' cree : OK !"
+			}
+			
+			def ecoleSPA40 = new EcoleScaphandre(nom: "PA40")
+			ecoleSPA40.save()
+			if(ecoleSPA40.hasErrors()){
+				println ecoleSPA40.errors
+			} else {
+				println "Ecole Scaphandre 'PA40' cree : OK !"
+			}
+			
+			
+			
+		/**
+		 * ===============================================
+		 * 				CREATION ECOLES Apnée
+		 * ===============================================
+		 */
+		
+			def ecoleAN1 = new EcoleApnee(nom: "N1")
+			ecoleAN1.save()
+			if(ecoleAN1.hasErrors()){
+				println ecoleAN1.errors
+			} else {
+				println "Ecole Apnée 'N1' cree : OK !"
+			}
+			
+			def ecoleAN2 = new EcoleApnee(nom: "N2")
+			ecoleAN2.save()
+			if(ecoleAN2.hasErrors()){
+				println ecoleAN2.errors
+			} else {
+				println "Ecole Apnée 'N2' cree : OK !"
+			}
+			
+			def ecoleAN3 = new EcoleApnee(nom: "N3")
+			ecoleAN3.save()
+			if(ecoleAN3.hasErrors()){
+				println ecoleAN3.errors
+			} else {
+				println "Ecole Apnée 'N3' cree : OK !"
+			}
+
+		/**
+		 * ===============================================
+		 * 				CREATION TYPE MEMBRE
+		 * ===============================================
+		 */
+
+			def typeMembrePalme = new TypeMembre(nom: "Palmes loisir")
+			typeMembrePalme.save()
+			if(typeMembrePalme.hasErrors()){
+				println typeMembrePalme.errors
+			} else {
+				println "TypeMembre 'Palmes loisir' cree : OK !"
+			}
+
+			def typeMembreNormal = new TypeMembre(nom: "Scaphandre")
+			typeMembreNormal.save()
+			if(typeMembreNormal.hasErrors()){
+				println typeMembreNormal.errors
+			} else {
+				println "TypeMembre 'Scaphandre' cree : OK !"
+			}
+
+			def typeMembreApnee = new TypeMembre(nom: "Apnée")
+			typeMembreApnee.save()
+			if(typeMembreApnee.hasErrors()){
+				println typeMembreApnee.errors
+			} else {
+				println "TypeMembre 'Apnee' cree : OK !"
+			}
+			
+			def typeMembrePiscine = new TypeMembre(nom: "Piscine")
+			typeMembreApnee.save()
+			if(typeMembreApnee.hasErrors()){
+				println typeMembreApnee.errors
+			} else {
+				println "TypeMembre 'Piscine' cree : OK !"
+			}
+		/**
+		 * ===============================================
+		 * 				CREATION SAISONS
+		 * ===============================================
+		 */
+
+			def saison20102011 = new Saison(libelle: "2010-2011",
+			dateDebut: Date.parse("dd/MM/yyyy", "01/09/2010"),
+			dateFin: Date.parse("dd/MM/yyyy", "31/08/2011"))
+			saison20102011.save()
+			if(saison20102011.hasErrors()){
+				println saison20102011.errors
+			} else {
+				println "Saison 2010-2011 cree : OK !"
+			}
+
+			def saison20112012 = new Saison(libelle: "2011-2012",
+			dateDebut: Date.parse("dd/MM/yyyy", "01/09/2011"),
+			dateFin: Date.parse("dd/MM/yyyy", "31/08/2012"))
+			saison20112012.save()
+			if(saison20112012.hasErrors()){
+				println saison20112012.errors
+			} else {
+				println "Saison 2011-2012 cree : OK !"
+			}
+
+			def saison20122013 = new Saison(libelle: "2012-2013",
+			dateDebut: Date.parse("dd/MM/yyyy", "01/09/2012"),
+			dateFin: Date.parse("dd/MM/yyyy", "31/08/2013"),
+			enCours: true)
+			saison20122013.save()
+			if(saison20122013.hasErrors()){
+				println saison20122013.errors
+			} else {
+				println "Saison 2012-2013 cree : OK !"
+			}
+
+		/**
+		 * ===============================================
+		 * 				CREATION NIVEAU SCAPHANDRE
+		 * ===============================================
+		 */
+			def niveauDeb = new NiveauScaphandre(niveau: "Deb")
+			niveauDeb.save()
+			if(niveauDeb.hasErrors()){
+				println niveauDeb.errors
+			} else {
+				println "Niveau Scaphandre 'Deb' cree : OK !"
+			}
+			
+			def niveauEnfant = new NiveauScaphandre(niveau: "Enfant")
+			niveauEnfant.save()
+			if(niveauEnfant.hasErrors()){
+				println niveauEnfant.errors
+			} else {
+				println "Niveau Scaphandre 'Enfant' cree : OK !"
+			}
+			
+			def niveauSApnee = new NiveauScaphandre(niveau: "Apnée")
+			niveauSApnee.save()
+			if(niveauSApnee.hasErrors()){
+				println niveauSApnee.errors
+			} else {
+				println "Niveau Scaphandre 'Apnée' cree : OK !"
+			}
+			
+			def niveauN1 = new NiveauScaphandre(niveau: "N1")
+			niveauN1.save()
+			if(niveauN1.hasErrors()){
+				println niveauN1.errors
+			} else {
+				println "Niveau Scaphandre 'N1' cree : OK !"
+			}
+
+			def niveauN2 = new NiveauScaphandre(niveau: "N2")
+			niveauN2.save()
+			if(niveauN2.hasErrors()){
+				println niveauN2.errors
+			} else {
+				println "Niveau Scaphandre 'N2' cree : OK !"
+			}
+
+			def niveauN3 = new NiveauScaphandre(niveau: "N3")
+			niveauN3.save()
+			if(niveauN3.hasErrors()){
+				println niveauN3.errors
+			} else {
+				println "Niveau Scaphandre 'N3' cree : OK !"
+			}
+			
+			def niveauN4 = new NiveauScaphandre(niveau: "N4")
+			niveauN4.save()
+			if(niveauN4.hasErrors()){
+				println niveauN4.errors
+			} else {
+				println "Niveau Scaphandre 'N4' cree : OK !"
+			}
+
+			def niveauBees1 = new NiveauScaphandre(niveau: "BEES1")
+			niveauBees1.save()
+			if(niveauBees1.hasErrors()){
+				println niveauBees1.errors
+			} else {
+				println "Niveau Scaphandre 'BEES1' cree : OK !"
+			}
+			
+			def niveauMF1 = new NiveauScaphandre(niveau: "MF1")
+			niveauMF1.save()
+			if(niveauMF1.hasErrors()){
+				println niveauMF1.errors
+			} else {
+				println "Niveau Scaphandre 'MF1' cree : OK !"
+			}
+			
+			def niveauMF2 = new NiveauScaphandre(niveau: "MF2")
+			niveauMF2.save()
+			if(niveauMF2.hasErrors()){
+				println niveauMF2.errors
+			} else {
+				println "Niveau Scaphandre 'MF2' cree : OK !"
+			}
+			
+			def niveauPADI = new NiveauScaphandre(niveau: "PADI open water")
+			niveauPADI.save()
+			if(niveauPADI.hasErrors()){
+				println niveauPADI.errors
+			} else {
+				println "Niveau Scaphandre 'PADI open water' cree : OK !"
+			}
+			
+			/**
+			 * ===============================================
+			 * 				CREATION NIVEAU APNEE
+			 * ===============================================
+			 */
+			
+			def niveauApneeN1 = new NiveauApnee(niveau: "N1")
+			niveauApneeN1.save()
+			if(niveauApneeN1.hasErrors()){
+				println niveauApneeN1.errors
+			} else {
+				println "Niveau Apnée 'N1' cree : OK !"
+			}
+
+			def niveauApneeN2 = new NiveauApnee(niveau: "N2")
+			niveauApneeN2.save()
+			if(niveauApneeN2.hasErrors()){
+				println niveauApneeN2.errors
+			} else {
+				println "Niveau Apnée 'N2' cree : OK !"
+			}
+
+			def niveauApneeN3 = new NiveauApnee(niveau: "N3")
+			niveauApneeN3.save()
+			if(niveauApneeN3.hasErrors()){
+				println niveauApneeN3.errors
+			} else {
+				println "Niveau Apnée 'N3' cree : OK !"
+			}
+
+			def niveauApneeMF1= new NiveauApnee(niveau: "MF1")
+			niveauApneeMF1.save()
+			if(niveauApneeMF1.hasErrors()){
+				println niveauApneeMF1.errors
+			} else {
+				println "Niveau Apnée 'MF1' cree : OK !"
+			}
 
 		switch(Environment.getCurrent()){
 			/* Environnement de développement */
@@ -24,418 +426,8 @@ class BootStrap {
 				println """ 
 				=====================================
 					  DUMP développement - start
-				====================================== """
-
-			/**
-			 * ===============================================
-			 * 				CREATION UTILISATEURS
-			 * ===============================================
-			 */
-
-			// Création d'un Admin
-				def agnes = new User(login:"agnes",
-				password:"agnes",
-				email:"agnes@test.com",
-				nom: "tri",
-				prenom: "agnes",
-				role: "administrateur")
-				agnes.save()
-				if(agnes.hasErrors()){
-					println agnes.errors
-				} else {
-					println "Utilisateur 'Agnes' cree : OK !"
-				}
-
-			// Création d'un User
-				def moi = new User(login:"moimoi",
-				password:"moimoi",
-				email:"moi@test.com",
-				nom: "moiNom",
-				prenom: "moiPrenom",
-				role: "autre...")
-				moi.save()
-				if(moi.hasErrors()){
-					println moi.errors
-				} else {
-					println "Utilisateur 'Moi' cree : OK !"
-				}
-				
-			/**
-			 * ===============================================
-			 * 				CREATION ENCADRANTS
-			 * ===============================================
-			 */
-				
-			def encadrantAC2 = new EncadrantApnee(nom : "C2")
-			encadrantAC2.save()
-			if(encadrantAC2.hasErrors()){
-				println encadrantAC2.errors
-			} else {
-				println "Encadrant Apnée 'C2' cree : OK !"
-			}
-			
-			def encadrantAMFE1 = new EncadrantApnee(nom : "MFE1")
-			encadrantAMFE1.save()
-			if(encadrantAMFE1.hasErrors()){
-				println encadrantAMFE1.errors
-			} else {
-				println "Encadrant Apnée 'MFE1' cree : OK !"
-			}
-			
-			def encadrantSE1 = new EncadrantScaphandre(nom : "E1")
-			encadrantSE1.save()
-			if(encadrantSE1.hasErrors()){
-				println encadrantSE1.errors
-			} else {
-				println "Encadrant Scaphandre 'E1' cree : OK !"
-			}
-			
-			def encadrantSE2 = new EncadrantScaphandre(nom : "E2")
-			encadrantSE2.save()
-			if(encadrantSE2.hasErrors()){
-				println encadrantSE2.errors
-			} else {
-				println "Encadrant Scaphandre 'E2' cree : OK !"
-			}
-			
-			def encadrantSE3 = new EncadrantScaphandre(nom : "E3")
-			encadrantSE3.save()
-			if(encadrantSE3.hasErrors()){
-				println encadrantSE3.errors
-			} else {
-				println "Encadrant Scaphandre 'E3' cree : OK !"
-			}
-			
-			def encadrantSE4 = new EncadrantScaphandre(nom : "E4")
-			encadrantSE4.save()
-			if(encadrantSE4.hasErrors()){
-				println encadrantSE4.errors
-			} else {
-				println "Encadrant Scaphandre 'E4' cree : OK !"
-			}
-			
-			def encadrantSMF2 = new EncadrantScaphandre(nom : "MF2")
-			encadrantSMF2.save()
-			if(encadrantSMF2.hasErrors()){
-				println encadrantSMF2.errors
-			} else {
-				println "Encadrant Scaphandre 'MF2' cree : OK !"
-			}
-
-			/**
-			 * ===============================================
-			 * 				CREATION ECOLES Scaphandre
-			 * ===============================================
-			 */
-
-				def ecoleInit = new EcoleScaphandre(nom: "Initiateur")
-				ecoleInit.save()
-				if(ecoleInit.hasErrors()){
-					println ecoleInit.errors
-				} else {
-					println "Ecole Scaphandre 'Initiateur' cree : OK !"
-				}
-
-				def ecoleN1 = new EcoleScaphandre(nom: "N1")
-				ecoleN1.save()
-				if(ecoleN1.hasErrors()){
-					println ecoleN1.errors
-				} else {
-					println "Ecole Scaphandre 'N1' cree : OK !"
-				}
-
-				def ecoleN2 = new EcoleScaphandre(nom: "N2")
-				ecoleN2.save()
-				if(ecoleN2.hasErrors()){
-					println ecoleN2.errors
-				} else {
-					println "Ecole Scaphandre 'N2' cree : OK !"
-				}
-
-				def ecoleMF1 = new EcoleScaphandre(nom: "MF1")
-				ecoleMF1.save()
-				if(ecoleMF1.hasErrors()){
-					println ecoleMF1.errors
-				} else {
-					println "Ecole Scaphandre 'MF1' cree : OK !"
-				}
-				
-				def ecoleSApnee = new EcoleScaphandre(nom: "Apnée")
-				ecoleSApnee.save()
-				if(ecoleSApnee.hasErrors()){
-					println ecoleSApnee.errors
-				} else {
-					println "Ecole Scaphandre 'Apnée' cree : OK !"
-				}
-				
-				def ecoleSEnfant = new EcoleScaphandre(nom: "Enfant")
-				ecoleSEnfant.save()
-				if(ecoleSEnfant.hasErrors()){
-					println ecoleSEnfant.errors
-				} else {
-					println "Ecole Scaphandre 'Enfant' cree : OK !"
-				}
-				
-				def ecoleSN3 = new EcoleScaphandre(nom: "N3")
-				ecoleSN3.save()
-				if(ecoleSN3.hasErrors()){
-					println ecoleSN3.errors
-				} else {
-					println "Ecole Scaphandre 'N3' cree : OK !"
-				}
-				
-				def ecoleSN4 = new EcoleScaphandre(nom: "N4")
-				ecoleSN4.save()
-				if(ecoleSN4.hasErrors()){
-					println ecoleSN4.errors
-				} else {
-					println "Ecole Scaphandre 'N4' cree : OK !"
-				}
-				
-				def ecoleSPA40 = new EcoleScaphandre(nom: "PA40")
-				ecoleSPA40.save()
-				if(ecoleSPA40.hasErrors()){
-					println ecoleSPA40.errors
-				} else {
-					println "Ecole Scaphandre 'PA40' cree : OK !"
-				}
-				
-				
-				
-			/**
-			 * ===============================================
-			 * 				CREATION ECOLES Apnée
-			 * ===============================================
-			 */
-			
-				def ecoleAN1 = new EcoleApnee(nom: "N1")
-				ecoleAN1.save()
-				if(ecoleAN1.hasErrors()){
-					println ecoleAN1.errors
-				} else {
-					println "Ecole Apnée 'N1' cree : OK !"
-				}
-				
-				def ecoleAN2 = new EcoleApnee(nom: "N2")
-				ecoleAN2.save()
-				if(ecoleAN2.hasErrors()){
-					println ecoleAN2.errors
-				} else {
-					println "Ecole Apnée 'N2' cree : OK !"
-				}
-				
-				def ecoleAN3 = new EcoleApnee(nom: "N3")
-				ecoleAN3.save()
-				if(ecoleAN3.hasErrors()){
-					println ecoleAN3.errors
-				} else {
-					println "Ecole Apnée 'N3' cree : OK !"
-				}				
-
-			/**
-			 * ===============================================
-			 * 				CREATION TYPE MEMBRE
-			 * ===============================================
-			 */
-
-				def typeMembrePalme = new TypeMembre(nom: "Palmes loisir")
-				typeMembrePalme.save()
-				if(typeMembrePalme.hasErrors()){
-					println typeMembrePalme.errors
-				} else {
-					println "TypeMembre 'Palmes loisir' cree : OK !"
-				}
-
-				def typeMembreNormal = new TypeMembre(nom: "Scaphandre")
-				typeMembreNormal.save()
-				if(typeMembreNormal.hasErrors()){
-					println typeMembreNormal.errors
-				} else {
-					println "TypeMembre 'Scaphandre' cree : OK !"
-				}
-
-				def typeMembreApnee = new TypeMembre(nom: "Apnée")
-				typeMembreApnee.save()
-				if(typeMembreApnee.hasErrors()){
-					println typeMembreApnee.errors
-				} else {
-					println "TypeMembre 'Apnee' cree : OK !"
-				}
-				
-				def typeMembrePiscine = new TypeMembre(nom: "Piscine")
-				typeMembreApnee.save()
-				if(typeMembreApnee.hasErrors()){
-					println typeMembreApnee.errors
-				} else {
-					println "TypeMembre 'Piscine' cree : OK !"
-				}
-			/**
-			 * ===============================================
-			 * 				CREATION SAISONS
-			 * ===============================================
-			 */
-
-				def saison20102011 = new Saison(libelle: "2010-2011",
-				dateDebut: Date.parse("dd/MM/yyyy", "01/09/2010"),
-				dateFin: Date.parse("dd/MM/yyyy", "31/08/2011"))
-				saison20102011.save()
-				if(saison20102011.hasErrors()){
-					println saison20102011.errors
-				} else {
-					println "Saison 2010-2011 cree : OK !"
-				}
-
-				def saison20112012 = new Saison(libelle: "2011-2012",
-				dateDebut: Date.parse("dd/MM/yyyy", "01/09/2011"),
-				dateFin: Date.parse("dd/MM/yyyy", "31/08/2012"))
-				saison20112012.save()
-				if(saison20112012.hasErrors()){
-					println saison20112012.errors
-				} else {
-					println "Saison 2011-2012 cree : OK !"
-				}
-
-				def saison20122013 = new Saison(libelle: "2012-2013",
-				dateDebut: Date.parse("dd/MM/yyyy", "01/09/2012"),
-				dateFin: Date.parse("dd/MM/yyyy", "31/08/2013"), 
-				enCours: true)
-				saison20122013.save()
-				if(saison20122013.hasErrors()){
-					println saison20122013.errors
-				} else {
-					println "Saison 2012-2013 cree : OK !"
-				}
-
-			/**
-			 * ===============================================
-			 * 				CREATION NIVEAU SCAPHANDRE
-			 * ===============================================
-			 */
-				def niveauDeb = new NiveauScaphandre(niveau: "Deb")
-				niveauDeb.save()
-				if(niveauDeb.hasErrors()){
-					println niveauDeb.errors
-				} else {
-					println "Niveau Scaphandre 'Deb' cree : OK !"
-				}
-				
-				def niveauEnfant = new NiveauScaphandre(niveau: "Enfant")
-				niveauEnfant.save()
-				if(niveauEnfant.hasErrors()){
-					println niveauEnfant.errors
-				} else {
-					println "Niveau Scaphandre 'Enfant' cree : OK !"
-				}
-				
-				def niveauSApnee = new NiveauScaphandre(niveau: "Apnée")
-				niveauSApnee.save()
-				if(niveauSApnee.hasErrors()){
-					println niveauSApnee.errors
-				} else {
-					println "Niveau Scaphandre 'Apnée' cree : OK !"
-				}
-				
-				def niveauN1 = new NiveauScaphandre(niveau: "N1")
-				niveauN1.save()
-				if(niveauN1.hasErrors()){
-					println niveauN1.errors
-				} else {
-					println "Niveau Scaphandre 'N1' cree : OK !"
-				}
-
-				def niveauN2 = new NiveauScaphandre(niveau: "N2")
-				niveauN2.save()
-				if(niveauN2.hasErrors()){
-					println niveauN2.errors
-				} else {
-					println "Niveau Scaphandre 'N2' cree : OK !"
-				}
-
-				def niveauN3 = new NiveauScaphandre(niveau: "N3")
-				niveauN3.save()
-				if(niveauN3.hasErrors()){
-					println niveauN3.errors
-				} else {
-					println "Niveau Scaphandre 'N3' cree : OK !"
-				}
-				
-				def niveauN4 = new NiveauScaphandre(niveau: "N4")
-				niveauN4.save()
-				if(niveauN4.hasErrors()){
-					println niveauN4.errors
-				} else {
-					println "Niveau Scaphandre 'N4' cree : OK !"
-				}
-
-				def niveauBees1 = new NiveauScaphandre(niveau: "BEES1")
-				niveauBees1.save()
-				if(niveauBees1.hasErrors()){
-					println niveauBees1.errors
-				} else {
-					println "Niveau Scaphandre 'BEES1' cree : OK !"
-				}
-				
-				def niveauMF1 = new NiveauScaphandre(niveau: "MF1")
-				niveauMF1.save()
-				if(niveauMF1.hasErrors()){
-					println niveauMF1.errors
-				} else {
-					println "Niveau Scaphandre 'MF1' cree : OK !"
-				}
-				
-				def niveauMF2 = new NiveauScaphandre(niveau: "MF2")
-				niveauMF2.save()
-				if(niveauMF2.hasErrors()){
-					println niveauMF2.errors
-				} else {
-					println "Niveau Scaphandre 'MF2' cree : OK !"
-				}
-				
-				def niveauPADI = new NiveauScaphandre(niveau: "PADI open water")
-				niveauPADI.save()
-				if(niveauPADI.hasErrors()){
-					println niveauPADI.errors
-				} else {
-					println "Niveau Scaphandre 'PADI open water' cree : OK !"
-				}
-				
-				/**
-				 * ===============================================
-				 * 				CREATION NIVEAU APNEE
-				 * ===============================================
-				 */
-				
-				def niveauApneeN1 = new NiveauApnee(niveau: "N1")
-				niveauApneeN1.save()
-				if(niveauApneeN1.hasErrors()){
-					println niveauApneeN1.errors
-				} else {
-					println "Niveau Apnée 'N1' cree : OK !"
-				}
-
-				def niveauApneeN2 = new NiveauApnee(niveau: "N2")
-				niveauApneeN2.save()
-				if(niveauApneeN2.hasErrors()){
-					println niveauApneeN2.errors
-				} else {
-					println "Niveau Apnée 'N2' cree : OK !"
-				}
-
-				def niveauApneeN3 = new NiveauApnee(niveau: "N3")
-				niveauApneeN3.save()
-				if(niveauApneeN3.hasErrors()){
-					println niveauApneeN3.errors
-				} else {
-					println "Niveau Apnée 'N3' cree : OK !"
-				}
-
-				def niveauApneeMF1= new NiveauApnee(niveau: "MF1")
-				niveauApneeMF1.save()
-				if(niveauApneeMF1.hasErrors()){
-					println niveauApneeMF1.errors
-				} else {
-					println "Niveau Apnée 'MF1' cree : OK !"
-				}
+					     Création des abonnés
+				====================================== """		
 
 
 			/**
@@ -836,21 +828,7 @@ class BootStrap {
 				println """
 				=====================================
 					  DUMP développement - stop
-				====================================== """
-				
-				println """
-				=====================================
-					  IMPORT EXCEL - start
-				===================================== """
-				
-
-				
-				println """
-				=====================================
-					  IMPORT EXCEL - stop
-				===================================== """
-				
-				
+				====================================== """				
 
 				break
 			/* Environnement de production */
