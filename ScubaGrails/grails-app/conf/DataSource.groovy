@@ -25,8 +25,8 @@ environments {
     }
     production {
         dataSource {
-			username = "admin3QD7nih"
-			password = "aCAEz8TLysM7"
+			username = "admin5SeBuVy"
+			password = "mIqPZK-1HHat"
             dbCreate = "update"
             url = "jdbc:mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/ascsb"
             pooled = true
